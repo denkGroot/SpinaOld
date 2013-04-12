@@ -1,0 +1,66 @@
+@import compass/css3
+@import mixins
+
+.gallery
+  .item
+    border-radius: 3px
+    float: left
+    height: 135px
+    margin: 0 10px 10px 0
+    overflow: hidden
+    position: relative
+    width: 240px
+    z-index: 3
+    @include box-shadow(0 1px 3px rgba(0, 0, 0, .5))
+
+    .title
+      color: #fff
+      font-size: 12px
+      font-weight: bold
+      margin: 5px
+      position: absolute
+      text-shadow: 0 1px 0 rgba(0, 0, 0, .25)
+      text-transform: uppercase
+      z-index: 2
+
+    img
+      position: relative
+      width: 100%
+      z-index: 1
+      @include transition(all .2s ease)
+
+    .overlay
+      border-top: 1px solid rgba(255, 255, 255, .5)
+      border-radius: 3px
+      height: 100%
+      position: absolute
+      text-align: center
+      width: 100%
+      z-index: 2
+      @include transition(background-color .2s ease)
+
+      a
+        color: #fff
+        font-size: 32px
+        line-height: 135px
+        opacity: 0
+        padding: 16px
+        @include transition(opacity .2s ease)
+
+    &:hover
+      img
+        @include transform(scale(1.1))
+
+    &:hover .overlay
+      background-color: rgba(0, 0, 0, .75)
+
+      a
+        opacity: .75
+
+      a:hover
+        opacity: 1
+
+.gallery:after
+  clear: both
+  content: ""
+  display: block

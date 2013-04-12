@@ -1,0 +1,244 @@
+@import compass/css3
+@import mixins
+
+// Reset button
+
+button
+  margin: 0
+
+// Default button
+
+.button
+  background-color: #f3f3f3
+  background-size: 1px 60px
+  border: 1px solid #c0c0c0
+  color: #646464
+  cursor: pointer
+  display: inline-block
+  font-weight: bold
+  line-height: 14px
+  padding: 8px 14px
+  text-decoration: none
+  @include background-clip(padding-box)
+  @include background-image(linear-gradient(top, #f5f5f5, #ccc))
+  @include border-radius(25px)
+  @include box-shadow(inset 0 1px 0 #fff, 0 1px 2px rgba(0, 0, 0, .25))
+  @include font-size(1.2)
+  @include text-shadow(0 1px 0 #fff)
+  @include transition(color .2s ease-out, background .2s ease-out, box-shadow .05s ease-out)
+
+  &:hover, &.hover
+    background-position: 100%
+    color: #333
+
+.button[data-icon]:before
+  font-size: 140%
+  font-weight: normal
+  line-height: 50%
+
+// Primary buton
+
+.button.button-primary
+  background-color: #81b0ef
+  border: 1px solid #4571b5
+  color: #fff
+  @include background-image(linear-gradient(top, rgb(129, 176, 239), rgb(52, 89, 148)))
+  @include box-shadow(inset 0 1px 0 rgba(255, 255, 255, .25), 0 1px 2px rgba(0, 0, 0, .35))
+  @include text-shadow(0 1px 0 #26497e)
+
+  &:hover, &.hover
+    color: #fff
+
+// Dark button
+
+.button.button-dark
+  background-color: #575757
+  border: 1px solid #333
+  color: #eee
+  @include background-image(linear-gradient(top, rgb(87, 87, 87), rgb(32, 32, 32)))
+  @include box-shadow(inset 0 1px 0 #575757, 0 1px 2px rgba(0, 0, 0, .25))
+  @include text-shadow(0 -1px 0 #000)
+
+  &:hover
+    color: #fff
+
+// Danger button
+
+.button.button-danger
+  background-color: #7c0c00
+  border: 1px solid #7c0c00
+  @include background-image(linear-gradient(top, rgb(124, 12, 0), rgb(95, 7, 0)))
+  @include box-shadow(inset 0 1px 0 rgba(255, 255, 255, .35))
+  @include text-shadow(0 1px 0 rgba(0, 0, 0, .35))
+
+  &:hover
+    color: #fff
+
+// Link button
+
+.button.button-link
+  background: none
+  border: none
+  @include box-shadow(none !important)
+
+  &.button-danger
+    color: #7c0c00
+    font-weight: normal
+    @include text-shadow(none)
+
+  &.button-primary
+    color: #4571b5
+    font-weight: normal
+    @include text-shadow(none)
+
+// Plain button
+
+.button.button-plain
+  background: #ededed
+  padding: 5px 10px
+  @include box-shadow(none !important)
+  @include font-size(1)
+  @include text-shadow(none)
+
+.button.button-plain:hover
+  color: #333
+
+.button.button-plain.button-danger
+  background: #7c0c00
+
+.button.button-plain.button-primary
+  background: #5d87cc
+  color: #fff
+
+// Small button
+
+.button.button-small
+  background-size: 1px 40px
+  padding: 4px 10px
+  @include font-size(1)
+
+// Button wells
+
+.button-well
+  background-color: #e7e7e7
+  display: inline-block
+  line-height: 14px
+  margin-right: 8px
+  padding: 5px
+  @include background-clip(padding-box)
+  @include background-image(linear-gradient(top, rgb(231, 231, 231), rgb(246, 246, 246)))
+  @include border-radius(25px)
+  @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, .1))
+
+  &.button-well-small
+    padding: 3px
+
+  &.button-well-dark
+    background: none
+    @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, .5))
+
+.pull-right .button-well
+  margin-left: 8px
+  margin-right: 0px
+
+// Active button
+
+.button:active, .button.button-active
+  background-position: 100%
+  @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, .5))
+
+// Button groups
+
+.button-group
+  display: inline-block
+  margin-right: 8px
+
+  .button
+    margin: 0 -3px
+    @include border-radius(0px)
+
+  .button:first-child
+    @include border-radius(25px 0 0 25px)
+
+  .button:last-child
+    @include border-radius(0 25px 25px 0)
+
+.button-well > .button-group:first-child
+  margin-left: 3px
+
+.button-well > .button-group:last-child
+  margin-right: 3px
+
+// Button badges
+
+[data-badge]
+  position: relative
+
+[data-badge]:after
+  border: 1px solid #600
+  color: #fff
+  content: attr(data-badge)
+  font-family: "Aller"
+  font-weight: bold
+  left: -8px
+  line-height: 16px
+  min-width: 10px
+  padding: 1px 4px
+  position: absolute
+  text-align: center
+  top: -4px
+  @include background-image(radial-gradient(0 0, rgb(252, 13, 27), rgb(130, 14, 11)))
+  @include border-radius(50px)
+  @include box-shadow(0 1px 2px rgba(0, 0, 0, .4))
+  @include font-size(1.2)
+  @include text-shadow(none)
+
+// Button dropdowns
+
+[data-dropdown]
+  position: relative
+
+  ul
+    background: #fff
+    border: 1px solid #b9b9b9
+    display: none
+    list-style: none
+    margin: 0
+    margin-top: 6px
+    padding: 6px 0
+    position: absolute
+    right: 0px
+    width: 200px
+    z-index: 99
+    @include border-radius(7px)
+    @include box-shadow(0 1px 10px rgba(0, 0, 0, .2))
+
+  ul:after
+    border-bottom: 7px solid #fff
+    border-left: 7px solid transparent
+    border-right: 7px solid transparent
+    content: ""
+    display: block
+    height: 0
+    position: absolute
+    right: 12px
+    top: -7px
+    width: 0
+
+  ul.open
+    display: block
+
+  ul li.divider
+    border-top: 1px solid #e9e9e9
+    margin: 8px 0
+
+  ul li a
+    color: #333
+    display: block
+    padding: 8px 18px
+    text-decoration: none
+    @include font-size(1.3)
+
+  ul li a:hover
+    background-color: #4571b5
+    color: #fff

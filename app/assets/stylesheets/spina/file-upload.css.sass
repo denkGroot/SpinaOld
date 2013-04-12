@@ -1,0 +1,49 @@
+@import compass/css3
+@import mixins
+
+#uploads
+  display: inline-block
+  margin-left: 20px
+
+  .upload
+    display: inline-block
+    margin-right: 20px
+    position: relative
+
+  .upload-cloud
+    height: 20px
+    position: absolute
+    width: 29px
+
+  .upload-cloud-processing
+    background: image-url('spina/upload_cloud.png')
+    display: block
+    height: 50%
+    position: absolute
+    width: 100%
+
+  .upload-cloud-done
+    background: image-url('spina/upload_cloud_done.png')
+    display: block
+    height: 100%
+    position: absolute
+    width: 100%
+
+  .filename
+    color: #666
+    font-size: 13px
+    line-height: 20px
+    margin-left: 40px
+
+#new_photo
+  position: relative
+
+  input
+    background: red
+    cursor: pointer
+    opacity: 0
+    position: absolute
+    bottom: -12px
+    left: -32px
+    top: -12px
+    width: 200px

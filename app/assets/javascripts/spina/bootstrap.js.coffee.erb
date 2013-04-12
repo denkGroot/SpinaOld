@@ -1,0 +1,113 @@
+# Bootstrapping all of Spina
+ready = ->
+
+  # Scroll
+  setTimeout ->
+    window.scrollTo(0)
+  , 50
+
+  # Select boxes
+  $('select').select_skin()
+
+  # Gallery select
+  $('.gallery-select').galleryselect()
+
+  # Datepicker
+  $('input[data-datepicker]').datepicker
+    dateFormat: 'dd MM yy',
+    onClose: (dateText, inst) ->
+      $(inst.input).change().focusout()
+
+  # Fast buttons
+  $('a.button:not(#nav-trigger)').addClass('fastbutton')
+
+  # File input
+  $('input[data-customfile]').customFileInput()
+
+  # Loading footable
+  $('.footable').footable()
+
+  # Loading switches
+  $('input[data-switch]').spinaSwitch()
+
+  # Load login form
+  $('#login_wrapper').css('margin-top', ($(document).innerHeight() / 2) - ($('#login_wrapper').innerHeight() / 2) + 'px')
+
+  # Loading epiceditor
+  $('.epiceditor').each ->
+    textarea = $(this)
+    textarea.hide()
+    identifier = $(this).attr("id")
+    textarea.parent().prepend('<div id="editor_' + identifier + '" />')
+
+    editor = new EpicEditor(
+      container: "editor_" + identifier,
+      basePath: '/assets/admin',
+      theme:
+        base: "/epiceditor/base.css",
+        preview: "/epiceditor/preview.css",
+        editor: "/epiceditor/editor.css"
+    ).load()
+
+    editor.on 'save', ->
+      textarea.val(editor.exportFile())
+
+    editor.importFile('file', textarea.val())
+
+  # Photo upload
+  $('#new_photo').fileupload
+    dataType: "script"
+    limitMultiFileUploads: 10
+    add: (e, data) ->
+      types = /(\.|\/)(gif|jpe?g|png)$/i
+      file = data.files[0]
+      if types.test(file.type) || types.test(file.name)
+        data.context = $(tmpl("template-upload", file))
+        $('#uploads').append(data.context)
+        data.submit()
+      else
+        modal = '
+          <div id="modal" class="modal">
+            <header class="big-header">
+              <a href="#" class="close_modal" data-dismiss="modal"><i class="icon-only" data-icon="x"></i></a>
+              <h3><strong>' + file.name + '</strong> is geen afbeelding.</h3>
+            </header>
+            <footer>
+                <a href="#" data-dismiss="modal" data-icon="v" style="width: 100%; -webkit-box-shadow: none; border-left: none">Oké, begrepen</a>
+              </footer>
+          </div>
+        '
+        $(modal).modal()
+
+    progress: (e, data) ->
+      if data.context
+        progress = -(parseInt(data.loaded / data.total * 100, 10) - 100)
+        progress = 20 if progress < 20
+        data.context.find('.upload-cloud-processing').css('height', progress + '%')
+
+  $('#new_photo input').hover ->
+    $("#uploadbutton").addClass('hover')
+  , ->
+    $("#uploadbutton").removeClass('hover')
+
+  # Colorpickers
+  $('.colorpicker').each ->
+    colorpicker = $(this).find('.colorpicker-container')
+    field = $(this).find('input')
+
+    $.farbtastic colorpicker, (color) ->
+      field.val(color)
+      field.css('color', color)
+
+  $('.colorpicker input').focus ->
+    container = $(this).parent()
+    colorpicker = container.find('.colorpicker-container')
+    $.farbtastic(colorpicker).setColor($(this).val())
+    container.find('.farbtastic').show()
+
+  $('.colorpicker input').blur ->
+    container = $(this).parent()
+    container.find('.farbtastic').hide()
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

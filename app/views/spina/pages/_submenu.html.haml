@@ -1,0 +1,5 @@
+%li{class: ('active' if params[:controller] == "spina/pages")}
+  = link_to "Pagina's", pages_path, data: {icon: 'd'}
+
+%li{class: ('active' if params[:controller] == "spina/photos")}
+  = link_to "Foto's", photos_path, data: {icon: '6'}

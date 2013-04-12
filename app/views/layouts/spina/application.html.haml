@@ -1,0 +1,55 @@
+!!!
+%html{lang: 'en'}
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{name: 'viewport', content: 'initial-scale=1.0, user-scalable=no'}
+    = csrf_meta_tags
+
+    %title denkWebsite
+
+    / Stylesheet
+    %link{rel: 'stylesheet', href: '//get.pictos.cc/fonts/3462/2'}
+    = stylesheet_link_tag "spina/application"
+
+    /[if lt IE 9]
+      = javascript_include_tag "//html5shiv.googlecode.com/svn/trunk/html5.js"
+
+    / JavaScript
+    = javascript_include_tag "http://feather.aviary.com/js/feather.js"
+    = javascript_include_tag "spina/application"
+
+  %body
+    #wrapper
+      %header#header
+        .inner-header
+          %span.pull-left
+            %a.button.button-dark.icon-only{href: '#', data: {icon: '-', toggle: 'navigation', :'no-turbolink' => true}}
+          %h1#logo
+            %a.fastbutton{href: '/admin'} denkWebsite
+
+          / Main navigation
+          = render 'spina/shared/navigation'
+
+      %section#main
+        = render 'spina/shared/subnavigation'
+
+        %section#content
+          = yield
+
+        %a#denkgroot{href: 'http://www.denkgroot.com', target: '_blank'} een idee van denkGroot
+
+      %aside#notifications
+        - if flash[:notice]
+          .notification
+            %i.icon-only{data: {icon: 'v '}}
+            = flash[:notice]
+            = link_to "", '#', class: 'icon-only', data: {icon: 'x', dismiss: 'notification'}
+
+        - if flash[:alert]
+          .notification.danger
+            %i.icon-only{data: {icon: '! '}}
+            = flash[:alert]
+            = link_to "", '#', class: 'icon-only', data: {icon: 'x', dismiss: 'notification'}
+
+    / Aviary editor
+    #injection_site

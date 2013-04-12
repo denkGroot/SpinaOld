@@ -1,0 +1,6 @@
+<% if @photo.new_record? %>
+  alert("Foto kon niet worden verwerkt: <%= j @photo.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+  $(".gallery").append("<%= j render(@photo) %>");
+  $(".upload-cloud-processing").css('height', '0%')
+<% end %>

@@ -1,0 +1,16 @@
+.well
+  %h1 Analytics
+
+= form_for current_account do |f|
+  .table-container.table-form
+    %table.table
+      %tr
+        %td
+          %label Google Analytics
+        %td
+          = f.text_field :google_analytics, placeholder: "Google Analytics code", class: 'large'
+
+  .actions
+    .button-well
+      %button.button.button-primary{type: 'submit', data: {icon: 'v'}}
+        Opslaan

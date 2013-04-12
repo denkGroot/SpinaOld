@@ -1,0 +1,39 @@
+@import compass/css3
+@import mixins
+
+.gallery-container
+  height: 85px
+  overflow: scroll
+  position: relative
+  width: auto
+
+.gallery-select
+  position: absolute
+
+  .item
+    border-radius: 3px
+    cursor: pointer
+    display: inline-block
+    margin-right: 5px
+    position: relative
+    @include box-shadow(0 1px 2px rgba(0, 0, 0, .5))
+
+  .item img
+    border-radius: 3px
+    display: block
+
+  .item.selected:after
+    background: rgba(94, 136, 197, .5)
+    border-radius: 3px
+    color: #fff
+    content: "v"
+    display: block
+    font-family: "Pictos Custom"
+    font-size: 24px
+    line-height: 81px
+    height: 100%
+    position: absolute
+    text-align: center
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .5)
+    top: 0
+    width: 100%

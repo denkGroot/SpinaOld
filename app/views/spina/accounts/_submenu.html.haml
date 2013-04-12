@@ -1,0 +1,8 @@
+%li{class: ('active' if params[:controller] == 'spina/accounts' && params[:action] == 'edit')}
+  = link_to "Gegevens", edit_account_path, data: {icon: 'i'}
+
+%li{class: ('active' if params[:controller] == 'spina/accounts' && params[:action] == 'social')}
+  = link_to "Social media", social_account_path, data: {icon: '7'}
+
+%li{class: ('active' if params[:controller] == 'spina/accounts' && params[:action] == 'analytics')}
+  = link_to "Analytics", analytics_account_path, data: {icon: 'z'}
