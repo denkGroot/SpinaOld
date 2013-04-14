@@ -2,6 +2,7 @@ module Spina
   class ApplicationController < ActionController::Base
     before_filter :authorize_user
     before_filter :current_account
+    before_filter :new_messages
 
     private
 
@@ -22,5 +23,9 @@ module Spina
       @current_account ||= Account.first
     end
     helper_method :current_account
+
+    def new_messages
+      @new_messages = Inquiry.new_messages.sorted
+    end
   end
 end

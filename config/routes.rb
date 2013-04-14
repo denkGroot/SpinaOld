@@ -22,6 +22,13 @@ Spina::Engine.routes.draw do
     collection { post :sort }
   end
 
+  resources :inquiries do
+    collection { get :inbox }
+    member do
+      post :mark_as_read
+    end
+  end
+
   resources :users
   
   resources :photos do

@@ -2,7 +2,7 @@ module Spina
   class Page < ActiveRecord::Base
     extend FriendlyId
 
-    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title
+    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_includes_attributes
 
     friendly_id :title
 

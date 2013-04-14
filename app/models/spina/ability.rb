@@ -9,7 +9,7 @@ module Spina
         can :manage, Spina::Page
         can :manage, Spina::Photo
         can :manage, Spina::Account
-        # can :manage, Inquiry
+        can :manage, Spina::Inquiry
       end
     end
   end
