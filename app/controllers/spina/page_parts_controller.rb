@@ -2,7 +2,7 @@ require_dependency "spina/application_controller"
 
 module Spina
   class PagePartsController < ApplicationController
-    load_and_authorize_resource
+    load_and_authorize_resource class: Spina::PagePart
 
     def index
       @page_parts = PagePart.sorted

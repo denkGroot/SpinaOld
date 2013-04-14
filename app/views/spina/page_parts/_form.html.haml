@@ -24,7 +24,7 @@
       %button.button.button-primary{type: 'submit', data: {icon: 'v'}}
         Paginasectie opslaan
 
-    = link_to "Terug naar overzicht", admin_page_parts_path, class: 'button button-link', data: {icon: '['}
+    = link_to "Terug naar overzicht", page_parts_path, class: 'button button-link', data: {icon: '['}
 
   - unless @page_part.new_record?
-    .pull-right= link_to "Definitief verwijderen", admin_page_part_path(@page_part), method: :delete, confirm: "Als je #{@page_part.name.downcase} verwijdert is deze ook niet meer beschikbaar op je pagina's. <br /><br /><strong>Weet je het zeker?</strong>", class: 'button button-link button-danger'
+    .pull-right= link_to "Definitief verwijderen", @page_part, method: :delete, confirm: "Als je #{@page_part.name.downcase} verwijdert is deze ook niet meer beschikbaar op je pagina's. <br /><br /><strong>Weet je het zeker?</strong>", class: 'button button-link button-danger'

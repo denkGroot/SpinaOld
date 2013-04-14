@@ -6,3 +6,6 @@
 
 %li{class: ('active' if params[:controller] == 'spina/accounts' && params[:action] == 'analytics')}
   = link_to "Analytics", analytics_account_path, data: {icon: 'z'}
+
+%li{class: ('active' if params[:controller] == 'spina/page_parts')}
+  = link_to "Layout", page_parts_path, data: {icon: 'O'}

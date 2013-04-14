@@ -7,7 +7,6 @@ module Spina
 
     validates_presence_of :name, :content_type, :tag
     validates_inclusion_of :content_type, in: Spina.page_part_types.map(&:to_s), allow_nil: false
-    validates :name, uniqueness: {scope: :tenant_id}
 
     scope :sorted, order(:position)
 
