@@ -6,16 +6,6 @@ source "http://rubygems.org"
 gemspec
 
 # jquery-rails is used by the dummy application
-gem "jquery-rails"
-gem 'sass-rails'
-gem 'haml'
-gem 'compass-rails'
-gem 'coffee-rails'
-gem 'turbolinks'
-gem 'jquery-fileupload-rails'
-gem 'cancan'
-gem 'carrierwave'
-gem 'friendly_id'
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or

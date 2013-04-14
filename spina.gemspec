@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Spina::VERSION
   s.authors     = ["Bram Jetten"]
   s.email       = ["bram@denkgroot.com"]
-  s.homepage    = "www.denkgroot.com"
+  s.homepage    = "http://www.denkgroot.com"
   s.summary     = "Spina"
   s.description = "CMS"
 
