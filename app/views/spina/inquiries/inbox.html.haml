@@ -21,7 +21,7 @@
               %p= inquiry.message
             %td 
               %small=l inquiry.created_at, format: '%e %B %Y %H:%M'
-            %td= link_to "Bericht markeren als gelezen", mark_as_read_admin_inquiry_path(inquiry), method: :post, class: 'button button-link button-primary', data: {icon: 'k'}
+            %td= link_to "Bericht markeren als gelezen", mark_as_read_inquiry_path(inquiry), method: :post, class: 'button button-link button-primary', data: {icon: 'k'}
       - else
         %tr
           %td.align-center{colspan: 3}
