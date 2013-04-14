@@ -1,6 +1,10 @@
 module Spina
   class Page < ActiveRecord::Base
+    extend FriendlyId
+
     attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title
+
+    friendly_id :title
 
     has_many :page_includes
     has_many :page_parts, through: :page_includes

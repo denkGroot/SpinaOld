@@ -1,6 +1,6 @@
 require "spina/engine"
-require "haml"
-require "compass-rails"
 
 module Spina
+  mattr_accessor :page_part_types
+  mattr_accessor :special_pages
 end

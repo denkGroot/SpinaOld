@@ -18,6 +18,10 @@ Spina::Engine.routes.draw do
     collection { post :sort }
   end
 
+  resources :page_parts do
+    collection { post :sort }
+  end
+
   resources :users
   
   resources :photos do

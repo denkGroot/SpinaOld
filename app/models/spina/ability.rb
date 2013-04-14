@@ -7,8 +7,7 @@ module Spina
         can :manage, :all
       else
         can :manage, Spina::Page
-        # can :manage, Photo
-        can :manage, Spina::PagePart
+        can :manage, Spina::Photo
         can :manage, Spina::Account
         # can :manage, Inquiry
       end
