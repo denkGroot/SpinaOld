@@ -7,11 +7,11 @@ require "spina/version"
 Gem::Specification.new do |s|
   s.name        = "spina"
   s.version     = Spina::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Spina."
-  s.description = "TODO: Description of Spina."
+  s.authors     = ["Bram Jetten"]
+  s.email       = ["bram@denkgroot.com"]
+  s.homepage    = "www.denkgroot.com"
+  s.summary     = "Spina"
+  s.description = "CMS"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
