@@ -1,36 +1,4 @@
-%nav#primary
-  %ul
-    %li{class: ('active' if %w[spina/admin/pages spina/admin/photos].include? params[:controller])}
-      - logger.debug params[:controller]
-      = link_to "Je website", admin_pages_path, data: {icon: 'b'}
-
-    - if can? :manage, Spina::User
-      %li{class: ('active' if %w[spina/admin/users].include? params[:controller])}
-        = link_to "Gebruikers", admin_users_path, data: {icon: 'U'}
-
-    %li{class: ('active' if %w[spina/admin/page_parts spina/admin/accounts].include? params[:controller])}
-      = link_to "Voorkeuren", edit_admin_account_path, data: {icon: 'y'}
-
-.pull-right
-  .button-well.button-well-dark{data: {dropdown: true}}
-    - if @new_messages.present?
-      = link_to "Berichten", "#", class: 'button button-dark', data: {icon: 'M', badge: "#{@new_messages.size}", trigger: 'dropdown'}
-    - else
-      = link_to "Berichten", admin_inquiries_path, class: 'button button-dark', data: {icon: 'M'}
-      
-    %ul
-      - if @new_messages.present?
-        %li
-          = link_to inbox_admin_inquiries_path, data: {icon: 'I'} do
-            %strong= t('misc.messages', count: @new_messages.size)
-
-      %li
-        = link_to admin_inquiries_path, data: {icon: 'J'} do
-          Bekijk 
-          %strong alle
-          berichten
-
-  .button-well.button-well-dark
-    .button-group
-      = link_to "Bekijk website", "/", class: 'button button-dark', data: {icon: 'e', :"no-turbolink" => true}
-      = link_to "", admin_logout_path, class: 'button button-dark icon-only', data: {icon: 'Q', :"no-turbolink" => true}
+%ul
+  - @pages.each do |page|
+    - path = page.title == "Homepage" ? "/" : page
+    = nav_link page.menu_title, path

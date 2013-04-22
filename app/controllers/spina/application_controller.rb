@@ -1,16 +1,11 @@
 module Spina
   class ApplicationController < ActionController::Base
-    before_filter :authorize_user
-    before_filter :current_account
-    before_filter :new_messages
-    before_filter :set_theme
 
-    private
-
-    def authorize_user
-      redirect_to login_url, flash: {information: "Je zult eerst moeten inloggen."} unless current_user
+    def current_account
+      @current_account ||= Account.first
     end
-
+    helper_method :current_account
+    
     def current_user
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
@@ -18,20 +13,6 @@ module Spina
 
     def current_ability
       @current_ability ||= Spina::Ability.new(current_user)
-    end
-
-    def current_account
-      @current_account ||= Account.first
-    end
-    helper_method :current_account
-
-    def new_messages
-      @new_messages = Inquiry.new_messages.sorted
-    end
-
-    def set_theme
-      theme = @current_account.theme || "default"
-      prepend_view_path "app/views/themes/#{theme}"
     end
 
   end

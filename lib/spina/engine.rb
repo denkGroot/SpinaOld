@@ -13,5 +13,7 @@ module Spina
     require 'carrierwave'
     require 'friendly_id'
     require 'redcarpet'
+    require 'neat'
+    require 'bourbon'
   end
 end
