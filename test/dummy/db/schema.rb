@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422161301) do
+ActiveRecord::Schema.define(:version => 20130422194211) do
 
   create_table "spina_accounts", :force => true do |t|
     t.string   "name"
@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(:version => 20130422161301) do
     t.string   "email"
     t.string   "phone"
     t.text     "message"
-    t.boolean  "archived"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "archived",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "spina_page_includes", :force => true do |t|

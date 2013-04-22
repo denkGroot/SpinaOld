@@ -20,7 +20,7 @@ module Spina
       end
     end
 
-  private
+    private
 
     def get_pages
       @pages = Page.sorted.where(show_in_menu: true)

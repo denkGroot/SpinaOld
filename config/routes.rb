@@ -1,6 +1,5 @@
 Spina::Engine.routes.draw do
 
-
   # Backend
   namespace :admin do
     root to: "pages#index"
@@ -42,6 +41,4 @@ Spina::Engine.routes.draw do
   root to: "pages#homepage"
   resources :pages, path: ''
   resources :inquiries
-
-
 end

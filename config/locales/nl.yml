@@ -2,3 +2,9 @@ nl:
   text: Tekst
   photo: Foto
   line: Tekstregel
+
+  misc:
+    messages:
+      zero: "0 nieuwe berichten"
+      one: "1 nieuw bericht"
+      other: "%{count} nieuwe berichten"

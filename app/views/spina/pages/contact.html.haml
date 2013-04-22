@@ -11,7 +11,7 @@
   .column.half
     = markdown @page.content(:left_column)
 
-    = form_for [:admin, @inquiry], remote: true do |f|
+    = form_for @inquiry, remote: true do |f|
       %table
         %tbody
           %tr
@@ -38,4 +38,4 @@
 
     - if current_account.address
       #googlemaps
-        %iframe{width: "100%", height: "400px", src: "https://maps.google.nl/maps?q=#{[current_tenant.account.address, current_tenant.account.city].join(', ')}&z=12&output=embed"}
+        %iframe{width: "100%", height: "400px", src: "https://maps.google.nl/maps?q=#{[current_account.address, current_account.city].join(', ')}&z=12&output=embed"}

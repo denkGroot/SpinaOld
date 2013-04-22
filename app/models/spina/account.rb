@@ -32,7 +32,6 @@ module Spina
 
     serialized_attr_accessor :google_analytics, :facebook, :twitter
 
-
     def bootstrap_website
       Spina.special_pages.each do |page|
         Page.create title: page.capitalize, deletable: false
