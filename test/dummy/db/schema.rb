@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422094426) do
+ActiveRecord::Schema.define(:version => 20130422161301) do
 
   create_table "spina_accounts", :force => true do |t|
     t.string   "name"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20130422094426) do
     t.string   "logo"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "theme"
   end
 
   create_table "spina_inquiries", :force => true do |t|

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    spina (0.0.2)
+    spina (0.0.3)
       bcrypt-ruby (~> 3.0.0)
       bourbon
       cancan
