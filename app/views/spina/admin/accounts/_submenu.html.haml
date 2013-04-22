@@ -1,0 +1,12 @@
+%li{class: ('active' if params[:action] == 'edit' && params[:controller] == 'spina/admin/accounts')}
+  = link_to "Gegevens", edit_admin_account_path, data: {icon: 'i'}
+
+%li{class: ('active' if params[:action] == 'social')}
+  = link_to "Social media", social_admin_account_path, data: {icon: '7'}
+
+%li{class: ('active' if params[:action] == 'analytics')}
+  = link_to "Analytics", analytics_admin_account_path, data: {icon: 'z'}
+
+- if can? :manage, Spina::PagePart
+  %li{class: ('active' if params[:controller] == 'spina/admin/page_parts')}
+    = link_to "Layout", admin_page_parts_path, data: {icon: 'O'}

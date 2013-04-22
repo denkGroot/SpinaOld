@@ -1,0 +1,72 @@
+!!!
+%html{lang: 'nl'}
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{name: 'viewport', content: 'initial-scale=1.0, user-scalable=no'}
+    %meta{description: @page.description}
+    = csrf_meta_tags
+    
+    %title= "#{current_tenant} - #{@page.title}"
+
+  %body
+    #wrapper
+      = render 'shared/admin_bar'
+
+      #container.wrapper
+        %header#header
+          .row
+            = link_to root_url, id: 'logo' do
+              = image_tag current_tenant.account.logo unless current_tenant.account.logo.blank?
+
+            .address
+              %table
+                %tbody
+                  - if phone = current_tenant.account.phone
+                    %tr
+                      %td Telefoon
+                      %td= phone
+
+                  - if email = current_tenant.account.email
+                    %tr
+                      %td Email
+                      %td= link_to email, email
+
+                  - if address = current_tenant.account.address
+                    %tr
+                      %td Adres
+                      %td
+                        = address
+                        %br/
+                        = [current_tenant.account.postal_code, current_tenant.account.city].join(", ")
+
+          %nav#primary.primary-background
+            = link_to "Open/sluit navigatie", "#", id: 'nav-toggle', data: {toggle: 'navigation'}
+            = render 'shared/navigation'
+
+        #main_content
+          = yield
+
+        %footer#footer.row
+          .column.half
+            %h3 Navigatie
+            = render 'shared/navigation'
+
+          .column.quarter
+
+          .column.quarter
+            %h3 Social media
+            = render 'shared/social'
+
+          .column.quarter
+            %h3 Contactgegevens
+            
+            - if address
+              %p
+                = address
+                %br/
+                = [current_tenant.account.postal_code, current_tenant.account.city].join(", ")
+
+            - if phone
+              %p= phone
+
+    = render 'shared/analytics'

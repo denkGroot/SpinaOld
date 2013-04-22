@@ -1,0 +1,4 @@
+%ul
+  - @pages.each do |page|
+    - path = page.title == "Homepage" ? "/" : page
+    = nav_link page.menu_title, path

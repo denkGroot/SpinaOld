@@ -1,0 +1,21 @@
+.well
+  %h1 Foto's
+
+.gallery
+  = render @photos
+
+.actions
+  = form_for [:admin, @photo], html: {multipart: true} do |f|
+    = f.file_field :file
+
+    .button-well
+      = link_to "Upload foto's", "#", id: "uploadbutton", class: 'button button-primary', data: {icon: 'u'}
+
+    #uploads
+
+%script#template-upload{type: "text/x-tmpl"}
+  .upload
+    .upload-cloud
+      .upload-cloud-done
+      .upload-cloud-processing{style: "height: 100%"}
+    .filename {%=o.name%}

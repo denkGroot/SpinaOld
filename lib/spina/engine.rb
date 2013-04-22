@@ -12,5 +12,6 @@ module Spina
     require 'cancan'
     require 'carrierwave'
     require 'friendly_id'
+    require 'redcarpet'
   end
 end

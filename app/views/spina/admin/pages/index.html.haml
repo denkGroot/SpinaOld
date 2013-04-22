@@ -1,0 +1,21 @@
+.well
+  %h1 Pagina's
+
+.table-container
+  %table.table.sortable
+    %thead
+      %tr
+        %th Titel
+        %th Beschrijving
+        %th
+
+    %tbody{data: {:"update-url" => sort_admin_pages_url }}
+      - @pages.each do |page|
+        %tr{id: "page_#{page.id}"}
+          %td= link_to page, edit_admin_page_path(page)
+          %td= page.description
+          %td= link_to "Bewerken", edit_admin_page_path(page), class: 'button button-plain', data: {icon: 'p'}
+
+.actions
+  .button-well
+    = link_to "Nieuwe pagina", new_admin_page_path, class: 'button button-primary', data: {icon: '&'}

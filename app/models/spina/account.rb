@@ -4,6 +4,8 @@ module Spina
 
     serialize :preferences
 
+    after_create :bootstrap_website
+
     mount_uploader :logo, LogoUploader
 
     def to_s
@@ -29,5 +31,13 @@ module Spina
     end
 
     serialized_attr_accessor :google_analytics, :facebook, :twitter
+
+
+    def bootstrap_website
+      Spina.special_pages.each do |page|
+        Page.create title: page.capitalize, deletable: false
+      end
+    end
+
   end
 end

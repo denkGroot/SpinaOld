@@ -1,0 +1,41 @@
+- if @page.has_content?(:headerphoto)
+  .header_image
+    = image_tag @page.content(:headerphoto).file.header
+
+    - if @page.has_content?(:tagline)
+      .tagline
+        %h2= @page.content(:tagline)
+        %small= @page.content(:tagline_subtitle)
+
+.row
+  .column.half
+    = markdown @page.content(:left_column)
+
+    = form_for [:admin, @inquiry], remote: true do |f|
+      %table
+        %tbody
+          %tr
+            %td Naam
+            %td 
+              = f.text_field :name, placeholder: "Naam"
+          %tr
+            %td Email
+            %td
+              = f.text_field :email, placeholder: "Email"
+          %tr
+            %td Bericht
+            %td
+              = f.text_area :message, placeholder: "Bericht"
+
+          %tr
+            %td
+            %td
+              = submit_tag "Verstuur bericht", class: 'button'
+              %small.pull-right Alle velden zijn verplicht
+
+  .column.half
+    = markdown @page.content(:right_column)
+
+    - if current_tenant.account.address
+      #googlemaps
+        %iframe{width: "100%", height: "400px", src: "https://maps.google.nl/maps?q=#{[current_tenant.account.address, current_tenant.account.city].join(', ')}&z=12&output=embed"}

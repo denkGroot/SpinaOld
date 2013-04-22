@@ -1,39 +1,47 @@
 Spina::Engine.routes.draw do
-  root to: "pages#index"
 
-  # Sessions
-  resources :sessions
-  get "login" => "sessions#new"
-  get "logout" => "sessions#destroy"
 
-  resource :account do
-    member do
-      get :style
-      get :analytics
-      get :social
+  # Backend
+  namespace :admin do
+    root to: "pages#index"
+
+    resource :account do
+      member do
+        get :style
+        get :analytics
+        get :social
+      end
     end
-  end
 
-  resources :pages do
-    collection { post :sort }
-  end
+    resources :users
+    # Sessions
+    resources :sessions
+    get "login" => "sessions#new"
+    get "logout" => "sessions#destroy"
 
-  resources :page_parts do
-    collection { post :sort }
-  end
-
-  resources :inquiries do
-    collection { get :inbox }
-    member do
-      post :mark_as_read
+    resources :pages do
+      post :sort, on: :collection
     end
+
+    resources :page_parts do
+      post :sort, on: :collection
+    end
+
+    resources :photos do
+      post :enhance, on: :member
+    end
+
+    resources :inquiries do
+      get :inbox, on: :collection
+      post :mark_as_read, on: :member
+    end
+
   end
 
-  resources :users
-  
-  resources :photos do
-    member do
-      post :enhance
-    end
-  end
+  # Frontend
+  root to: "pages#homepage"
+  resources :pages, path: ''
+  resources :inquiries
+
+
 end

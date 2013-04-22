@@ -32,7 +32,7 @@ module Spina
     end
 
     def content(page_part)
-      page_include = page_includes.joins(:page_part).where('page_parts.tag = ?', page_part.to_s).first
+      page_include = page_includes.joins(:page_part).where('spina_page_parts.tag = ?', page_part.to_s).first
       page_include.content if page_include
     end
   end

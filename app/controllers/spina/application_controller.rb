@@ -3,6 +3,7 @@ module Spina
     before_filter :authorize_user
     before_filter :current_account
     before_filter :new_messages
+    before_filter :set_theme
 
     private
 
@@ -27,5 +28,11 @@ module Spina
     def new_messages
       @new_messages = Inquiry.new_messages.sorted
     end
+
+    def set_theme
+      theme = @current_account.theme || "default"
+      prepend_view_path "app/views/themes/#{theme}"
+    end
+
   end
 end
