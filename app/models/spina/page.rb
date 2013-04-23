@@ -4,7 +4,7 @@ module Spina
 
     attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_includes_attributes
 
-    friendly_id :title
+    friendly_id :title, use: :slugged
 
     has_many :page_includes
     has_many :page_parts, through: :page_includes
