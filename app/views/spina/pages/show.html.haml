@@ -1,10 +1,1 @@
-- if @page.has_content?(:headerphoto)
-  .header_image
-    = image_tag @page.content(:headerphoto).file.header
-
-    - if @page.has_content?(:tagline)
-      .tagline
-        %h2= @page.content(:tagline)
-        %small= @page.content(:tagline_subtitle)
-
 = render 'page'

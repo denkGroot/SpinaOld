@@ -1,17 +1,1 @@
-.royalSlider.rsDefault
-  - @pages.each do |page|
-    - if page.has_content?(:headerphoto)
-      .header_image
-        = image_tag page.content(:headerphoto).file.header
-
-        - if page.has_content?(:tagline)
-          .tagline
-            %h2= page.content(:tagline)
-            %small= page.content(:tagline_subtitle)
-
-            - if page != @page
-              = link_to "Ga naar #{page.title.downcase}", page, class: 'tagline-button primary-background'
-
-
-
 = render 'page'

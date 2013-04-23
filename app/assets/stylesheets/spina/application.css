@@ -10,8 +10,6 @@
  *
  *= require_self
  *= require ./normalize
- *= require spina/admin/buttons
- *= require ./royalslider
- *= require ./rs-default
+ *= require ./admin/buttons
  *= require_directory .
  */

@@ -13,8 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require spina/admin/jquery.nodoubletapzoom
-//= require spina/admin/spina.navigation
-//= require ./jquery.easing-1.3
-//= require ./jquery.royalslider.min
 //= require_directory .
