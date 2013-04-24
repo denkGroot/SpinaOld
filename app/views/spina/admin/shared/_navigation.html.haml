@@ -1,6 +1,6 @@
 %nav#primary
   %ul
-    %li{class: ('active' if (%w[spina/admin/pages spina/admin/photos] + Spina.plugins.map({|plugin| "spina/admin/#{plugin.controller}" })).include? params[:controller])}
+    %li{class: ('active' if %w[spina/admin/pages spina/admin/photos].include? params[:controller])}
       = link_to "Je website", admin_pages_path, data: {icon: 'b'}
 
     - if can? :manage, Spina::User
