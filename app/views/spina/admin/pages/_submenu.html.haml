@@ -3,3 +3,6 @@
 
 %li{class: ('active' if params[:controller] == "spina/admin/photos")}
   = link_to "Foto's", admin_photos_path, data: {icon: '6'}
+
+- Spina.plugins.each do |plugin|
+  
