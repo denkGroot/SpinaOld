@@ -17,5 +17,8 @@ module Spina
     require 'bourbon'
 
     require 'spina/plugin'
+
+    require 'decorators'
+    Decorators.register! Rails.root
   end
 end

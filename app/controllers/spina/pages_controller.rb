@@ -1,7 +1,6 @@
 require_dependency "spina/application_controller"
 
 module Spina
-
   class PagesController < ApplicationController
     before_filter :get_pages
 
@@ -26,5 +25,4 @@ module Spina
       @pages = Page.sorted.where(show_in_menu: true)
     end
   end
-
 end
