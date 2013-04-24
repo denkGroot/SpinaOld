@@ -8,12 +8,15 @@ module Spina
       @page = Page.find_by_title("Homepage")
     end
 
+    def contact
+      @inquiry = Inquiry.new
+    end
+
     def show
       @page = Page.find(params[:id])
-      @inquiry = Inquiry.new
 
       if Spina.special_pages.map(&:to_s).include? @page.title.downcase
-        render @page.title.downcase
+        method(@page.title.downcase).call
       else
         render :show
       end
