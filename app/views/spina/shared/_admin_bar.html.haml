@@ -1,6 +1,6 @@
 - if current_user.present?
   #admin_bar
-    .button-well.button-well-dark
-      .button-group
-        = link_to "Bewerk je website", admin_root_url, data: {:"no-turbolink" => true}, class: 'button button-dark'
-        = link_to "Uitloggen", admin_logout_path, data: {:"no-turbolink" => true}, class: 'button button-dark'
+    .admin-button-well.admin-button-well-dark
+      .admin-button-group
+        = link_to "Bewerk je website", admin_root_url, data: {:"no-turbolink" => true}, class: 'admin-button admin-button-dark'
+        = link_to "Uitloggen", admin_logout_path, data: {:"no-turbolink" => true}, class: 'admin-button admin-button-dark'
