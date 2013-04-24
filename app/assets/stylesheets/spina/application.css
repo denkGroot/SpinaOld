@@ -10,6 +10,5 @@
  *
  *= require_self
  *= require ./normalize
- *= require ./admin/buttons
  *= require_directory .
  */
