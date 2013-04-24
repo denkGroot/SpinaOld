@@ -1,8 +1,7 @@
 require_dependency "spina/application_controller"
 
 module Spina
-
-  class InquiriesController < ApplicationController
+  class InquiriesController < FrontendController
 
     def create
       @inquiry = Inquiry.new(params[:inquiry])
@@ -14,5 +13,4 @@ module Spina
     end
 
   end
-
 end

@@ -1,8 +1,7 @@
 require_dependency "spina/application_controller"
 
 module Spina
-  class PagesController < ApplicationController
-    before_filter :get_pages
+  class PagesController < FrontendController
 
     def homepage
       @page = Page.find_by_title("Homepage")
@@ -17,10 +16,5 @@ module Spina
       @page.deletable ? render(:show) : method(@page.title.downcase).call
     end
 
-    private
-
-    def get_pages
-      @pages = Page.sorted.where(show_in_menu: true)
-    end
   end
 end
