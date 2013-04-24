@@ -16,8 +16,14 @@ module Spina
       end
     end
 
+    def current_controller?(link_path)
+      if controller.controller_name != "pages"
+        ['spina', controller.controller_name].join('/') == spina.routes.recognize_path(link_path)[:controller]
+      end
+    end
+
     def nav_link(link_text, link_path)
-      class_name = current_page?(link_path) ? 'active' : ''
+      class_name = (current_page?(link_path) || current_controller?(link_path)) ? 'active' : ''
 
       content_tag(:li, class: class_name) do
         link_to link_text, link_path
