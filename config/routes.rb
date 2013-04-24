@@ -42,6 +42,10 @@ Spina::Engine.routes.draw do
 
   end
 
+  Spina.plugins.each do |plugin|
+    resources plugin.class_name.pluralize.downcase.to_sym
+  end
+  
   # Frontend
   root to: "pages#homepage"
   resources :pages, path: ''
