@@ -7,4 +7,4 @@
 - Spina.plugins.each do |plugin|
   
   %li{class: ('active' if params[:controller] == "spina/admin/#{plugin.controller}")}
-    = link_to plugin, method("admin_#{plugin.controller}_path").call, data: {icon: '6'}
+    = link_to plugin, method("admin_#{plugin.controller}_path").call, data: {icon: plugin.pictos_icon}
