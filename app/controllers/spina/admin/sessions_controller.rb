@@ -20,7 +20,7 @@ module Spina
 
     def destroy
       session[:user_id] = nil
-      redirect_to admin_root_url
+      redirect_to root_url
     end
   end
 end
