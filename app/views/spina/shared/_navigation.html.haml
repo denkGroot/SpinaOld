@@ -1,4 +1,4 @@
 %ul
   - @pages.each do |page|
-    - path = page.title == "Homepage" ? "/" : page
+    - path = page.title == "Homepage" ? "/" : page.slug
     = nav_link page.menu_title, path
