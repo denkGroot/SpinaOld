@@ -14,12 +14,7 @@ module Spina
 
     def show
       @page = Page.find(params[:id])
-
-      if Spina.special_pages.map(&:to_s).include? @page.title.downcase
-        method(@page.title.downcase).call
-      else
-        render :show
-      end
+      @page.deletable ? render :show : method(@page.title.downcase).call
     end
 
     private
