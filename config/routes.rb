@@ -37,7 +37,7 @@ Spina::Engine.routes.draw do
 
     # Plugin routes
     Spina.plugins.each do |plugin|
-      resources plugin.class_name.pluralize.to_sym
+      resources plugin.class_name.pluralize.downcase.to_sym
     end
 
   end
