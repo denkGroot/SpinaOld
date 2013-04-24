@@ -14,7 +14,7 @@ module Spina
 
     def show
       @page = Page.find(params[:id])
-      @page.deletable ? render :show : method(@page.title.downcase).call
+      @page.deletable ? render(:show) : method(@page.title.downcase).call
     end
 
     private
