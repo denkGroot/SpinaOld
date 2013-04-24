@@ -15,5 +15,7 @@ module Spina
     require 'redcarpet'
     require 'neat'
     require 'bourbon'
+
+    require 'spina/plugin'
   end
 end
