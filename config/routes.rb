@@ -35,6 +35,11 @@ Spina::Engine.routes.draw do
       post :mark_as_read, on: :member
     end
 
+    # Plugin routes
+    Spina.plugins.each do |plugin|
+      resources plugin.class_name.pluralize.to_sym
+    end
+
   end
 
   # Frontend
