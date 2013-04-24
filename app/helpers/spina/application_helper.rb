@@ -18,6 +18,8 @@ module Spina
 
     def current_controller?(link_path)
       ['spina', controller.controller_name].join('/') == spina.routes.recognize_path(link_path)[:controller]
+      logger.info controller.controller_name
+      logger.info spina.routes.recognize_path(link_path)[:controller]
     end
 
     def nav_link(link_text, link_path)
