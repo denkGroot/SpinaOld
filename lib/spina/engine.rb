@@ -11,12 +11,11 @@ require 'friendly_id'
 require 'redcarpet'
 require 'neat'
 require 'bourbon'
+require 'spina/plugin'
 
 module Spina
   class Engine < ::Rails::Engine
     isolate_namespace Spina
-
-    autoload :Plugin, 'spina/plugin'
 
     def self.require_decorators
       [Rails.root].flatten.map { |p| Dir[p.join('app', 'decorators', '**', '*_decorator.rb')]}.flatten.uniq.each do |decorator|
