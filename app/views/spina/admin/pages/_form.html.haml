@@ -31,7 +31,7 @@
               = page_part_builder.text_area :content, placeholder: "Paginasectie #{page_part_builder.object.name.downcase}", class: 'epiceditor'
             - when "photo"
               .gallery-select
-                - Photo.all.each do |photo|
+                - Spina::Photo.all.each do |photo|
                   .item{class: ('selected' if page_part_builder.object.photo == photo)}
                     = page_part_builder.radio_button :photo_id, photo.id
                     = image_tag photo.file.thumb
