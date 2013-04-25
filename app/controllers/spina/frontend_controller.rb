@@ -1,3 +1,5 @@
+require_dependency "spina/application_controller"
+
 module Spina
   class FrontendController < ApplicationController
     before_filter :get_pages

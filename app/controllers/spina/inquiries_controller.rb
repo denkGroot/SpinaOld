@@ -1,4 +1,4 @@
-require_dependency "spina/application_controller"
+require_dependency "spina/frontend_controller"
 
 module Spina
   class InquiriesController < FrontendController

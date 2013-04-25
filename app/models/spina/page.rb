@@ -18,6 +18,10 @@ module Spina
       title
     end
 
+    def custom_page?
+      !deletable
+    end
+
     def menu_title
       if read_attribute(:menu_title).blank?
         title

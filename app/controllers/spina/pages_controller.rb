@@ -1,4 +1,4 @@
-require_dependency "spina/application_controller"
+require_dependency "spina/frontend_controller"
 
 module Spina
   class PagesController < FrontendController
@@ -15,7 +15,7 @@ module Spina
 
     def show
       @page = Page.find(params[:id])
-      @page.deletable ? render(:show) : method(@page.title.downcase).call
+      @page.custom_page? ? render(:show) : method(@page.title.downcase).call
     end
 
   end

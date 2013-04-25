@@ -14,4 +14,19 @@ page_parts:
       content_type: text
 
   homepage:
+    - tag: left_column
+      name: Linkerkolom
+      content_type: text
+
+    - tag: right_column
+      name: Rechterkolom
+      content_type: text
+
   contact:
+    - tag: left_column
+      name: Linkerkolom
+      content_type: text
+
+    - tag: right_column
+      name: Rechterkolom
+      content_type: text
