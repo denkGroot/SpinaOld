@@ -5,10 +5,12 @@ module Spina
 
     def homepage
       @page = Page.find_by_title("Homepage")
+      render :homepage
     end
 
     def contact
       @inquiry = Inquiry.new
+      render :contact
     end
 
     def show
