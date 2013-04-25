@@ -34,7 +34,7 @@ module Spina
 
     def bootstrap_website
       Spina.custom_pages.each do |page|
-        Page.create title: page.capitalize, deletable: false
+        Page.create(title: page.capitalize, deletable: false) if page.present?
       end
     end
 
