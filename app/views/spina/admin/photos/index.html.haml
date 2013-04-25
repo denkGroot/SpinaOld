@@ -2,7 +2,7 @@
   %h1 Foto's
 
 .gallery
-  = render @photos
+  = render partial: 'spina/admin/photos/photo', collection: @photos
 
 .actions
   = form_for [:admin, @photo], html: {multipart: true} do |f|
