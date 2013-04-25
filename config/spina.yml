@@ -12,11 +12,3 @@ page_parts:
     - tag: right_column
       name: Rechterkolom
       content_type: text
-
-  homepage:
-    - tag: linker_kolom
-      name: linkerkolom
-      content_type: text
-
-  campers:
-    - tag: oiwjfe

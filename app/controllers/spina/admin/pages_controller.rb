@@ -23,6 +23,10 @@ module Spina
 
     def edit
       @page = Page.includes(:page_parts).find(params[:id])
+
+      (Spina.page_parts[@page.title.downcase] || Spina.default_page_parts).each do |page_part|
+        @page.page_parts.build(page_part) unless @page.page_parts.find_index { |x| x.tag == page_part['tag'] }
+      end
     end
 
     def update
