@@ -22,10 +22,6 @@ Spina::Engine.routes.draw do
       post :sort, on: :collection
     end
 
-    resources :page_parts do
-      post :sort, on: :collection
-    end
-
     resources :photos do
       post :enhance, on: :member
     end

@@ -6,7 +6,3 @@
 
 %li{class: ('active' if params[:action] == 'analytics')}
   = link_to "Analytics", analytics_admin_account_path, data: {icon: 'z'}
-
-- if can? :manage, Spina::PagePart
-  %li{class: ('active' if params[:controller] == 'spina/admin/page_parts')}
-    = link_to "Layout", admin_page_parts_path, data: {icon: 'O'}

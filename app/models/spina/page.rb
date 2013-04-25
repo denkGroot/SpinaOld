@@ -2,14 +2,13 @@ module Spina
   class Page < ActiveRecord::Base
     extend FriendlyId
 
-    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_includes_attributes
+    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes
 
     friendly_id :title, use: :slugged
 
-    has_many :page_includes
-    has_many :page_parts, through: :page_includes
+    has_many :page_parts
 
-    accepts_nested_attributes_for :page_includes, reject_if: proc { |attributes| attributes['page_part_id'].blank? }
+    accepts_nested_attributes_for :page_parts, allow_destroy: true
 
     validates_presence_of :title
 
@@ -32,8 +31,8 @@ module Spina
     end
 
     def content(page_part)
-      page_include = page_includes.joins(:page_part).where('spina_page_parts.tag = ?', page_part.to_s).first
-      page_include.content if page_include
+      page_part = page_parts.where('spina_page_parts.tag = ?', page_part.to_s).first
+      page_part.content if page_part
     end
   end
 end

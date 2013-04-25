@@ -7,8 +7,8 @@ module Spina
     end
 
     def new
-      PagePart.sorted.each do |page_part|
-        @page.page_includes.build(page_part_id: page_part.id)
+      Spina.default_page_parts.each do |page_part|
+        @page.page_parts.build page_part
       end
     end
 
@@ -23,21 +23,13 @@ module Spina
 
     def edit
       @page = Page.includes(:page_parts).find(params[:id])
-
-      @page_parts = PagePart.sorted
-      @page_parts = @page_parts.where("id not in (?)", @page.page_parts) unless @page.page_parts.empty?
-
-      @page_parts.each do |page_part|
-        @page.page_includes.build(page_part_id: page_part.id)
-      end
-
-      @page_includes = @page.page_includes.sort_by(&:position)
     end
 
     def update
       if @page.update_attributes(params[:page])
         redirect_to admin_pages_url
       else
+        flash[:alert] = "De pagina kan nog niet opgeslagen worden."
         render :edit
       end
     end

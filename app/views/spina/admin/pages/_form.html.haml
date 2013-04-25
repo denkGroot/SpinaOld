@@ -17,24 +17,26 @@
         %td
           = f.text_field :description, placeholder: "Een korte beschrijving van de pagina"
 
-      = f.fields_for :page_includes, @page_includes do |page_include|
+      = f.fields_for :page_parts do |page_part_builder|
+        = page_part_builder.hidden_field :name
+        = page_part_builder.hidden_field :content_type
+        = page_part_builder.hidden_field :tag
+
         %tr
           %td
-            %label= page_include.object
+            %label= page_part_builder.object
           %td
-            = page_include.hidden_field :page_part_id
-
-            - case page_include.object.content_type
+            - case page_part_builder.object.content_type
             - when "text"
-              = page_include.text_area :content, placeholder: "Paginasectie #{page_include.object.name.downcase}", class: 'epiceditor'
+              = page_part_builder.text_area :content, placeholder: "Paginasectie #{page_part_builder.object.name.downcase}", class: 'epiceditor'
             - when "photo"
               .gallery-select
                 - Photo.all.each do |photo|
-                  .item{class: ('selected' if page_include.object.photo == photo)}
-                    = page_include.radio_button :photo_id, photo.id
+                  .item{class: ('selected' if page_part_builder.object.photo == photo)}
+                    = page_part_builder.radio_button :photo_id, photo.id
                     = image_tag photo.file.thumb
             - when "line"
-              = page_include.text_field :content, placeholder: "Paginsectie #{page_include.object.name.downcase}"
+              = page_part_builder.text_field :content, placeholder: "Paginsectie #{page_part_builder.object.name.downcase}"
 
   .actions
     .button-well

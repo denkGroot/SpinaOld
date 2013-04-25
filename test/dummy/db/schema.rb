@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422194211) do
+ActiveRecord::Schema.define(:version => 20130425080933) do
 
   create_table "spina_accounts", :force => true do |t|
     t.string   "name"
@@ -36,15 +36,6 @@ ActiveRecord::Schema.define(:version => 20130422194211) do
     t.datetime "updated_at",                    :null => false
   end
 
-  create_table "spina_page_includes", :force => true do |t|
-    t.text     "content"
-    t.integer  "page_id"
-    t.integer  "page_part_id"
-    t.integer  "photo_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
   create_table "spina_page_parts", :force => true do |t|
     t.string   "name"
     t.integer  "position",     :default => 0
@@ -52,6 +43,9 @@ ActiveRecord::Schema.define(:version => 20130422194211) do
     t.string   "tag"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.integer  "page_id"
+    t.integer  "photo_id"
+    t.text     "content"
   end
 
   create_table "spina_pages", :force => true do |t|
