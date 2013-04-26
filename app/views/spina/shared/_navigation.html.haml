@@ -6,7 +6,7 @@
     %li
       = link_to page.menu_title, path
 
-      - if page.pages
+      - if page.pages.size > 0
         %ul
           - page.pages.each do |child_page|
             %li
