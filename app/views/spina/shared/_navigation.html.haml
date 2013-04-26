@@ -1,10 +1,13 @@
 %ul
   - @pages.each do |page|
     - path = page.title == "Homepage" ? "/" : url_for(page)
-    = nav_link page.menu_title, path
+    / = nav_link page.menu_title, path
 
-    - if page.pages
+    %li
+      = link_to page.menu_title, path
+
       %ul
         - page.pages.each do |child_page|
-          - child_path = child_page.title == "Homepage" ? "/" : url_for(child_page)
-          = nav_link child_page.menu_title, child_path
+          %li
+            - child_path = child_page.title == "Homepage" ? "/" : url_for(child_page)
+            = link_to child_page.menu_title, child_path
