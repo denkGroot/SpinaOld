@@ -13,6 +13,7 @@ module Spina
     validates_presence_of :title
 
     scope :sorted, order(:position)
+    scope :custom_pages, where(deletable: false)
 
     def to_s
       title
