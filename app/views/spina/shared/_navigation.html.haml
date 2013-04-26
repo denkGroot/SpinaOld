@@ -6,8 +6,9 @@
     %li
       = link_to page.menu_title, path
 
-      %ul
-        - page.pages.each do |child_page|
-          %li
-            - child_path = child_page.title == "Homepage" ? "/" : url_for(child_page)
-            = link_to child_page.menu_title, child_path
+      - if page.pages
+        %ul
+          - page.pages.each do |child_page|
+            %li
+              - child_path = child_page.title == "Homepage" ? "/" : url_for(child_page)
+              = link_to child_page.menu_title, child_path
