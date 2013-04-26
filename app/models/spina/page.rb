@@ -2,11 +2,13 @@ module Spina
   class Page < ActiveRecord::Base
     extend FriendlyId
 
-    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes
+    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id
 
     friendly_id :title, use: :slugged
 
     has_many :page_parts
+    has_many :pages, foreign_key: :parent_id
+    belongs_to :parent, class_name: "Page"
 
     accepts_nested_attributes_for :page_parts, allow_destroy: true
 
@@ -14,6 +16,7 @@ module Spina
 
     scope :sorted, order(:position)
     scope :custom_pages, where(deletable: false)
+    scope :root_pages, where(parent_id: nil)
 
     def to_s
       title

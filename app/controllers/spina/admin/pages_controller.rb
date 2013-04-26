@@ -3,7 +3,7 @@ module Spina
     load_and_authorize_resource class: Spina::Page
 
     def index
-      @pages = Page.sorted
+      @pages = Page.sorted.root_pages
     end
 
     def new
@@ -46,7 +46,8 @@ module Spina
 
     def sort
       params[:page].each_with_index do |id, index|
-        Page.update_all({position: index + 1}, {id: id})
+        parent_id = id[1] == 'null' ? nil : id[1]
+        Page.update_all({position: index + 1, parent_id: parent_id}, {id: id[0]})
       end
       render nothing: true
     end

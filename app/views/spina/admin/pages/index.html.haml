@@ -1,20 +1,15 @@
 .well
   %h1 Pagina's
 
-.table-container
-  %table.table.sortable
-    %thead
-      %tr
-        %th Titel
-        %th Beschrijving
-        %th
-
-    %tbody{data: {:"update-url" => sort_admin_pages_url }}
-      - @pages.each do |page|
-        %tr{id: "page_#{page.id}"}
-          %td= link_to page, edit_admin_page_path(page)
-          %td= page.description
-          %td= link_to "Bewerken", edit_admin_page_path(page), class: 'button button-plain', data: {icon: 'p'}
+.sortable-list-container
+  %ol.sortable{data: {:"update-url" => sort_admin_pages_url }}
+    - @pages.each do |page|
+      %li{id: "page_#{page.id}"}
+        %div= link_to page, edit_admin_page_path(page)
+        %ol
+          - page.pages.each do |child_page|
+            %li{id: "page_#{child_page.id}"}
+              %div= link_to child_page, edit_admin_page_path(child_page)
 
 .actions
   .button-well

@@ -1,5 +1,5 @@
 ready = ->
-  $('table.sortable tbody').nestedSortable(
+  $('table.sortable tbody').sortable(
     helper: fixHelper,
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))

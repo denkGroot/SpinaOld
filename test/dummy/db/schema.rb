@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425080933) do
+ActiveRecord::Schema.define(:version => 20130426133636) do
 
   create_table "spina_accounts", :force => true do |t|
     t.string   "name"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20130425080933) do
     t.boolean  "deletable",    :default => true
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+    t.integer  "parent_id"
   end
 
   create_table "spina_photos", :force => true do |t|
