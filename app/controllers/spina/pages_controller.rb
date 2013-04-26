@@ -15,7 +15,7 @@ module Spina
 
     def show
       @page = Page.find(params[:id])
-      @page.custom_page? ? render(:show) : method(@page.title.downcase).call
+      @page.custom_page? ? method(@page.title.downcase).call : render(:show)
     end
 
   end
