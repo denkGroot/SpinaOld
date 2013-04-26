@@ -12,7 +12,10 @@ module Spina
           strikethrough: true,
           superscript: true
         }
-        Redcarpet::Markdown.new(renderer, options).render(text.to_s).html_safe
+        html = Redcarpet::Markdown.new(renderer, options).render(text.to_s)
+
+        html.gsub!(/\[vimeo\s+(\d*)\]/, "<figure class\"video\"><iframe src=\"http://player.vimeo.com/video/$1?portrait=0&title=0&byline=0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></figure>")
+        html.html_safe
       end
     end
 
