@@ -2,7 +2,9 @@
   - @pages.each do |page|
     - path = page.title == "Homepage" ? "/" : url_for(page)
     = nav_link page.menu_title, path
-    %ul
-      - page.pages.each do |child_page|
-        - child_path = child_page.title == "Homepage" ? "/" : url_for(child_page)
-        = nav_link child_page.menu_title, child_path
+
+    - if page.pages
+      %ul
+        - page.pages.each do |child_page|
+          - child_path = child_page.title == "Homepage" ? "/" : url_for(child_page)
+          = nav_link child_page.menu_title, child_path
