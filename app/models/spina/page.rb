@@ -6,7 +6,7 @@ module Spina
 
     friendly_id :title, use: :slugged
 
-    has_many :page_parts
+    has_many :page_parts, dependent: :destroy
     has_many :pages, foreign_key: :parent_id, dependent: :nullify
     belongs_to :parent, class_name: "Page"
 
