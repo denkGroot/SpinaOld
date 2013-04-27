@@ -7,7 +7,7 @@ module Spina
     friendly_id :title, use: :slugged
 
     has_many :page_parts
-    has_many :pages, foreign_key: :parent_id
+    has_many :pages, foreign_key: :parent_id, dependent: :nullify
     belongs_to :parent, class_name: "Page"
 
     accepts_nested_attributes_for :page_parts, allow_destroy: true
