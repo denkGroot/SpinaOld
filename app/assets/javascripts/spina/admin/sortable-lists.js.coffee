@@ -1,7 +1,10 @@
 ready = ->
   $('ol.sortable').nestedSortable
+    forcePlaceholderSize: true
+    placeholder: 'placeholder'
     handle: 'div'
-    items: "li"
+    items: 'li'
+    tolerance: 'pointer'
     toleranceElement: '> div'
     maxLevels: 2
     update: ->

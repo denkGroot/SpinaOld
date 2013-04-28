@@ -19,13 +19,15 @@ ol.sortable
     background-color: #f9f9f9
     border-bottom: 1px solid #ddd
     cursor: move
-    height: auto !important
     padding: 12px 0
     text-indent: 32px
     width: 100%
 
     a.button
       text-indent: 0
+
+    &:hover
+      background-color: #f1f1f1
 
   li:last-child
     border-bottom: none
@@ -35,9 +37,6 @@ ol.sortable
     background-color: #f9f9f9
     text-indent: 54px
 
-.ui-sortable-placeholder
+.placeholder
   background: #f7f8ec
   visibility: visible !important
-
-.ui-sortable-helper
-  opacity: .8
