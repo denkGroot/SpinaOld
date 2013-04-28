@@ -1,14 +1,12 @@
 %ul
   - @pages.each do |page|
-    - path = page.title == "Homepage" ? "/" : url_for(page)
-    / = nav_link page.menu_title, path
 
-    %li
-      = link_to page.menu_title, path
+    %li{class: nav_link_class(page)}
+      = link_to page.menu_title, page
 
       - if page.pages.size > 0
         %ul
           - page.pages.each do |child_page|
-            %li
-              - child_path = child_page.title == "Homepage" ? "/" : url_for(child_page)
-              = link_to child_page.menu_title, child_path
+            %li{class: nav_link_class(child_page)}
+              = link_to child_page.menu_title, child_page
+

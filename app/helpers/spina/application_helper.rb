@@ -25,12 +25,13 @@ module Spina
       end
     end
 
-    def nav_link(link_text, link_path)
-      class_name = (current_page?(link_path) || current_controller?(link_path)) ? 'active' : ''
+    def nav_link_class(page)
+      class_name = active_page?(page) ? 'active' : ''
+      class_name = 'active' if active_page?(page) || page.pages.any? { |child_page| active_page?(child_page) }
+    end
 
-      content_tag(:li, class: class_name) do
-        link_to link_text, link_path
-      end
+    def active_page?(page)
+      current_page?(url_for(page)) || current_controller?(url_for(page))
     end
 
   end
