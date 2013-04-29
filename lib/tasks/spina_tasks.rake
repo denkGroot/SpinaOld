@@ -11,7 +11,7 @@ namespace :spina do
   task :create_custom_pages => :environment do
     puts "Creating custom pages from spina.yml..."
     Spina.custom_pages.each do |page|
-      Spina::Page.find_or_create_by_title_and_deletable(title: page.capitalize, deletable: false) if page
+      Spina::Page.find_or_create_by_name_and_deletable(name: page.downcase, deletable: false) if page
     end
     puts "Done"
   end
@@ -20,7 +20,7 @@ namespace :spina do
   task :destroy_unused_pages => :environment do
     puts "Destroying custom pages not in spina.yml..."
     Spina::Page.custom_pages.each do |page|
-      page.destroy unless Spina.custom_pages.include? page.title.downcase
+      page.destroy unless Spina.custom_pages.include? page.name.downcase
     end
     puts "Done"
   end

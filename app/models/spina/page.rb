@@ -2,7 +2,7 @@ module Spina
   class Page < ActiveRecord::Base
     extend FriendlyId
 
-    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id
+    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id, :name
 
     friendly_id :title, use: :slugged
 
@@ -10,16 +10,19 @@ module Spina
     has_many :pages, foreign_key: :parent_id, dependent: :nullify
     belongs_to :parent, class_name: "Page"
 
+    before_validation :ensure_title
+
     accepts_nested_attributes_for :page_parts, allow_destroy: true
 
     validates_presence_of :title
+    validates_uniqueness_of :name
 
     scope :sorted, order(:position)
     scope :custom_pages, where(deletable: false)
     scope :root_pages, where(parent_id: nil)
 
     def to_s
-      title
+      name
     end
 
     def custom_page?
@@ -41,6 +44,12 @@ module Spina
     def content(page_part)
       page_part = page_parts.where('spina_page_parts.tag = ?', page_part.to_s).first
       page_part.content if page_part
+    end
+
+    private
+
+    def ensure_title
+      self.title = self.name.capitalize if self.title.blank?
     end
   end
 end

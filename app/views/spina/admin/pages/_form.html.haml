@@ -5,10 +5,7 @@
         %td
           %label Titel
         %td
-          - if @page.deletable
-            = f.text_field :title, placeholder: "Titel in de pagina", class: 'large'
-          - else
-            %strong= @page
+          = f.text_field :title, placeholder: "Titel in de pagina", class: 'large'
 
       %tr
         %td

@@ -4,7 +4,7 @@ module Spina
   class PagesController < FrontendController
 
     def homepage
-      @page = Page.find_by_title("Homepage")
+      @page = Page.find_by_name("homepage")
       render :homepage
     end
 
@@ -15,7 +15,7 @@ module Spina
 
     def show
       @page = Page.find(params[:id])
-      @page.custom_page? ? method(@page.title.downcase).call : render(:show)
+      @page.custom_page? ? method(@page.name.downcase).call : render(:show)
     end
 
   end
