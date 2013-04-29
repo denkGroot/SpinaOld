@@ -48,9 +48,7 @@ module Spina
     private
 
     def ensure_title
-      if self.name
-        self.title = self.name.capitalize if self.title.blank?
-      end
+      self.title = self.name.capitalize if self.title.blank? && self.name.present?
     end
   end
 end
