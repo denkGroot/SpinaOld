@@ -7,12 +7,12 @@ Spina.custom_pages = config['page_parts'].delete_if { |page_part| page_part == "
 
 Spina.plugins = Array.new
 
-config['plugins'].map do |plugin_name, plugin_config|
-  plugin = Spina::Plugin.new
-  plugin.name = plugin_name
-  plugin.class_name = plugin_config['class_name']
-  plugin.controller = plugin_config['controller']
-  plugin.pictos_icon = plugin_config['pictos_icon']
+# config['plugins'].map do |plugin_name, plugin_config|
+#   plugin = Spina::Plugin.new
+#   plugin.name = plugin_name
+#   plugin.class_name = plugin_config['class_name']
+#   plugin.controller = plugin_config['controller']
+#   plugin.pictos_icon = plugin_config['pictos_icon']
 
-  Spina.plugins << plugin
-end
+#   Spina.plugins << plugin
+# end
