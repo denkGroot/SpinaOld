@@ -5,6 +5,6 @@
         = link_to edit_admin_page_path(page), class: 'button button-plain-link' do
           = page.menu_title
           - unless page.show_in_menu
-            %small (onzichtbaar)
+            %small (niet zichtbaar in menu)
       %td{style: 'text-align: right; padding-right: 32px'}
         = link_to "Bewerken", edit_admin_page_path(page), class: 'button button-plain', data: {icon: 'p'}
