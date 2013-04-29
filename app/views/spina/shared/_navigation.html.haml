@@ -2,8 +2,8 @@
   - @pages.each do |page|
 
     %li{class: nav_link_class(page)}
-      - if Spina.plugins.any? { |plugin| plugin.class_name.downcase == page.name }
-        = link_to page.menu_title, page.name
+      - if page.is_plugin?
+        = link_to page.menu_title, method("spina_#{page.name}_path").call
       - else
         = link_to page.menu_title, page
 
@@ -11,7 +11,7 @@
         %ul
           - page.pages.each do |child_page|
             %li{class: nav_link_class(child_page)}
-              - if Spina.plugins.any? { |plugin| plugin.class_name.downcase == child_page.name }
-                = link_to child_page.menu_title, child_page.name
+              - if child_page.is_plugin?
+                = link_to child_page.menu_title, method("spina_#{child_page.name}_path").call
               - else
                 = link_to child_page.menu_title, child_page

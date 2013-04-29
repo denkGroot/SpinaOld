@@ -28,6 +28,10 @@ module Spina
       !deletable
     end
 
+    def is_plugin?
+      Spina.plugins.any? { |plugin| plugin.controller == name }
+    end
+
     def menu_title
       if read_attribute(:menu_title).blank?
         title
