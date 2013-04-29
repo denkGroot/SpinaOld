@@ -2,11 +2,16 @@
   - @pages.each do |page|
 
     %li{class: nav_link_class(page)}
-      = link_to page.menu_title, page
+      - if Spina.plugins.any? { |plugin| plugin.class_name.downcase == page.name }
+        = link_to page.menu_title, page.name
+      - else
+        = link_to page.menu_title, page
 
       - if page.pages.size > 0
         %ul
           - page.pages.each do |child_page|
             %li{class: nav_link_class(child_page)}
-              = link_to child_page.menu_title, child_page
-
+              - if Spina.plugins.any? { |plugin| plugin.class_name.downcase == child_page.name }
+                = link_to child_page.menu_title, child_page.name
+              - else
+                = link_to child_page.menu_title, child_page
