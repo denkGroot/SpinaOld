@@ -31,7 +31,7 @@ module Spina
     end
 
     def active_page?(page)
-      current_page?(url_for(page)) || current_controller?(url_for(page))
+      page.is_plugin? ? current_controller?(url_for(page.name)) : current_page?(url_for(page))
     end
 
   end
