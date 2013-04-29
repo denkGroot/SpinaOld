@@ -15,7 +15,6 @@ module Spina
     accepts_nested_attributes_for :page_parts, allow_destroy: true
 
     validates_presence_of :title
-    validates_uniqueness_of :name
 
     scope :sorted, order(:position)
     scope :custom_pages, where(deletable: false)
@@ -49,7 +48,9 @@ module Spina
     private
 
     def ensure_title
-      self.title = self.name.capitalize if self.title.blank?
+      if self.name
+        self.title = self.name.capitalize if self.title.blank?
+      end
     end
   end
 end
