@@ -30,3 +30,5 @@ page_parts:
     - tag: right_column
       name: Rechterkolom
       content_type: text
+
+plugins:
