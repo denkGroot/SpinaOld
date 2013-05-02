@@ -33,13 +33,12 @@ Spina::Engine.routes.draw do
 
     # Plugin routes
     Spina.plugins.each do |plugin|
-      resources plugin.class_name.pluralize.downcase.to_sym
+      resources plugin.controller.downcase.to_sym
     end
-
   end
 
   Spina.plugins.each do |plugin|
-    resources plugin.class_name.pluralize.downcase.to_sym
+    resources plugin.controller.downcase.to_sym
   end
   
   # Frontend
