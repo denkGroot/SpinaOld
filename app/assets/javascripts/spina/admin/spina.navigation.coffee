@@ -13,10 +13,6 @@ ready = ->
 
   $('#navigation_panel a').attr('data-no-turbolink', true)
 
-  # Disable double tap zoom
-  $('body').doubletap (e) ->
-    e.preventDefault()
-
 $(document).ready(ready)
 $(document).on('page:load', ready)
 
