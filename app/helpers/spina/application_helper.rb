@@ -31,7 +31,13 @@ module Spina
     end
 
     def active_page?(page)
-      page.is_plugin? ? current_controller?(url_for(page.name)) : current_page?(url_for(page))
+      if current_page?(root_path) && page.name == 'homepage'
+        true
+      elsif page.is_plugin? 
+        current_controller?(url_for(page.name)) 
+      else
+        current_page?(url_for(page))
+      end
     end
 
   end
