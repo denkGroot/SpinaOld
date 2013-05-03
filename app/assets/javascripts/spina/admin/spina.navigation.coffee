@@ -4,7 +4,7 @@ ready = ->
     $('body').prepend('<div id="navigation_panel" />')
 
   # Fill off-canvas navigation
-  $('#navigation_panel').append($('nav#primary ul').clone())
+  $('#navigation_panel').append($('nav#primary').find('ul').first().clone())
 
   # Include secondary menu if available
   if $('nav#secondary').length > 0
