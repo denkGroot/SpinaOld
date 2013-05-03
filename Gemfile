@@ -16,4 +16,3 @@ gemspec
 # gem 'debugger'
 
 gem 'jquery-rails', '2.1.4'
-gem 'quiet_assets', group: :development
