@@ -1,6 +1,6 @@
 module Spina
   class User < ActiveRecord::Base
-    attr_accessible :admin, :email, :name, :password_digest, :password, :password_confirmation
+    attr_accessible :admin, :email, :name, :password_digest, :password, :password_confirmation, :last_logged_in
 
     has_secure_password
 
@@ -14,6 +14,11 @@ module Spina
 
     def to_s
       name
+    end
+
+    def update_last_logged_in!
+      self.last_logged_in = Time.now
+      self.save!
     end
   end
 end

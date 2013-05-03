@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429092958) do
+ActiveRecord::Schema.define(:version => 20130503073738) do
 
   create_table "spina_accounts", :force => true do |t|
     t.string   "name"
@@ -53,13 +53,13 @@ ActiveRecord::Schema.define(:version => 20130429092958) do
     t.string   "menu_title"
     t.string   "description"
     t.boolean  "show_in_menu", :default => true
-    t.string   "position"
     t.string   "slug"
     t.boolean  "deletable",    :default => true
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.integer  "parent_id"
     t.string   "name"
+    t.integer  "position"
   end
 
   create_table "spina_photos", :force => true do |t|
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20130429092958) do
     t.boolean  "admin",           :default => false
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.datetime "last_logged_in"
   end
 
 end
