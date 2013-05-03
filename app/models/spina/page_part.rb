@@ -26,6 +26,8 @@ module Spina
       case content_type
       when "photo"
         photo
+      when "photos"
+        photos
       when "file"
         file
       when "files"
