@@ -22,7 +22,8 @@ ready = ->
   $('a.button:not(#nav-trigger)').addClass('fastbutton')
 
   # File input
-  $('input[data-customfile]').customFileInput()
+  $('input[data-customfile]').each ->
+    $(this).customFileInput()
 
   # Loading footable
   $('.footable').footable()
@@ -110,7 +111,7 @@ ready = ->
     container.find('.farbtastic').hide()
 
   $('form').on 'click', '.remove_fields', (e) ->
-    $(this).prev('input[type=hidden]').val('1')
+    $(this).parent().find('input[type=hidden]').val('1')
     $(this).closest('fieldset').hide()
     e.preventDefault()
 
@@ -118,6 +119,7 @@ ready = ->
     time = new Date().getTime()
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).before($(this).data('fields').replace(regexp, time))
+    $(this).parent().find('input[type=file]').last().customFileInput()
     e.preventDefault()
 
 $(document).ready(ready)

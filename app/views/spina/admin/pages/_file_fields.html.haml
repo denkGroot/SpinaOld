@@ -1,5 +1,6 @@
 %fieldset
-  = f.object.file
-  = f.file_field :file
+  - placeholder = f.object.name if f.object.file.file
+  = link_to "", '#', class: 'remove_fields button button-link', style: 'float: left;', data: {icon: 'x'}
+  = f.file_field :file, data: {customfile: true, placeholder: placeholder || "Geen bestand geselecteerd"}
   = f.hidden_field :_destroy
-  = link_to "Verwijderen", '#', class: 'remove_fields'
+  %br/
