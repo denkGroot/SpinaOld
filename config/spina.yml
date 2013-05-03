@@ -2,6 +2,8 @@ page_part_types:
   - text
   - photo
   - line
+  - file
+  - files
 
 page_parts:
   default:
@@ -12,6 +14,14 @@ page_parts:
     - tag: right_column
       name: Rechterkolom
       content_type: text
+
+    - tag: file
+      name: Bestand
+      content_type: file
+
+    - tag: files
+      name: Bestanden
+      content_type: files
 
   homepage:
     - tag: left_column

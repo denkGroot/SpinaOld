@@ -1,0 +1,5 @@
+%fieldset
+  = f.object.file
+  = f.file_field :file
+  = f.hidden_field :_destroy
+  = link_to "Verwijderen", '#', class: 'remove_fields'

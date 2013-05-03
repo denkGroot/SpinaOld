@@ -32,6 +32,14 @@
                   .item{class: ('selected' if page_part_builder.object.photo == photo)}
                     = page_part_builder.radio_button :photo_id, photo.id
                     = image_tag photo.file.thumb
+            - when "file"
+              - placeholder = page_part_builder.object.file.file.filename if page_part_builder.object.file.present?
+              = page_part_builder.file_field :file, data: {customfile: true, placeholder: placeholder || "Geen bestand geselecteerd"}
+            - when "files"
+              = page_part_builder.fields_for :files do |file_builder|
+                = render 'file_fields', f: file_builder
+
+              = link_to_add_fields "Bestand toevoegen", page_part_builder, :files
             - when "line"
               = page_part_builder.text_field :content, placeholder: "Paginsectie #{page_part_builder.object.name.downcase}"
 

@@ -11,7 +11,7 @@ require 'friendly_id'
 require 'redcarpet'
 require 'neat'
 require 'bourbon'
-require 'spina/plugin'
+# require 'spina/plugin'
 
 module Spina
   class Engine < ::Rails::Engine

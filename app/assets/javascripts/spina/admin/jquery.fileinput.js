@@ -9,6 +9,7 @@
 $.fn.customFileInput = function(){
   var sizeClass = $(this).data('size')
   var icon = $(this).data('icon') || '.'
+  var placeholder = $(this).data('placeholder') || 'Geen bestand geselecteerd'
   //apply events and styles for file input element
   var fileInput = $(this)
     .addClass('customfile-input') //add class for CSS
@@ -62,7 +63,7 @@ $.fn.customFileInput = function(){
   //create custom control button
   var uploadButton = $('<span class="button icon-only large-icon" data-icon="' + icon + '" aria-hidden="true"></span>').appendTo(upload);
   //create custom control feedback
-  var uploadFeedback = $('<span class="customfile-feedback" aria-hidden="true">Geen bestand geselecteerd</span>').appendTo(upload);
+  var uploadFeedback = $('<span class="customfile-feedback" aria-hidden="true">' + placeholder + '</span>').appendTo(upload);
 
   //match disabled state
   if(fileInput.is('[disabled]')){
