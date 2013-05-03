@@ -15,7 +15,9 @@
         %tr
           %td= link_to user, edit_admin_user_path(user)
           %td= user.admin? ? "Beheerder" : "Gebruiker"
-          %td= time_ago_in_words(user.last_logged_in) + " geleden"
+          %td
+            - if user.last_logged_in.present?
+              = time_ago_in_words(user.last_logged_in) + " geleden"
           %td= link_to "Bewerken", edit_admin_user_path(user), class: 'button button-plain', data: {icon: 'p'}
 
 .actions
