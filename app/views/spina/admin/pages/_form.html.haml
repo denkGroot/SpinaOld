@@ -26,20 +26,33 @@
             - case page_part_builder.object.content_type
             - when "text"
               = page_part_builder.text_area :content, placeholder: "Paginasectie #{page_part_builder.object.name.downcase}", class: 'epiceditor'
+
             - when "photo"
               .gallery-select
                 - Spina::Photo.all.each do |photo|
                   .item{class: ('selected' if page_part_builder.object.photo == photo)}
                     = page_part_builder.radio_button :photo_id, photo.id
                     = image_tag photo.file.thumb
+
+            - when "photos"
+              .multi-gallery-select.gallery
+                - Spina::Photo.all.each do |photo|
+                  .item{class: "#{'checked' if page_part_builder.object.photos.include?(photo)}"}
+                    .overlay
+                      = page_part_builder.check_box :photo_ids, {multiple: true}, photo.id, nil
+                      .overlay-icon.icon-only{data: {icon: 'v'}}
+                    = image_tag photo.file.medium.url, id: "photo_#{photo.id}"
+
             - when "file"
               - placeholder = page_part_builder.object.file.file.filename if page_part_builder.object.file.present?
               = page_part_builder.file_field :file, data: {customfile: true, placeholder: placeholder || "Geen bestand geselecteerd"}
+
             - when "files"
               = page_part_builder.fields_for :files do |file_builder|
                 = render 'file_fields', f: file_builder
 
               = link_to_add_fields "Bestand toevoegen", page_part_builder, :files
+
             - when "line"
               = page_part_builder.text_field :content, placeholder: "Paginsectie #{page_part_builder.object.name.downcase}"
 

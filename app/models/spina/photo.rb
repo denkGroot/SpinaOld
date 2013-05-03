@@ -2,7 +2,7 @@ module Spina
   class Photo < ActiveRecord::Base
     attr_accessible :file
 
-    has_many :page_parts
+    has_many :page_parts, through: :galleries
 
     mount_uploader :file, PhotoUploader
 

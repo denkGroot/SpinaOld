@@ -1,6 +1,7 @@
 page_part_types:
   - text
   - photo
+  - photos
   - line
   - file
   - files
@@ -22,6 +23,10 @@ page_parts:
     - tag: files
       name: Bestanden
       content_type: files
+
+    - tag: gallery
+      name: Fotogalerij
+      content_type: photos
 
   homepage:
     - tag: left_column

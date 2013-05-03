@@ -60,7 +60,23 @@
       a:hover
         opacity: 1
 
-.gallery:after
-  clear: both
-  content: ""
-  display: block
+.multi-gallery-select .item
+  .overlay-icon
+    color: #fff
+    font-size: 32px
+    line-height: 135px
+    opacity: 0
+    @include transition(opacity .2s ease)
+
+  input
+    display: none
+
+  &:hover
+    cursor: pointer
+
+  &.checked
+    .overlay
+      background-color: rgba(0, 0, 0, .5)
+
+    .overlay-icon
+      opacity: 1

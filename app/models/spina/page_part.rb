@@ -1,6 +1,6 @@
 module Spina
   class PagePart < ActiveRecord::Base
-    attr_accessible :content_type, :name, :position, :tag, :content, :photo_id, :file, :files_attributes
+    attr_accessible :content_type, :name, :position, :tag, :content, :photo_id, :file, :files_attributes, :photo_ids
 
     mount_uploader :file, FileUploader
 
@@ -8,6 +8,8 @@ module Spina
     belongs_to :photo
     belongs_to :file
     has_many :files
+    has_many :galleries
+    has_many :photos, through: :galleries
 
     validates_presence_of :name, :content_type, :tag
     validates_inclusion_of :content_type, in: Spina.page_part_types.map(&:to_s), allow_nil: false

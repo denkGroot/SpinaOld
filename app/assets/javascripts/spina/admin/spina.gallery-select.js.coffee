@@ -16,3 +16,11 @@ $.fn.galleryselect = ->
       gallery.find('.item input').attr('checked', false)
       $(this).toggleClass('selected')
       $(this).find('input').attr('checked', true)
+
+$.fn.multigalleryselect = ->
+  return this.each ->
+    gallery = $(this)
+    gallery.find('.item').click ->
+      $(this).toggleClass('checked')
+      checkbox = $(this).find('input:checkbox')
+      checkbox.prop("checked", !checkbox.prop("checked"))
