@@ -23,6 +23,12 @@ module Spina
       end
     end
 
+    if Rails.version >= '3.1'
+      initializer :assets do |config|
+        Rails.application.config.assets.precompile += %w( spina/admin/epiceditor/base.css spina/admin/epiceditor/editor.css spina/admin/epiceditor/preview.css )
+      end
+    end
+
     config.to_prepare &method(:require_decorators).to_proc
   end
 end
