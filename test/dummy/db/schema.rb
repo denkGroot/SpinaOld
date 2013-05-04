@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503135202) do
+ActiveRecord::Schema.define(:version => 20130504171717) do
 
   create_table "spina_accounts", :force => true do |t|
     t.string   "name"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20130503135202) do
     t.integer  "parent_id"
     t.string   "name"
     t.integer  "position"
+    t.string   "seo_title"
   end
 
   create_table "spina_photos", :force => true do |t|
