@@ -7,13 +7,6 @@
         %td
           = f.text_field :title, placeholder: "Titel in de pagina", class: 'large'
 
-      %tr
-        %td
-          %label Beschrijving
-          %small De beschrijving wordt weergegeven bij resultaten van zoekmachines
-        %td
-          = f.text_field :description, placeholder: "Een korte beschrijving van de pagina"
-
       = f.fields_for :page_parts do |page_part_builder|
         = page_part_builder.hidden_field :name
         = page_part_builder.hidden_field :content_type
@@ -71,6 +64,19 @@
   #advanced.collapsed
     .table-container.table-form
       %table.table
+        %tr
+          %td
+            %label SEO <title>
+          %td
+            = f.text_field :seo_title, placeholder: "Deze titel komt in de <title>-tag van de broncode te staan"
+
+        %tr
+          %td
+            %label SEO Beschrijving
+            %small De beschrijving wordt weergegeven bij resultaten van zoekmachines
+          %td
+            = f.text_field :description, placeholder: "Een korte beschrijving van de pagina"
+
         %tr
           %td
             %label Naam in hoofdmenu

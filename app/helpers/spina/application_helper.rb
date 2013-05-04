@@ -20,10 +20,8 @@ module Spina
       end
     end
 
-    def current_controller?(link_path)
-      if controller.controller_name != "pages"
-        ['spina', controller.controller_name].join('/') == spina.routes.recognize_path(link_path)[:controller]
-      end
+    def current_plugin?(link_path)
+      ['spina', controller.controller_name].join('/') == spina.routes.recognize_path(link_path)[:controller]
     end
 
     def nav_link_class(page)
@@ -35,7 +33,7 @@ module Spina
       if current_page?(root_path) && page.name == 'homepage'
         true
       elsif page.is_plugin? 
-        current_controller?(url_for(page.name)) 
+        current_plugin?(url_for(page.name)) 
       else
         current_page?(url_for(page))
       end

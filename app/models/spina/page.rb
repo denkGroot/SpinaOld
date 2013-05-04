@@ -2,7 +2,7 @@ module Spina
   class Page < ActiveRecord::Base
     extend FriendlyId
 
-    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id, :name
+    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id, :name, :seo_title
 
     friendly_id :title, use: :slugged
 
@@ -33,11 +33,11 @@ module Spina
     end
 
     def menu_title
-      if read_attribute(:menu_title).blank?
-        title
-      else
-        read_attribute(:menu_title)
-      end
+      read_attribute(:menu_title).blank? ? title : read_attribute(:menu_title)
+    end
+
+    def seo_title
+      read_attribute(:seo_title).blank? ? title : read_attribute(:seo_title)
     end
 
     def has_content?(page_part)
