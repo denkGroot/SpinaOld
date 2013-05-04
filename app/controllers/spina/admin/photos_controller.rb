@@ -19,6 +19,9 @@ module Spina
     def enhance
       @photo.remote_file_url = params[:new_image]
       @photo.save
-    end 
+    end
+
+    def link
+    end
   end
 end

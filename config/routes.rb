@@ -23,7 +23,10 @@ Spina::Engine.routes.draw do
     end
 
     resources :photos do
-      post :enhance, on: :member
+      member do
+        post :enhance
+        get :link
+      end
     end
 
     resources :inquiries do
