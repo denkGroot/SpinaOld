@@ -41,7 +41,7 @@ Spina::Engine.routes.draw do
   end
 
   Spina.plugins.each do |plugin|
-    resources plugin.controller.downcase.to_sym
+    resources plugin.controller.downcase.to_sym, path: plugin.path || plugin.resources
   end
   
   # Frontend
