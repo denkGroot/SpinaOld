@@ -16,6 +16,14 @@ page_parts:
       name: Fotogalerij
       content_type: photos
 
+    - tag: files
+      name: Bijlagen
+      content_type: files
+
+    - tag: file
+      name: Super PDF
+      content_type: file
+
   homepage:
     - tag: left_column
       name: Linkerkolom

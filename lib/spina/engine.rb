@@ -11,7 +11,6 @@ require 'friendly_id'
 require 'redcarpet'
 require 'neat'
 require 'bourbon'
-require 'client_side_validations'
 require 'spina/plugin'
 
 module Spina
