@@ -21,19 +21,17 @@
               = page_part_builder.text_area :content, placeholder: "Paginasectie #{page_part_builder.object.name.downcase}", class: 'epiceditor'
 
             - when "photo"
-              .gallery-select
+              .gallery-select.gallery
                 - Spina::Photo.all.each do |photo|
                   .item{class: ('selected' if page_part_builder.object.photo == photo)}
-                    = page_part_builder.radio_button :photo_id, photo.id
+                    .overlay= page_part_builder.radio_button :photo_id, photo.id
                     = image_tag photo.file.thumb
 
             - when "photos"
-              .multi-gallery-select.gallery
+              .gallery-select.gallery{data: {multiselect: true}}
                 - Spina::Photo.all.each do |photo|
-                  .item{class: "#{'checked' if page_part_builder.object.photos.include?(photo)}"}
-                    .overlay
-                      = page_part_builder.check_box :photo_ids, {multiple: true}, photo.id, nil
-                      .overlay-icon.icon-only{data: {icon: 'v'}}
+                  .item{class: ('selected' if page_part_builder.object.photos.include? photo)}
+                    .overlay= page_part_builder.check_box :photo_ids, {multiple: true}, photo.id, nil
                     = image_tag photo.file.medium.url, id: "photo_#{photo.id}"
 
             - when "file"

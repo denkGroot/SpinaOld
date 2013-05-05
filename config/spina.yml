@@ -8,21 +8,9 @@ page_part_types:
 
 page_parts:
   default:
-    - tag: left_column
-      name: Linkerkolom
-      content_type: text
-
-    - tag: right_column
-      name: Rechterkolom
-      content_type: text
-
-    - tag: file
-      name: Bestand
-      content_type: file
-
-    - tag: files
-      name: Bestanden
-      content_type: files
+    - tag: header
+      name: Headerfoto
+      content_type: photo
 
     - tag: gallery
       name: Fotogalerij
