@@ -24,22 +24,9 @@ module Spina
       process resize_to_fit: [800, 600]
     end
 
-    version :header do
-      process resize_to_fill: [1140, 200]
-    end
-
-    #
-    # def scale(width, height)
-    #   # do something
-    # end
-
-    version :medium do
-      process resize_to_fill: [240, 135]
-    end
-
     # Create different versions of your uploaded files:
     version :thumb do
-      process resize_to_fill: [144, 81]
+      process resize_to_fill: [240, 135]
     end
 
     # Add a white list of extensions which are allowed to be uploaded.
