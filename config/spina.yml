@@ -24,6 +24,18 @@ page_parts:
       name: Super PDF
       content_type: file
 
+    - tag: new
+      name: Nieuw
+      content_type: text
+
+    - tag: left
+      name: Links
+      content_type: text
+
+    - tag: right
+      name: Rechts
+      content_type: text
+
   homepage:
     - tag: left_column
       name: Linkerkolom

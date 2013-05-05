@@ -11,7 +11,7 @@ module Spina
         @page.page_parts.build page_part
       end
     end
-
+   
     def create
       if @page.save
         redirect_to admin_pages_url, notice: "Nieuwe pagina is aangemaakt."
