@@ -1,5 +1,5 @@
 module Spina
-  class ApplicationController < ActionController::Base
+  class ApplicationController < ApplicationController
     
     def current_account
       @current_account ||= Account.first
