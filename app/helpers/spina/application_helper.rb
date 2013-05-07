@@ -25,15 +25,15 @@ module Spina
     end
 
     def nav_link_class(page)
-      class_name = active_page?(page) ? 'active' : ''
-      class_name = 'active' if active_page?(page) || page.pages.any? { |child_page| active_page?(child_page) }
+      "active" if active_page?(page) || page.pages.any? { |child_page| active_page?(child_page) }
     end
 
     def active_page?(page)
       if current_page?(root_path) && page.name == 'homepage'
         true
       elsif page.is_plugin? 
-        current_plugin?(url_for(page.name)) 
+        plugin = Spina.plugins.select { |plugin| plugin.controller == page.name }
+        current_plugin?(url_for(plugin[0].path || plugin[0].controller))
       else
         current_page?(url_for(page))
       end
