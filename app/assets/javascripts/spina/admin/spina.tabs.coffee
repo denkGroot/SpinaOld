@@ -1,6 +1,6 @@
 $(document).on 'click', '.tabs li a', ->
   link = $(this)
-  tabs = link.parent('.tabs')
+  tabs = link.parents('.tabs')
   
   # Remove active
   $('.tab-content').removeClass('active')
@@ -9,3 +9,5 @@ $(document).on 'click', '.tabs li a', ->
   # Add active
   link.parent('li').addClass('active')
   $(link.attr('href')).addClass('active')
+
+  return false
