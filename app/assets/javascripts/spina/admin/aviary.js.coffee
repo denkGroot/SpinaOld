@@ -3,7 +3,7 @@ featherEditor = new Aviary.Feather
   apiVersion: 2,
   language: 'nl',
   minimumStyling: true,
-  tools: 'enhance,stickers,contrast,sharpness,text,whiten,effects,warmth,orientation,brightness,saturation,draw,redeye,blemish',
+  tools: 'crop,enhance,contrast,sharpness,text,whiten,effects,warmth,orientation,brightness,saturation,redeye,blemish',
   appendTo: '',
   onSave: (imageID, newURL) ->
     img = $('#' + imageID)

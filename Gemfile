@@ -18,3 +18,4 @@ gemspec
 
 gem 'jquery-rails', '2.1.4'
 gem 'quiet_assets'
+gem 'brakeman'
