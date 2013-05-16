@@ -32,7 +32,7 @@ module Spina
       if current_page?(root_path) && page.name == 'homepage'
         true
       elsif page.is_plugin? 
-        plugin = Spina.plugins.select { |plugin| plugin.controller == page.name }
+        plugin = Spina::Engine.config.plugins.select { |plugin| plugin.controller == page.name }
         current_plugin?(url_for(plugin[0].path || plugin[0].controller))
       else
         current_page?(url_for(page))

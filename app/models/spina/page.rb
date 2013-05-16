@@ -29,7 +29,7 @@ module Spina
     end
 
     def is_plugin?
-      Spina.plugins.any? { |plugin| plugin.controller == name }
+      Spina::Engine.config.plugins.any? { |plugin| plugin.controller == name }
     end
 
     def menu_title

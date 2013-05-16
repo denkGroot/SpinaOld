@@ -7,7 +7,7 @@ module Spina
     end
 
     def new
-      Spina.default_page_parts.each do |page_part|
+      Spina::Engine.config.default_page_parts.each do |page_part|
         @page.page_parts.build page_part
       end
     end
@@ -24,7 +24,7 @@ module Spina
     def edit
       @page = Page.includes(:page_parts).find(params[:id])
 
-      page_parts = Spina.page_parts.keys.include?(@page.name) ? Spina.page_parts[@page.name] || [] : Spina.default_page_parts
+      page_parts = Spina::Engine.config.page_parts.keys.include?(@page.name) ? Spina::Engine.config.page_parts[@page.name] || [] : Spina::Engine.config.default_page_parts
       page_parts.each do |page_part|
         @page.page_parts.build(page_part) unless @page.page_parts.find_index { |x| x.tag == page_part['tag'] }
       end

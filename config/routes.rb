@@ -35,17 +35,16 @@ Spina::Engine.routes.draw do
     end
 
     # Plugin routes
-    Spina.plugins.each do |plugin|
+    Spina::Engine.config.plugins.each do |plugin|
       resources plugin.controller.downcase.to_sym
     end
   end
 
-  Spina.plugins.each do |plugin|
+  Spina::Engine.config.plugins.each do |plugin|
     resources plugin.controller.downcase.to_sym, path: plugin.path
   end
   
   # Frontend
   root to: "pages#homepage"
   resources :pages, path: ''
-  resources :inquiries
 end

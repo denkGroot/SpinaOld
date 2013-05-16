@@ -11,10 +11,10 @@ require 'friendly_id'
 require 'redcarpet'
 require 'neat'
 require 'bourbon'
-require 'spina/plugin'
 
 module Spina
   class Engine < ::Rails::Engine
+
     isolate_namespace Spina
 
     def self.require_decorators
@@ -30,5 +30,8 @@ module Spina
     end
 
     config.to_prepare &method(:require_decorators).to_proc
+    config.autoload_paths += %W(#{config.root}/lib)
+
+
   end
 end

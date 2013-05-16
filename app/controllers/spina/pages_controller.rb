@@ -8,11 +8,6 @@ module Spina
       render :homepage
     end
 
-    def contact
-      @inquiry = Inquiry.new
-      render :contact
-    end
-
     def show
       @page = Page.find(params[:id])
       @page.custom_page? ? method(@page.name.downcase).call : render(:show)

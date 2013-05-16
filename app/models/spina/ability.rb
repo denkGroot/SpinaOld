@@ -11,7 +11,7 @@ module Spina
         can :manage, Spina::Account
         can :manage, Spina::Inquiry
 
-        Spina.plugins.each do |plugin|
+        Spina::Engine.config.plugins.each do |plugin|
           can :manage, "Spina::#{plugin.class_name}".constantize
         end
       end
