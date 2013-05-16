@@ -7,3 +7,6 @@
 
 %li{class: ('active' if params[:action] == "index")}
   = link_to "Alle berichten", admin_inquiries_path, data: {icon: 'J'}
+
+%li{ class: ('active' if params[:action] == 'spam')}
+  = link_to "Spam", spam_admin_inquiries_path, data: { icon: 'x' }

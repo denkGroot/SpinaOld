@@ -9,6 +9,8 @@ require 'cancan'
 require 'carrierwave'
 require 'friendly_id'
 require 'redcarpet'
+require 'negative_captcha'
+require 'filters_spam'
 require 'neat'
 require 'bourbon'
 
