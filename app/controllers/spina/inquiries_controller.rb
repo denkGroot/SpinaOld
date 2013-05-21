@@ -7,7 +7,7 @@ module Spina
     before_filter :set_page
 
 
-    def new
+    def index
       @inquiry = Inquiry.new
     end
 

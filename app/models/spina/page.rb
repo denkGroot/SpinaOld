@@ -28,6 +28,10 @@ module Spina
       !deletable
     end
 
+    def plugin
+      Spina::Engine.config.plugins.find { |plugin| plugin.name == name }
+    end
+
     def is_plugin?
       Spina::Engine.config.plugins.any? { |plugin| plugin.name == name }
     end
