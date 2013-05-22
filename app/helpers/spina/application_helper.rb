@@ -47,5 +47,12 @@ module Spina
       end
       link_to(name, '#', class: "add_fields button button-primary button-link", data: {id: id, fields: fields.gsub("\n", ""), icon: '&'})
     end
+    def bla
+      'bla'
+    end
+    def current_account
+      @current_account ||= Account.first
+    end
+
   end
 end
