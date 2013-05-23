@@ -22,13 +22,12 @@ module Spina
         @inquiry.message = params[:message]
         @inquiry.phone = params[:phone]
         @inquiry.attributes = params[:invoice_inquiry]
-        @inquiry.archived = true
       end
-      if @inquiry.save && @captcha.valid?
-        InquiryMailer.inquiry(@inquiry).deliver
+      if @inquiry.save
+        @inquiry.spam! unless @captcha.valid?           
+        InquiryMailer.inquiry(@inquiry).deliver unless @inquiry.spam
         render :create
       else
-        @inquiry.spam!
         flash[:notice] = @captcha.error if @captcha.error 
         render :failed
       end

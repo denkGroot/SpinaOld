@@ -1,10 +1,8 @@
 module Spina
   class InquiryMailer < ActionMailer::Base
-    default from: Account.first.email || "info@denkgroot.com"
+    default from: Account.first.email
 
     layout 'spina/email'
-
-    helper Spina::ApplicationHelper
 
     def inquiry(inquiry)
       @inquiry = inquiry
