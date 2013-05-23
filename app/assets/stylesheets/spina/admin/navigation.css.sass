@@ -12,15 +12,14 @@
     @include transform(translate3d(280px, 0, 0))
 
 #wrapper
-  min-height: 100%
-  overflow: hidden
-  position: absolute
-  width: 100%
+  position: relative
+  z-index: 2
   @include box-shadow(-10px 0 20px rgba(0, 0, 0, .75))
   @include transform(translate3d(0, 0, 0))
   @include transition(all .3s ease)
 
 #navigation_panel
+  z-index: 1
   background: #222
   bottom: 0px
   height: 100%

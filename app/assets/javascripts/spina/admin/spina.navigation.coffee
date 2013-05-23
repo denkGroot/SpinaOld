@@ -11,10 +11,13 @@ ready = ->
     $('nav#secondary ul').clone().addClass('secondary').appendTo('#navigation_panel')
     $('#navigation_panel ul.secondary').prepend('<li class="divider" />')
 
-  $('#navigation_panel a').attr('data-no-turbolink', true)
+  $('#navigation_panel a').on 'click', ->
+    closeNavigation()
+    Turbolinks.visit $(this).attr('href')
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
+# $(document).on('page:fetch', $('#navigation_panel').remove())
 
 # Trigger
 $(document).on 'click', 'a[data-toggle=navigation]', ->
