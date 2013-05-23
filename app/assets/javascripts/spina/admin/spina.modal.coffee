@@ -35,7 +35,7 @@ showModal = (element) ->
   modal.appendTo('#overlay')
   $('#overlay').fadeIn 200, ->
     modal.show()
-    modal.animate({"margin-top": window.innerHeight / 4}, 200)
+    modal.animate({"margin-top": window.innerHeight / 8}, 200)
 
   $('body').addClass('overlay')
   return false
