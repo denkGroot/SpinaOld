@@ -1,8 +1,10 @@
 module Spina
   class File < ActiveRecord::Base
-    attr_accessible :file, :page_id
+    
+    has_many :page_parts, as: :page_partable
+    has_and_belongs_to_many :file_collections
 
-    belongs_to :page_part
+    attr_accessible :file, :page_id
 
     mount_uploader :file, FileUploader
 

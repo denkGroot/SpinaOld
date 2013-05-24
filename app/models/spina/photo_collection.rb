@@ -1,5 +1,8 @@
 module Spina
   class PhotoCollection < ActiveRecord::Base
-    # attr_accessible :title, :body
+    
+    has_one :page_part, as: :page_partable
+    has_and_belongs_to_many :photos
+
   end
 end

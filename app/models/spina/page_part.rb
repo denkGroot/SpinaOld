@@ -1,15 +1,16 @@
 module Spina
   class PagePart < ActiveRecord::Base
+
+    belongs_to :page
+    belongs_to :page_partable, polymorphic: true
+
     attr_accessible :content_type, :name, :position, :tag, :content, :photo_id, :file, :files_attributes, :photo_ids, :page_id
 
     mount_uploader :file, FileUploader
 
-    belongs_to :page
-    belongs_to :photo
-    belongs_to :file
-    has_many :files
-    has_many :galleries
-    has_many :photos, through: :galleries
+
+
+
 
     validates_presence_of :name, :content_type, :tag
     validates_inclusion_of :content_type, in: Spina::Engine.config.page_part_types.map(&:to_s), allow_nil: false
