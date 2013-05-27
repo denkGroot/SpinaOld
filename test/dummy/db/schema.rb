@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130516132920) do
+ActiveRecord::Schema.define(:version => 20130524104253) do
 
   create_table "spina_accounts", :force => true do |t|
     t.string   "name"
@@ -26,18 +26,20 @@ ActiveRecord::Schema.define(:version => 20130516132920) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "spina_files", :force => true do |t|
-    t.string   "file"
-    t.integer  "page_part_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+  create_table "spina_file_collections", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  create_table "spina_galleries", :force => true do |t|
-    t.integer  "photo_id"
-    t.integer  "page_part_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+  create_table "spina_file_collections_files", :force => true do |t|
+    t.integer "file_collection_id"
+    t.integer "file_id"
+  end
+
+  create_table "spina_files", :force => true do |t|
+    t.string   "file"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "spina_inquiries", :force => true do |t|
@@ -53,15 +55,15 @@ ActiveRecord::Schema.define(:version => 20130516132920) do
 
   create_table "spina_page_parts", :force => true do |t|
     t.string   "name"
-    t.integer  "position",     :default => 0
-    t.string   "content_type"
+    t.integer  "position",           :default => 0
     t.string   "tag"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "page_id"
-    t.integer  "photo_id"
     t.text     "content"
     t.string   "file"
+    t.integer  "page_partable_id"
+    t.string   "page_partable_type"
   end
 
   create_table "spina_pages", :force => true do |t|
@@ -77,6 +79,16 @@ ActiveRecord::Schema.define(:version => 20130516132920) do
     t.string   "name"
     t.integer  "position"
     t.string   "seo_title"
+  end
+
+  create_table "spina_photo_collections", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "spina_photo_collections_photos", :force => true do |t|
+    t.integer "photo_collection_id"
+    t.integer "photo_id"
   end
 
   create_table "spina_photos", :force => true do |t|

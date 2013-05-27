@@ -4,19 +4,12 @@ module Spina
     belongs_to :page
     belongs_to :page_partable, polymorphic: true
 
-    attr_accessible :content_type, :name, :position, :tag, :content, :photo_id, :file, :files_attributes, :photo_ids, :page_id
+    attr_accessible :page_partable_type, :page_partable_id, :name, :position, :tag, :content, :page_id, :page_partable_attributes
 
-    mount_uploader :file, FileUploader
+    # mount_uploader :file, FileUploader
 
-
-
-
-
-    validates_presence_of :name, :content_type, :tag
-    validates_inclusion_of :content_type, in: Spina::Engine.config.page_part_types.map(&:to_s), allow_nil: false
+    validates_presence_of :name, :page_partable_type, :tag
     validates_uniqueness_of :tag, scope: :page_id
-
-    accepts_nested_attributes_for :files, allow_destroy: true
 
     scope :sorted, order(:position)
 
@@ -25,18 +18,16 @@ module Spina
     end
 
     def content
-      case content_type
-      when "photo"
-        photo
-      when "photos"
-        photos
-      when "file"
-        file
-      when "files"
-        files
-      else
+      if ["Line", "Text"].include? page_partable_type 
         read_attribute(:content)
+      else
+        self.page_partable.content
       end
     end
+
+    def page_partable_attributes=(attributes)
+      self.page_partable = self.page_partable_type.constantize.create(attributes)
+    end
+
   end
 end
