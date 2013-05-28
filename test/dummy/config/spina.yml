@@ -10,39 +10,46 @@ page_parts:
   default:
     - tag: header
       name: Headerfoto
-      content_type: photo
+      page_partable_type: Spina::Photo
+      position: 0
 
     - tag: gallery
       name: Fotogalerij
-      content_type: photos
-
-    - tag: files
-      name: Bijlagen
-      content_type: files
+      page_partable_type: Spina::PhotoCollection
+      position: 1
 
     - tag: file
       name: Super PDF
-      content_type: file
+      page_partable_type: Spina::File
+      position: 2
+
+    - tag: files
+      name: Bijlagen
+      page_partable_type: Spina::FileCollection
+      position: 3
 
     - tag: new
       name: Nieuw
-      content_type: text
+      page_partable_type: Text
+      position: 4
 
     - tag: left
       name: Links
-      content_type: text
+      page_partable_type: Text
+      position: 5
 
     - tag: right
       name: Rechts
-      content_type: text
+      page_partable_type: Text
+      position: 6
 
   homepage:
     - tag: left_column
       name: Linkerkolom
-      content_type: text
+      page_partable_type: Text
 
     - tag: right_column
       name: Rechterkolom
-      content_type: text
+      page_partable_type: Text
 
   contact:

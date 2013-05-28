@@ -1,4 +1,5 @@
 = form_for [:admin, @page], multipart: true do |f|
+
   .table-container.table-form
     %table.table
       %tr
@@ -7,45 +8,53 @@
         %td
           = f.text_field :title, placeholder: "Titel in de pagina", class: 'large'
 
-      = f.fields_for :page_parts do |page_part_builder|
-        = page_part_builder.hidden_field :name
-        = page_part_builder.hidden_field :content_type
-        = page_part_builder.hidden_field :tag
+      = f.fields_for :page_parts, @page.page_parts.sort { |a,b| a.position <=> b.position } do |page_part_form|
+        = page_part_form.hidden_field :name
+        = page_part_form.hidden_field :page_partable_type
+        = page_part_form.hidden_field :tag
 
         %tr
           %td
-            %label= page_part_builder.object
+            %label= page_part_form.object
           %td
-            - case page_part_builder.object.content_type
-            - when "text"
-              = page_part_builder.text_area :content, placeholder: "Paginasectie #{page_part_builder.object.name.downcase}", class: 'epiceditor'
+            - case page_part_form.object.page_partable_type
+            - when "Line"
+              = page_part_form.text_field :content, placeholder: "Paginsectie #{page_part_form.object.name.downcase}"
 
-            - when "photo"
+            - when "Text"
+              = page_part_form.text_area :content, placeholder: "Paginasectie #{page_part_form.object.name.downcase}", class: 'epiceditor'
+
+            - when "Spina::Photo"
               .gallery-select.gallery
                 - Spina::Photo.all.each do |photo|
-                  .item{class: ('selected' if page_part_builder.object.photo == photo)}
-                    .overlay= page_part_builder.radio_button :photo_id, photo.id
+                  .item{class: ('selected' if page_part_form.object.page_partable == photo)}
+                    .overlay= page_part_form.radio_button :page_partable_id, photo.id
                     = image_tag photo.file.thumb
 
-            - when "photos"
-              .gallery-select.gallery{data: {multiselect: true}}
-                - Spina::Photo.all.each do |photo|
-                  .item{class: ('selected' if page_part_builder.object.photos.include? photo)}
-                    .overlay= page_part_builder.check_box :photo_ids, {multiple: true}, photo.id, nil
-                    = image_tag photo.file.thumb, id: "photo_#{photo.id}"
+            - when "Spina::PhotoCollection"
+              = page_part_form.fields_for :page_partable, page_part_form.object.page_partable do |photo_collection_form|                  
+                .gallery-select.gallery{data: {multiselect: true}}
+                  - Spina::Photo.all.each do |photo|
+                    .item{class: ('selected' if photo_collection_form.object.try(:photos).try(:include?, photo) )}
+                      .overlay= photo_collection_form.check_box :photo_ids, {multiple: true}, photo.id, nil
+                      = image_tag photo.file.thumb, id: "photo_#{photo.id}"
 
-            - when "file"
-              - placeholder = page_part_builder.object.file.file.filename if page_part_builder.object.file.present?
-              = page_part_builder.file_field :file, data: {customfile: true, placeholder: placeholder || "Geen bestand geselecteerd"}
+            - when "Spina::File"
+              = page_part_form.fields_for :page_partable, page_part_form.object.page_partable do |file_form|
+                %fieldset
+                  %div{style: 'float: left; min-width: 400px;'}
+                    = file_form.file_field :file, data: { customfile: true, placeholder: (file_form.object.new_record? ? "Nog geen bestand geselecteerd" : file_form.object.name) }
+                  = link_to "", '#', class: 'remove_field button button-link', data: {icon: 'x'} unless file_form.object.new_record?
+                  = file_form.hidden_field :_destroy
 
-            - when "files"
-              = page_part_builder.fields_for :files do |file_builder|
-                = render 'file_fields', f: file_builder
 
-              = link_to_add_fields "Bestand toevoegen", page_part_builder, :files
+            - when "Spina::FileCollection"
+              = page_part_form.fields_for :page_partable, page_part_form.object.page_partable do |file_collection_form|
+                = file_collection_form.fields_for :files do |file_form|
+                  = render 'file_fields', f: file_form
 
-            - when "line"
-              = page_part_builder.text_field :content, placeholder: "Paginsectie #{page_part_builder.object.name.downcase}"
+                = link_to_add_fields "Bestand toevoegen", file_collection_form, :files
+
 
   .actions
     .button-well

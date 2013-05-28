@@ -15,7 +15,7 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
-
+gem 'sqlite3'
 gem 'jquery-rails', '2.1.4'
 gem 'quiet_assets'
 gem 'letter_opener'

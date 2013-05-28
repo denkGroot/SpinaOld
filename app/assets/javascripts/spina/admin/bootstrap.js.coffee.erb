@@ -39,7 +39,7 @@ ready = ->
     textarea = $(this)
     textarea.hide()
     id = 'editor_' + $(this).attr("id")
-    textarea.parent().prepend("<div id=#{id} style='height: 400px' />")
+    textarea.parent().prepend("<div id=#{id} style='height: 250px' />")
 
     editor = new EpicEditor(
       container: id
@@ -56,7 +56,7 @@ ready = ->
     $(editor.getElement('wrapper')).find('.epiceditor-help-btn').on 'click', ->
       modal = '
         <div id="modal" class="modal modal-large">
-          <header class="big-header">
+          <header class="header">
             <a href="#" class="close_modal" data-dismiss="modal"><i class="icon-only" data-icon="x"></i></a>
 
             <h3>Markdown Help</h3>
@@ -183,10 +183,19 @@ Opmaak: [vimeo video_id]</pre>
     container = $(this).parent()
     container.find('.farbtastic').hide()
 
-  $('form').on 'click', '.remove_fields', (e) ->
-    $(this).parent().find('input[type=hidden]').val('1')
-    $(this).closest('fieldset').hide()
+  $('form').on 'click', '.remove_field', (e) ->
     e.preventDefault()
+    fieldset = $(this).closest('fieldset')
+    fieldset.find('input[type=hidden]').val('1')
+    fieldset.hide()
+
+  # $('form').on 'click', '.clear_field', (e) ->
+  #   e.preventDefault()
+  #   # $(this).hide()
+  #   fieldset = $(this).closest('fieldset')
+  #   fieldset.find('input[type=hidden]').val('1')
+  #   fieldset.hide()
+
 
   $('form').on 'click', '.add_fields', (e) ->
     time = new Date().getTime()

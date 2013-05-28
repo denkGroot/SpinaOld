@@ -2,11 +2,11 @@ module Spina
   class PagePart < ActiveRecord::Base
 
     belongs_to :page
-    belongs_to :page_partable, polymorphic: true
+    belongs_to :page_partable, polymorphic: true, dependent: :destroy
 
     attr_accessible :page_partable_type, :page_partable_id, :name, :position, :tag, :content, :page_id, :page_partable_attributes
 
-    # mount_uploader :file, FileUploader
+    accepts_nested_attributes_for :page_partable, allow_destroy: true
 
     validates_presence_of :name, :page_partable_type, :tag
     validates_uniqueness_of :tag, scope: :page_id
@@ -15,6 +15,15 @@ module Spina
 
     def to_s
       name
+    end
+
+    def position
+      if self.page.present? && Spina::Engine.config.page_parts.keys.include?(self.page.name)
+        page_parts = Spina::Engine.config.page_parts[self.page.name]
+      else
+        page_parts = Spina::Engine.config.default_page_parts
+      end
+      page_parts.select{|part| part['tag'] == self.tag }.first["position"]
     end
 
     def content
@@ -26,7 +35,11 @@ module Spina
     end
 
     def page_partable_attributes=(attributes)
-      self.page_partable = self.page_partable_type.constantize.create(attributes)
+      if self.page_partable.present?
+        self.page_partable.update_attributes(attributes)
+      else
+        self.page_partable = self.page_partable_type.constantize.create(attributes)
+      end
     end
 
   end
