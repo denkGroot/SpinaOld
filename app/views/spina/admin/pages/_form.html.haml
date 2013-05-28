@@ -8,7 +8,7 @@
         %td
           = f.text_field :title, placeholder: "Titel in de pagina", class: 'large'
 
-      = f.fields_for :page_parts, @page.page_parts.sort { |a,b| a.position <=> b.position } do |page_part_form|
+      = f.fields_for :page_parts, @page_parts.sort { |a,b| a.position <=> b.position } do |page_part_form|
         = page_part_form.hidden_field :name
         = page_part_form.hidden_field :page_partable_type
         = page_part_form.hidden_field :tag
@@ -44,8 +44,8 @@
                 %fieldset
                   %div{style: 'float: left; min-width: 400px;'}
                     = file_form.file_field :file, data: { customfile: true, placeholder: (file_form.object.new_record? ? "Nog geen bestand geselecteerd" : file_form.object.name) }
-                  = link_to "", '#', class: 'remove_field button button-link', data: {icon: 'x'} unless file_form.object.new_record?
                   = file_form.hidden_field :_destroy
+                  = link_to "Wissen", '#', class: 'clear_field button button-link', data: {icon: 'x'} unless file_form.object.new_record?
 
 
             - when "Spina::FileCollection"

@@ -189,12 +189,14 @@ Opmaak: [vimeo video_id]</pre>
     fieldset.find('input[type=hidden]').val('1')
     fieldset.hide()
 
-  # $('form').on 'click', '.clear_field', (e) ->
-  #   e.preventDefault()
-  #   # $(this).hide()
-  #   fieldset = $(this).closest('fieldset')
-  #   fieldset.find('input[type=hidden]').val('1')
-  #   fieldset.hide()
+  $('form').on 'click', '.clear_field', (e) ->
+    e.preventDefault()
+    $(this).hide()
+    fieldset = $(this).closest('fieldset')
+    fieldset.find('input[type=file]').wrap('<form>').closest('form').get(0).reset()
+    fieldset.find('input[type=file]').unwrap()
+    fieldset.find('.customfile-feedback').text('Nog geen bestand geselecteerd')
+    fieldset.find('input[type=hidden]').val(1)
 
 
   $('form').on 'click', '.add_fields', (e) ->

@@ -11,10 +11,11 @@ module Spina
     end
 
     def new
-      page_parts = Spina::Engine.config.page_parts.keys.include?(@page.name) ? Spina::Engine.config.page_parts[@page.name] || [] : Spina::Engine.config.default_page_parts
-      page_parts.each do |page_part|
+      @page_parts = Spina::Engine.config.page_parts.keys.include?(@page.name) ? Spina::Engine.config.page_parts[@page.name] || [] : Spina::Engine.config.default_page_parts
+      @page_parts = @page_parts.map do |page_part|
         page_part = @page.page_parts.build(page_part)
         page_part.page_partable = page_part.page_partable_type.constantize.new unless ["Text", "Line"].include? page_part.page_partable_type
+        page_part
       end
     end
    
@@ -29,12 +30,11 @@ module Spina
     end
 
     def edit      
-      page_parts = Spina::Engine.config.page_parts.keys.include?(@page.name) ? Spina::Engine.config.page_parts[@page.name] || [] : Spina::Engine.config.default_page_parts
-      page_parts.each do |page_part|        
-        unless @page.page_parts.find_index { |x| x.tag == page_part['tag'] }
-          page_part = @page.page_parts.build(page_part) 
-          page_part.page_partable = page_part.page_partable_type.constantize.new unless ["Text", "Line"].include?(page_part.page_partable_type)
-        end
+      @page_parts = Spina::Engine.config.page_parts.keys.include?(@page.name) ? Spina::Engine.config.page_parts[@page.name] || [] : Spina::Engine.config.default_page_parts
+      @page_parts = @page_parts.map do |page_part|        
+        page_part = @page.page_parts.where(tag: page_part['tag']).limit(1).first || @page.page_parts.build(page_part)
+        page_part.page_partable = page_part.page_partable_type.constantize.new() unless page_part.page_partable.present? ||["Text", "Line"].include?(page_part.page_partable_type)
+        page_part
       end
     end
 
@@ -60,31 +60,6 @@ module Spina
         Page.update_all({position: index + 1, parent_id: parent_id}, {id: id[0]})
       end
       render nothing: true
-    end
-
-    private
-
-    def parse_attributes(params)
-      parsed_params = params.each_with_object({}) do |(key, value), hash|
-        if key == 'page_parts_attributes'
-          logger.debug value.inspect
-          value = value.reject do |key, value|
-            logger.debug value.inspect
-            if value.kind_of?(Hash) && value.reject{|key,value| ["name", "tag", "page_partable_type"].include? key }.blank?
-              true
-            elsif value.kind_of?(Hash) && value['page_partable_attributes'].present? && value['page_partable_attributes'].reject{ |key,value| key == "id"}.blank?
-              PagePart.find(value['id']).destroy
-              true
-            else
-              false
-            end
-          end
-        end
-        hash[key] = value
-      end
-      logger.debug "@@@@ params: #{params.inspect}"
-      logger.debug "@@@@ parsed_params: #{parsed_params.inspect}"
-      parsed_params
     end
 
   end

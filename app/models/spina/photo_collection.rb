@@ -7,5 +7,11 @@ module Spina
     attr_accessible :photos, :photo_ids
     accepts_nested_attributes_for :photos, :allow_destroy => true
 
+    alias_method :old_update_attributes, :update_attributes
+    def update_attributes(attributes)
+      self.photos.clear if attributes.reject{|key,value| key == "id" }.blank?
+      old_update_attributes(attributes)
+    end
+
   end
 end
