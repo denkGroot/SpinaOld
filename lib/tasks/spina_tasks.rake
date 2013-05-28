@@ -7,21 +7,40 @@ namespace :spina do
   desc "Generate custom pages"
   task generate_pages: [:create_custom_pages, :destroy_unused_pages]
 
-  desc "Create custom pages from spina.yml"
+  desc "Create custom pages from spina config"
   task :create_custom_pages => :environment do
-    puts "Creating custom pages from spina.yml..."
+    puts "Creating custom pages from spina config..."
     Spina::Engine.config.custom_pages.each do |page|
       Spina::Page.find_or_create_by_name_and_deletable(name: page.downcase, deletable: false) if page
     end
     puts "Done"
   end
 
-  desc "Destroy custom pages not in spina.yml"
+  desc "Destroy custom pages not in spina config"
   task :destroy_unused_pages => :environment do
-    puts "Destroying custom pages not in spina.yml..."
-    Spina::Page.custom_pages.each do |page|
-      page.destroy unless Spina::Engine.config.custom_pages.include? page.name.downcase
+    puts "Destroying custom pages not in spina config..."
+
+    Spina::Page.all.each do |page|
+      if page.deletable?
+        page_type_config = Spina::Engine.config.PAGE_TYPES["default"]
+      elsif Spina::Engine.config.custom_pages.include? page.name.downcase
+        page_type_config = Spina::Engine.config.PAGE_TYPES[page.name.downcase]
+      else
+        page.destroy
+        next
+      end
+
+      page.page_parts.each do |page_part|
+        page_part_config = page_type_config.select{|page_part_config| page_part_config.include? page_part.tag }
+        if page_part_config.blank? || page_part.page_partable_type != page_part_config[:page_partable_type]
+          page_part.destroy
+        elsif page_part.name != page_part_config[:name]
+          page_part.update_attribute(:name, page_part_config[:name])
+        end
+      end
+    
     end
+
     puts "Done"
   end
 end

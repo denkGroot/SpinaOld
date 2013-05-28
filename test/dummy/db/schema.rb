@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527124340) do
+ActiveRecord::Schema.define(:version => 20130528195734) do
 
   create_table "spina_accounts", :force => true do |t|
     t.string   "name"
@@ -55,13 +55,11 @@ ActiveRecord::Schema.define(:version => 20130527124340) do
 
   create_table "spina_page_parts", :force => true do |t|
     t.string   "name"
-    t.integer  "position",           :default => 0
     t.string   "tag"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "page_id"
     t.text     "content"
-    t.string   "file"
     t.integer  "page_partable_id"
     t.string   "page_partable_type"
   end

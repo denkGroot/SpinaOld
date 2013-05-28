@@ -11,7 +11,7 @@ module Spina
     end
 
     def new
-      @page_parts = Spina::Engine.config.page_parts.keys.include?(@page.name) ? Spina::Engine.config.page_parts[@page.name] || [] : Spina::Engine.config.default_page_parts
+      @page_parts = Spina::Engine.config.PAGE_TYPES.keys.include?(@page.name) ? Spina::Engine.config.page_parts[@page.name] || [] : Spina::Engine.config.default_page_parts
       @page_parts = @page_parts.map do |page_part|
         page_part = @page.page_parts.build(page_part)
         page_part.page_partable = page_part.page_partable_type.constantize.new unless ["Text", "Line"].include? page_part.page_partable_type
@@ -30,9 +30,9 @@ module Spina
     end
 
     def edit      
-      @page_parts = Spina::Engine.config.page_parts.keys.include?(@page.name) ? Spina::Engine.config.page_parts[@page.name] || [] : Spina::Engine.config.default_page_parts
+      @page_parts = Spina::Engine.config.PAGE_TYPES.keys.include?(@page.name) ? Spina::Engine.config.PAGE_TYPES[@page.name] || [] : Spina::Engine.config.default_page_parts
       @page_parts = @page_parts.map do |page_part|        
-        page_part = @page.page_parts.where(tag: page_part['tag']).limit(1).first || @page.page_parts.build(page_part)
+        page_part = @page.page_parts.where(tag: page_part[:tag]).limit(1).first || @page.page_parts.build(page_part)
         page_part.page_partable = page_part.page_partable_type.constantize.new() unless page_part.page_partable.present? ||["Text", "Line"].include?(page_part.page_partable_type)
         page_part
       end

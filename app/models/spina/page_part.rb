@@ -5,8 +5,8 @@ module Spina
     belongs_to :page_partable, polymorphic: true, dependent: :destroy
 
     attr_accessible :page_partable_type, :page_partable_id, :name, :position, :tag, :content, :page_id, :page_partable_attributes
-
     accepts_nested_attributes_for :page_partable, allow_destroy: true
+    attr_accessor :position
 
     validates_presence_of :name, :page_partable_type, :tag
     validates_uniqueness_of :tag, scope: :page_id
@@ -18,12 +18,13 @@ module Spina
     end
 
     def position
-      if self.page.present? && Spina::Engine.config.page_parts.keys.include?(self.page.name)
-        page_parts = Spina::Engine.config.page_parts[self.page.name]
+      if Spina::Engine.config.PAGE_TYPES.include?(self.page.name)
+        page_parts = Spina::Engine.config.PAGE_TYPES[self.page.name]
       else
-        page_parts = Spina::Engine.config.default_page_parts
+        page_parts = Spina::Engine.config.PAGE_TYPES["default"]
       end
-      page_parts.select{|part| part['tag'] == self.tag }.first["position"]
+      logger.debug ">" + page_parts.select{|page_part|  page_part[:tag] == self.tag }.inspect
+      page_parts.select{|page_part|  page_part[:tag] == self.tag }.first[:position]
     end
 
     def content
