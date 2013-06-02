@@ -22,7 +22,7 @@
               = page_part_form.text_field :content, placeholder: "Paginsectie #{page_part_form.object.name.downcase}"
 
             - when "Text"
-              = page_part_form.text_area :content, placeholder: "Paginasectie #{page_part_form.object.name.downcase}", class: 'epiceditor'
+              = page_part_form.text_area :content, placeholder: "Paginasectie #{page_part_form.object.name.downcase}", class: 'wysihtml5'
 
             - when "Spina::Photo"
               .gallery-select.gallery

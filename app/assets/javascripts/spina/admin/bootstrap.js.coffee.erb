@@ -34,6 +34,22 @@ ready = ->
   # Load login form
   $('#login_wrapper').css('margin-top', ($(document).innerHeight() / 2) - ($('#login_wrapper').innerHeight() / 2) + 'px')
 
+  # Wysihtml5 editor
+  $('.wysihtml5').each ->
+    textarea = $(this)
+    container = textarea.wrap('<div id="' + textarea.attr('id') + "_container" + '" class="wysihtml5-container" />')
+    textarea.parent().prepend('<div class="toolbar">
+      <a href="#" data-wysihtml5-command="bold" class="command-bold" title="CTRL+B">B</a>
+      <a href="#" data-wysihtml5-command="italic" class="command-italic" title="CTRL+I">i</a>
+      <a href="#" data-wysihtml5-command="insertUnorderedList" class="command-insert-unordered-list" title="CTRL+I">l</a>
+    </div>')
+
+    editor = new wysihtml5.Editor textarea.attr('id'), {
+      toolbar: textarea.attr('id') + "_container",
+      parserRules: wysihtml5ParserRules,
+      useLineBreaks: false
+    }
+
   # Loading epiceditor
   $('.epiceditor').each ->
     textarea = $(this)
@@ -197,7 +213,6 @@ Opmaak: [vimeo video_id]</pre>
     fieldset.find('input[type=file]').unwrap()
     fieldset.find('.customfile-feedback').text('Nog geen bestand geselecteerd')
     fieldset.find('input[type=hidden]').val(1)
-
 
   $('form').on 'click', '.add_fields', (e) ->
     time = new Date().getTime()
