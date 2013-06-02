@@ -41,7 +41,8 @@ ready = ->
     textarea.parent().prepend('<div class="toolbar">
       <a href="#" data-wysihtml5-command="bold" class="command-bold" title="CTRL+B">B</a>
       <a href="#" data-wysihtml5-command="italic" class="command-italic" title="CTRL+I">i</a>
-      <a href="#" data-wysihtml5-command="insertUnorderedList" class="command-insert-unordered-list" title="CTRL+I">l</a>
+      <a href="#" data-wysihtml5-command="insertUnorderedList" class="command-insert-unordered-list" title="Lijst">l</a>
+      <a href="#" data-wysihtml5-action="change_view" class="action-change-view" title="HTML">&lt;</a>
     </div>')
 
     editor = new wysihtml5.Editor textarea.attr('id'), {
@@ -68,81 +69,9 @@ ready = ->
 
     ).load()
     editor.importFile('file', textarea.val())
-    
-    $(editor.getElement('wrapper')).find('.epiceditor-help-btn').on 'click', ->
-      modal = '
-        <div id="modal" class="modal modal-large">
-          <header class="header">
-            <a href="#" class="close_modal" data-dismiss="modal"><i class="icon-only" data-icon="x"></i></a>
-
-            <h3>Markdown Help</h3>
-
-          </header>
-          <section>
-<div class="col">
-  <h3>Tekst Opmaak</h3>
-  <p>Kopteksten</p>
-  <pre># Dit is een &lt;h1&gt; tag\n
-## Dit is een &lt;h2&gt; tag\n
-###### Dit is een &lt;h6&gt; tag</pre>
-  <p>Tekst Stijlen</p>
-  <pre>*Deze tekst is cursief*\n
-_Deze tekst is ook cursief_\n
-**Deze tekst is vet**\n
-__Deze tekst is ook vet__\n
-\n
-*Je **kunt** ze combineren*\n
-</pre>
-</div>
-
-
-<div class="col">
-  <h3>Lijsten</h3>
-  <p>Ongeorderd</p>
-  <pre>* Item 1\n
-* Item 2\n
-  * Item 2a\n
-  * Item 2b</pre>
-  <p>Georderd</p>
-<pre>1. Item 1\n
-2. Item 2\n
-3. Item 3\n
-   * Item 3a\n
-   * Item 3b</pre>
-</div>
-
-<div class="col">
-  <h3>Overig</h3>
-  <p>Afbeeldingen</p>
-  <pre>![Google Logo](/images/google.png)\n
-Opmaak: ![Alt Text](url)\n
-</pre>\n
-  <p>Links</p>\n
-  <pre>http://google.com - automatic!\n
-[Google](http://google.com)</pre>
-  <p>Vimeo Videos, de video_id kun je vinden in de url van de video.</p>
-  <pre>[vimeo 40977797]\n
-Opmaak: [vimeo video_id]</pre>
-  <p>Blockquotes</p>
- <pre>Zoals Kanye West heeft gezegd:\n
-\n
-&gt; We\'re living the future so\n
-&gt; the present is our past.\n
-</pre>
-</div>
-
-          </section>
-          <footer>
-              <a href="#" data-dismiss="modal" data-icon="v" style="width: 100%; -webkit-box-shadow: none; border-left: none">Oké, begrepen</a>
-            </footer>
-        </div>
-      '
-      $(modal).modal()
 
     editor.on 'save', ->
       textarea.val(editor.exportFile())
-
-
 
   # Photo upload
   $('#new_photo').fileupload
