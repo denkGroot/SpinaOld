@@ -47,8 +47,8 @@ ready = ->
 
     editor = new wysihtml5.Editor textarea.attr('id'), {
       toolbar: textarea.attr('id') + "_container",
+      useLineBreaks: false,
       parserRules: wysihtml5ParserRules,
-      useLineBreaks: false
     }
 
   # Loading epiceditor
