@@ -14,7 +14,7 @@ textarea.wysihtml5
     position: absolute
     width: 100%
 
-    a 
+    a.command, .choose-text-type
       border-right: 1px solid #e9e9e9
       color: #999
       display: block
@@ -23,7 +23,7 @@ textarea.wysihtml5
       text-align: center
       width: 40px
 
-    a.wysihtml5-command-active, a:hover
+    a.wysihtml5-command-active, a.command:hover
       color: #333
 
     .command-bold
@@ -36,6 +36,34 @@ textarea.wysihtml5
       font-weight: 100
       line-height: 43px
 
-    .action-change-view
+    .command.action-change-view
       border: none
       float: right
+
+    .choose-text-type
+      width: auto
+
+      a
+        color: #999
+        display: block
+        line-height: 40px
+        padding: 0 16px
+
+      a:hover
+        color: #333
+
+      ul li a
+        color: #333
+        line-height: 30px
+        text-align: left
+
+        &.wysihtml5-command-active
+          color: #999
+
+        &.wysihtml5-command-active:hover
+          background: none
+          color: #999
+          cursor: default
+
+        &:hover
+          color: #fff
