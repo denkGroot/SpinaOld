@@ -1,10 +1,7 @@
-@import compass/css3
-@import mixins
-
 // Input fields
 
 input[type="text"], input[type="password"], textarea
-  background: image-url('spina/admin/input_bg.png') repeat-x #fdfdfd
+  background: image-url("#{$spina-assets-path}/input_bg.png") repeat-x #fdfdfd
   border: 1px solid #d9d9d9
   border-top: 1px solid #ccc
   color: #333
@@ -14,7 +11,7 @@ input[type="text"], input[type="password"], textarea
   padding: 4px 10px
   resize: none
   width: 100%
-  @include border-radius(2px)
+  border-radius: 2px
   @include box-sizing(border-box)
   @include font-size(1.2)
   @include transition(border .25s ease-out, box-shadow .25s ease-out)
@@ -25,7 +22,7 @@ input[type="text"], input[type="password"], textarea
   &:focus
     border: 1px solid #81b0ef
     color: #333
-    @include box-shadow(0px 0px 4px #81b0ef)
+    box-shadow: 0px 0px 4px #81b0ef
 
   &.medium
     width: 80%
@@ -74,7 +71,7 @@ p label, td label
   text-indent: 12px
   text-transform: uppercase
   @include font-size(1.1)
-  @include text-shadow(0 1px 0 #fff)
+  text-shadow: 0 1px 0 #fff
 
 p small, td small
   color: #777
@@ -99,25 +96,25 @@ td small
   padding: 2px
   position: relative
   width: 70px
-  @include background-image(linear-gradient(top, #d1d1d1, #e2e2e2))
-  @include border-radius(23px)
-  @include box-shadow(0 1px 0 #fff)
+  @include background-image( linear-gradient(top, #d1d1d1, #e2e2e2) )
+  border-radius: 23px
+  box-shadow: 0 1px 0 #fff
 
   .knob
     display: inline-block
     height: 23px
     position: absolute
     width: 34px
-    @include background-clip(padding-box)
-    @include background-image(linear-gradient(top, #f7f7f7, #e8e8e8))
-    @include border-radius(23px)
-    @include box-shadow(0 1px 3px rgba(0, 0, 0, .35), inset 0 1px 0 #fff)
+    background-clip: padding-box
+    @include background-image( linear-gradient(top, #f7f7f7, #e8e8e8) )
+    border-radius: 23px
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .35), inset 0 1px 0 #fff
     @include transform(translate3d(0, 0, 0))
     @include transition(all .2s ease)
 
   &.activated
     border: 1px solid #5f89c6
-    @include background-image(linear-gradient(top, #567db6, #85b3f2))
+    @include background-image( linear-gradient(top, #567db6, #85b3f2) )
 
   &.activated .knob
     @include transform(translate3d(36px, 0, 0))
@@ -129,7 +126,7 @@ td small
     line-height: 23px
     text-align: center
     width: 33px
-    @include text-shadow(0 -1px 0 rgba(0, 0, 0, .2))
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .2)
 
   i:before
     margin: 0
@@ -143,16 +140,16 @@ td small
 .slider > .dragger
   width: 16px
   height: 16px
-  @include background-clip(padding-box)
+  background-clip: padding-box
   @include background-image(linear-gradient(top, #f7f7f7, #e8e8e8))
-  @include border-radius(16px)
-  @include box-shadow(0 1px 2px rgba(0, 0, 0, .5), inset 0 1px 0 #fff)
+  border-radius: 16px
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .5), inset 0 1px 0 #fff
 
 .slider > .track
   height: 5px
   @include background-image(linear-gradient(top, #d1d1d1, #e2e2e2))
-  @include border-radius(5px)
-  @include box-shadow(0 1px 0 #fff)
+  border-radius: 5px
+  box-shadow: 0 1px 0 #fff
 
 // Skinned select
 
@@ -162,14 +159,14 @@ td small
   display: inline-block
   height: 30px
   @include background-image(linear-gradient(top, #fff, rgb(231, 230, 232)))
-  @include border-radius(3px)
+  border-radius: 3px
   @include transition(border .2s ease-out)
 
 .cmf-skinned-select:hover
   border: 1px solid #b9b9b9
 
 .cmf-skinned-text, select
-  background: image-url('spina/admin/select_bg.png') no-repeat center right
+  background: image-url("#{$spina-assets-path}/select_bg.png") no-repeat center right
   background-size: 6px 12px
   color: #444
   cursor: pointer
@@ -190,7 +187,7 @@ input[data-datepicker]
 .ui-datepicker
   border: none
   font-family: "Aller"
-  @include box-shadow(0 1px 2px rgba(0, 0, 0, .25))
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .25)
 
 .ui-datepicker-header
   background: none
@@ -215,11 +212,11 @@ input[data-datepicker]
     opacity: 1
 
   a.ui-datepicker-prev span
-    background: image-url('spina/admin/arrow-left.png') no-repeat center
+    background: image-url("#{$spina-assets-path}/arrow-left.png") no-repeat center
     background-size: 10px 13px
 
   a.ui-datepicker-next span
-    background: image-url('spina/admin/arrow-right.png') no-repeat center
+    background: image-url("#{$spina-assets-path}/arrow-right.png") no-repeat center
     background-size: 10px 13px
 
 .ui-datepicker-calendar
@@ -260,13 +257,13 @@ input[data-datepicker]
   tbody tr td a.ui-state-highlight
     background: #eee
     border-radius: 2px
-    @include border-radius(2px)
+    border-radius: 2px
 
   tbody tr td a.ui-state-active
     background: #444
     border-radius: 2px
     color: #fff
-    @include border-radius(2px)
+    border-radius: 2px
 
 // Custom File input
 
@@ -282,7 +279,7 @@ input[data-datepicker]
 
 
 .customfile
-  background: image-url('spina/admin/input_bg.png') repeat-x #fdfdfd
+  background: image-url("#{$spina-assets-path}/input_bg.png") repeat-x #fdfdfd
   border: 1px solid #d9d9d9
   border-top: 1px solid #ccc
   color: #333
@@ -296,7 +293,7 @@ input[data-datepicker]
   padding: 0 10px
   position: relative
   resize: none
-  @include border-radius(2px)
+  border-radius: 2px
   @include box-sizing(border-box)
   @include font-size(1.2)
   @include transition(border .25s ease-out)
@@ -351,7 +348,7 @@ input[data-datepicker]
     border: 1px solid #d29797
     border-top: 1px solid #ae6767
     color: #ad6262
-    @include box-shadow(0 0 4px #d29797)
+    box-shadow: 0 0 4px #d29797
 
   label.message
     color: #ad6262
@@ -407,7 +404,7 @@ input[data-datepicker]
 // Radio buttons
 label.radio span.holder
   height: 57px
-  background: image-url('spina/admin/radio.png') 0 0 no-repeat
+  background: image-url("#{$spina-assets-path}/radio.png") 0 0 no-repeat
 
 label.radio:active span.holder
   top: -19px !important

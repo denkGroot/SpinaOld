@@ -1,12 +1,9 @@
-@import compass/css3
-@import mixins
-
 // Tables
 
 .table-container
   margin: 0 -32px
 
-  @media screen and (max-width: 45em)
+  @include media($mobile)
     margin: 0 -16px
 
 table.table

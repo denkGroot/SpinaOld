@@ -1,18 +1,19 @@
-require "jquery-rails"
+require 'haml-rails'
 require 'sass-rails'
-require 'haml'
-require 'compass-rails'
+require 'bourbon'
+require 'neat'
 require 'coffee-rails'
-require 'turbolinks'
+require 'jquery-rails'
 require 'jquery-fileupload-rails'
-require 'cancan'
+require 'turbolinks'
+require 'protected_attributes'
 require 'carrierwave'
+require 'mini_magick'
+require 'cancan'
 require 'friendly_id'
 require 'redcarpet'
 require 'negative_captcha'
 require 'filters_spam'
-require 'neat'
-require 'bourbon'
 
 module Spina
   class Engine < ::Rails::Engine

@@ -1,9 +1,6 @@
-@import compass/css3
-@import mixins
-
 body #avpw_controls
   border-radius: 3px
-  @include box-shadow(0 2px 4px rgba(0, 0, 0, .5))
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .5)
 
 body #avpw_powered_branding
   display: none
@@ -33,11 +30,11 @@ body a.avpw_button
   line-height: 14px !important
   padding: 8px 14px !important
   text-decoration: none
-  @include background-clip(padding-box)
-  @include background-image(linear-gradient(top, #f5f5f5, #ccc) !important)
-  @include border-radius(25px)
-  @include box-shadow(inset 0 1px 0 #fff, 0 1px 2px rgba(0, 0, 0, .25))
-  @include text-shadow(0 1px 0 #fff)
+  background-clip: padding-box
+  @include background-image( linear-gradient(top, #f5f5f5, #ccc) !important )
+  border-radius: 25px
+  box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0, 0, 0, .25)
+  text-shadow: 0 1px 0 #fff
   @include transition(color .2s ease-out, background .2s ease-out, box-shadow .05s ease-out)
 
 body a.avpw_button:hover
@@ -47,9 +44,9 @@ body a.avpw_button.avpw_primary_button
   background-color: #81b0ef
   border: 1px solid #4571b5
   color: #fff
-  @include background-image(linear-gradient(top, rgb(129, 176, 239), rgb(52, 89, 148)) !important)
-  @include box-shadow(inset 0 1px 0 rgba(255, 255, 255, .25), 0 1px 2px rgba(0, 0, 0, .35))
-  @include text-shadow(0 1px 0 #26497e)
+  @include background-image( linear-gradient(top, rgb(129, 176, 239), rgb(52, 89, 148)) !important )
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), 0 1px 2px rgba(0, 0, 0, .35)
+  text-shadow: 0 1px 0 #26497e
 
 body .avpw_close_inner
   font-weight: bold

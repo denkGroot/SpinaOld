@@ -31,7 +31,7 @@ module Spina
       if ["Line", "Text"].include? page_partable_type 
         read_attribute(:content)
       else
-        self.page_partable.content
+        self.page_partable.try(:content) || self.page_partable
       end
     end
 

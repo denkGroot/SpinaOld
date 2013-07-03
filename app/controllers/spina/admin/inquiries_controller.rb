@@ -1,32 +1,35 @@
 module Spina
-  class Admin::InquiriesController < Admin::ApplicationController
-    load_and_authorize_resource class: Spina::Inquiry
+  module Admin
+    class InquiriesController < AdminController
 
-    def index
-      @inquiries = Inquiry.sorted
-    end
+      load_and_authorize_resource class: Inquiry
 
-    def mark_as_read
-      @inquiry.archived = true
-      
-      if @inquiry.save
-        redirect_to inbox_admin_inquiries_path
+      def index
+        @inquiries = Inquiry.sorted
       end
-    end
 
-    def spam
-      @inquiries = Inquiry.spam.order('created_at DESC')
-    end
-
-    def unmark_spam
-      if @inquiry.ham!
-        redirect_to admin_inquiries_path
+      def mark_as_read
+        @inquiry.archived = true
+        
+        if @inquiry.save
+          redirect_to inbox_admin_inquiries_path
+        end
       end
-    end
 
-    def destroy
-      @inquiry.destroy
-      redirect_to admin_inquiries_path, notice: "Het bericht is verwijderd."
+      def spam
+        @inquiries = Inquiry.spam.order('created_at DESC')
+      end
+
+      def unmark_spam
+        if @inquiry.ham!
+          redirect_to admin_inquiries_path
+        end
+      end
+
+      def destroy
+        @inquiry.destroy
+        redirect_to admin_inquiries_path, notice: "Het bericht is verwijderd."
+      end
     end
   end
 end

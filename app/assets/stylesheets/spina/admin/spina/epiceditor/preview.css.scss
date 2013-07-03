@@ -2,13 +2,13 @@ body {
   margin:0;
   padding: 12px;
   background:#fff;
-  background: url(<%= asset_path('spina/admin/input_bg.png') %>) repeat-x #fdfdfd;
+  background: image-url("#{$spina-assets-path}/input_bg.png") repeat-x #fdfdfd;
   border: 1px solid #d9d9d9;
   border-top: 1px solid #ccc;
 }
 
 #epiceditor-wrapper{
-  background: url(<%= asset_path('spina/admin/input_bg.png') %>) repeat-x #fdfdfd;
+  background: image-url("#{$spina-assets-path}/input_bg.png") repeat-x #fdfdfd;
   border: 1px solid #d9d9d9;
   border-top: 1px solid #ccc;
 }
@@ -105,7 +105,7 @@ body {
 }
 
 #epiceditor-preview hr{
-  background:transparent url('../../images/modules/pulls/dirty-shade.png') repeat-x 0 0;
+  background:transparent image-url("#{$spina-assets-path}/modules/pulls/dirty-shade.png") repeat-x 0 0;
   border:0 none;
   color:#ccc;
   height:4px;

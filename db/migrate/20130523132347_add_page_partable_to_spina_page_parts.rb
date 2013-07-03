@@ -1,3 +1,4 @@
+# This migration comes from spina (originally 20130523132347)
 class AddPagePartableToSpinaPageParts < ActiveRecord::Migration
   
   module Spina
@@ -75,19 +76,24 @@ class AddPagePartableToSpinaPageParts < ActiveRecord::Migration
     Spina::PagePart.all.each do |part|
       case part.content_type
       when "photo"
-        part.update_attributes!({ page_partable_type: "Photo", page_partable_id: part.photo.id }, without_protection: true)
+        puts part.inspect
+        if part.photo_id
+          part.update_attributes!({ page_partable_type: "Spina::Photo", page_partable_id: part.photo.id }, without_protection: true)
+        else
+          part.destroy
+        end
       when "photos"
         photo_collection = Spina::PhotoCollection.create
-        part.update_attributes!({ page_partable_type: "PhotoCollection", page_partable_id: photo_collection.id }, without_protection: true)
+        part.update_attributes!({ page_partable_type: "Spina::PhotoCollection", page_partable_id: photo_collection.id }, without_protection: true)
         part.photos.each do |photo|
           photo_collection.photos << photo
         end
       when "file"
         # puts part.file.inspect
-        part.update_attributes!({ page_partable_type: "File", page_partable_id: nil }, without_protection: true)
+        part.update_attributes!({ page_partable_type: "Spina::File", page_partable_id: nil }, without_protection: true)
       when "files"
         file_collection = Spina::FileCollection.create
-        part.update_attributes!({ page_partable_type: "FileCollection", page_partable_id: file_collection.id }, without_protection: true)
+        part.update_attributes!({ page_partable_type: "Spina::FileCollection", page_partable_id: file_collection.id }, without_protection: true)
         part.files.each do |file|
           file_collection.files << file
         end

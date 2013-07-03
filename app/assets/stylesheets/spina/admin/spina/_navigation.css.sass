@@ -1,6 +1,3 @@
-@import compass/css3
-@import mixins
-
 // Off-canvas
 
 .navigation-open
@@ -19,7 +16,7 @@ body, html
   min-height: 100%
   position: relative
   z-index: 2
-  @include box-shadow(-10px 0 20px rgba(0, 0, 0, .5))
+  box-shadow: -10px 0 20px rgba(0, 0, 0, .5)
   @include transform(translate3d(0, 0, 0))
   @include transition(all .3s ease)
 
@@ -35,8 +32,13 @@ body, html
   width: 280px
   -webkit-overflow-scrolling: touch
 
-  @media screen and (min-width: 45em)
+  @include media($larger-than-mobile)
     display: none
+
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
 
   ul li a
     border-bottom: 1px solid #222
@@ -47,10 +49,10 @@ body, html
     line-height: 50px
     padding-left: 50px
     position: relative
-    width: 230px
-    @include background-image(linear-gradient(top, #333, #292929))
+    width: 280px
+    @include background-image( linear-gradient(top, #333, #292929) )
     @include font-size(1.4)
-    @include text-shadow(0 1px 0 #000)
+    text-shadow: 0 1px 0 #000
 
     &[data-icon]:before
       color: #111
@@ -60,20 +62,20 @@ body, html
       top: 3px
       width: 44px
       @include font-size(2.6)
-      @include text-shadow(0 1px 0 #444)
+      text-shadow: 0 1px 0 #444
 
   li.divider
     border-bottom: 1px solid #111
     border-top: 1px solid #333
     padding: 4px
-    @include background-image(linear-gradient(top, #222, #191919))
+    @include background-image( linear-gradient(top, #222, #191919) )
     @include font-size(1.1)
 
   ul li:first-child a
     border-top: none
 
   ul:last-child li:last-child a
-    @include box-shadow(0 2px 5px rgba(0, 0, 0, .5))
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .5)
 
   ul.secondary li.active a
     background: #444
@@ -81,9 +83,9 @@ body, html
 // Off canvas toggle
 a.button.button-dark[data-toggle=navigation]
   display: inline
-  @include border-radius(3px)
+  border-radius: 3px
 
-  @media screen and (min-width: 45em)
+  @include media($larger-than-mobile)
     display: none
 
 // Primary navigation
@@ -92,8 +94,13 @@ header#header nav
   display: none
 
   &#primary
-    @media screen and (min-width: 45em)
+    @include media($larger-than-mobile)
       display: inline-block
+
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
 
   ul li
     float: left
@@ -106,7 +113,7 @@ header#header nav
     height: 55px
     padding: 0 24px
     @include font-size(1.3)
-    @include background-image(linear-gradient(top, #555, #222))
+    @include background-image( linear-gradient(top, #555, #222) )
     @include transition(background .2s ease-out, box-shadow .1s ease-out)
 
   ul li a:hover
@@ -116,10 +123,10 @@ header#header nav
     @include font-size(2.4)
 
   ul li.active a
-    @include box-shadow(inset 0 -10px 30px rgba(0, 0, 0, .65))
+    box-shadow: inset 0 -10px 30px rgba(0, 0, 0, .65)
 
   ul li a:active
-    @include box-shadow(inset 0 -4px 20px rgba(0, 0, 0, .35))
+    box-shadow: inset 0 -4px 20px rgba(0, 0, 0, .35)
 
 // Secondary navigation
 
@@ -128,17 +135,18 @@ nav.submenu
   text-align: center
   width: 100%
 
-  @media screen and (min-width: 60em)
+  @include media($larger-than-tablet)
     float: left
     margin-top: 9px
     width: 111px
 
-  @media screen and (min-width: 45em)
+  @include media($larger-than-mobile)
     display: block
 
   ul
     margin: 0
     padding: 0
+    list-style: none
 
   ul li
     display: inline-block
@@ -149,18 +157,18 @@ nav.submenu
     display: inline-block
     font-weight: bold
     line-height: 20px
-    min-width: 95px
+    min-width: 111px
     padding: 12px 4px
     text-align: center
     text-decoration: none
     width: auto
     @include font-size(1.2)
-    @include text-shadow(0 1px 0 #fff)
+    text-shadow: 0 1px 0 #fff
     @include transition(color .25s)
 
-    @media screen and (min-width: 60em)
+    @include media($larger-than-tablet)
       padding: 18px 8px
-      width: 95px
+      width: 111px
 
   li a[data-icon]:before
     display: block
@@ -169,7 +177,7 @@ nav.submenu
     @include font-size(2.4)
     @include transition(color .25s)
 
-    @media screen and (min-width: 60em)
+    @include media($larger-than-tablet)
       margin: 8px 0
       @include font-size(2.8)
 
@@ -182,30 +190,30 @@ nav.submenu
 
   li.active a
     background: #ddd
-    @include border-radius(3px 3px 0 0)
-    @include box-shadow(inset 0 1px 3px rgba(0, 0, 0, .25))
+    border-radius: 3px 3px 0 0
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .25)
 
-    @media screen and (min-width: 60em)
+    @include media($larger-than-tablet)
       margin-right: -3px
       padding-right: 11px
-      @include border-radius(3px 0 0 3px)
+      border-radius: 3px 0 0 3px
 
   li.active:after
-    background: image-url('spina/admin/nav_indicator_vertical.png') no-repeat
+    background: image-url("#{$spina-assets-path}/nav_indicator_vertical.png") no-repeat
     background-size: 19px 11px
     bottom: 0
     content: ""
     height: 11px
-    left: 42px
+    left: 47px
     position: absolute
     width: 19px
     z-index: 2
 
     @media screen and (min-width: 60em)
-      background: image-url('spina/admin/nav_indicator.png') no-repeat
+      background: image-url("#{$spina-assets-path}/nav_indicator.png") no-repeat
       background-size: 11px 19px
       height: 19px
       left: auto
-      right: 0px
+      right: -1px
       top: 36px
       width: 11px

@@ -1,5 +1,3 @@
-require_dependency "spina/frontend_controller"
-
 module Spina
   class PagesController < FrontendController
 

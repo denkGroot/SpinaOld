@@ -1,5 +1,6 @@
 module Spina
   module ApplicationHelper
+    
     def markdown(text)
       sha = Digest::SHA1.hexdigest(text.to_s)
       Rails.cache.fetch sha do

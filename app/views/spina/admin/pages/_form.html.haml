@@ -63,7 +63,7 @@
                   %div{style: 'float: left; min-width: 400px;'}
                     = file_form.file_field :file, data: { customfile: true, placeholder: (file_form.object.new_record? ? "Nog geen bestand geselecteerd" : file_form.object.name) }
                   = file_form.hidden_field :_destroy
-                  = link_to "Wissen", '#', class: 'clear_field button button-link', data: {icon: 'x'} unless file_form.object.new_record?
+                  = link_to "", '#', class: 'clear_field button button-link', data: {icon: 'x'} unless file_form.object.new_record?
 
 
             - when "Spina::FileCollection"

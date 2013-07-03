@@ -11,7 +11,7 @@ namespace :spina do
   task :create_custom_pages => :environment do
     puts "Creating custom pages from spina config..."
     Spina::Engine.config.custom_pages.each do |page|
-      Spina::Page.find_or_create_by_name_and_deletable(name: page.downcase, deletable: false) if page
+      Spina::Page.where(name: page.downcase).where(deletable: false).first_or_create! if page
     end
     puts "Done"
   end
@@ -31,7 +31,7 @@ namespace :spina do
       end
 
       page.page_parts.each do |page_part|
-        page_part_config = page_type_config.select{|page_part_config| page_part_config.include? page_part.tag }
+        page_part_config = page_type_config.find { |page_part_config| page_part_config[:tag] ==  page_part.tag }
         if page_part_config.blank? || page_part.page_partable_type != page_part_config[:page_partable_type]
           page_part.destroy
         elsif page_part.name != page_part_config[:name]

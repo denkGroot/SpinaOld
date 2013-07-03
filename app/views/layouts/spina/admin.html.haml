@@ -30,13 +30,6 @@
           / Main navigation
           = render 'spina/admin/shared/navigation'
 
-      %section#main
-        = render 'spina/admin/shared/subnavigation'
-
-        %section#content
-          = yield
-
-        %a#denkgroot{href: 'http://www.denkgroot.com', target: '_blank'} een idee van denkGroot
 
       %aside#notifications
         - if flash[:notice]
@@ -50,6 +43,15 @@
             %i.icon-only{data: {icon: '! '}}
             = flash[:alert]
             = link_to "", '#', class: 'icon-only', data: {icon: 'x', dismiss: 'notification'}
+
+      %section#main
+        = render 'spina/admin/shared/subnavigation'
+
+        %section#content
+          = yield
+
+        %a#denkgroot{href: 'http://www.denkgroot.com', target: '_blank'} een idee van denkGroot
+
 
     / Aviary editor
     #injection_site
