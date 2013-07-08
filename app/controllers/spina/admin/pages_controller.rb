@@ -68,7 +68,7 @@ module Spina
       def sort
         params[:page].each_with_index do |id, index|
           parent_id = id[1] == 'null' ? nil : id[1]
-          Page.update_all({position: index + 1, parent_id: parent_id}, {id: id[0]})
+          Page.where(id: id[0]).update_all({position: index + 1, parent_id: parent_id})
         end
         render nothing: true
       end
