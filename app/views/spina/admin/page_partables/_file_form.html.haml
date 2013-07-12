@@ -1,0 +1,6 @@
+= file_form.fields_for :page_partable, file_form.object.page_partable do |form|
+  %fieldset
+    %div{style: 'float: left; min-width: 400px;'}
+      = form.file_field :file, data: { customfile: true, placeholder: (form.object.new_record? ? "Nog geen bestand geselecteerd" : form.object.name) }
+    = form.hidden_field :_destroy
+    = link_to "", '#', class: 'clear_field button button-link', data: {icon: 'x'} unless form.object.new_record?

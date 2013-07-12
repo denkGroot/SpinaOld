@@ -42,37 +42,8 @@
 
                 = page_part_form.text_area :content, placeholder: "Paginasectie #{page_part_form.object.name.downcase}", class: 'wysihtml5'
 
-            - when "Spina::Photo"
-              .gallery-select.gallery
-                - Spina::Photo.all.each do |photo|
-                  .item{class: ('selected' if page_part_form.object.page_partable == photo)}
-                    .overlay= page_part_form.radio_button :page_partable_id, photo.id
-                    = image_tag photo.file.thumb
-
-            - when "Spina::PhotoCollection"
-              = page_part_form.fields_for :page_partable, page_part_form.object.page_partable do |photo_collection_form|                  
-                .gallery-select.gallery{data: {multiselect: true}}
-                  - Spina::Photo.all.each do |photo|
-                    .item{class: ('selected' if photo_collection_form.object.try(:photos).try(:include?, photo) )}
-                      .overlay= photo_collection_form.check_box :photo_ids, {multiple: true}, photo.id, nil
-                      = image_tag photo.file.thumb, id: "photo_#{photo.id}"
-
-            - when "Spina::File"
-              = page_part_form.fields_for :page_partable, page_part_form.object.page_partable do |file_form|
-                %fieldset
-                  %div{style: 'float: left; min-width: 400px;'}
-                    = file_form.file_field :file, data: { customfile: true, placeholder: (file_form.object.new_record? ? "Nog geen bestand geselecteerd" : file_form.object.name) }
-                  = file_form.hidden_field :_destroy
-                  = link_to "", '#', class: 'clear_field button button-link', data: {icon: 'x'} unless file_form.object.new_record?
-
-
-            - when "Spina::FileCollection"
-              = page_part_form.fields_for :page_partable, page_part_form.object.page_partable do |file_collection_form|
-                = file_collection_form.fields_for :files do |file_form|
-                  = render 'file_fields', f: file_form
-
-                = link_to_add_fields "Bestand toevoegen", file_collection_form, :files
-
+            - else 
+              = render partial: "spina/admin/page_partables/#{page_part_form.object.page_partable_type.constantize.name.demodulize.downcase}_form", object: page_part_form
 
   .actions
     .button-well

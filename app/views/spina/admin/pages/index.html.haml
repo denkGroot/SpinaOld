@@ -12,6 +12,12 @@
             %li{id: "page_#{child_page.id}"}
               = render 'page_link', page: child_page
 
+              %ol
+                - child_page.pages.each do |child_child_page|
+                  %li{id: "page_#{child_child_page.id}"}
+                    = render 'page_link', page: child_child_page
+
+
 .actions
   .button-well
     = link_to "Nieuwe pagina", new_admin_page_path, class: 'button button-primary', data: {icon: '&'}

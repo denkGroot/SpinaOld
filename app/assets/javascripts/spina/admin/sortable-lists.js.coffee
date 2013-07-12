@@ -6,7 +6,7 @@ ready = ->
     items: 'li'
     tolerance: 'pointer'
     toleranceElement: '> div'
-    maxLevels: 2
+    maxLevels: 3
     update: ->
       $.post($(this).data('update-url'), $(this).nestedSortable('serialize'))
 
