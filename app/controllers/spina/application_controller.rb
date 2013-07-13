@@ -12,7 +12,7 @@ module Spina
     helper_method :current_user
 
     def current_ability
-      @current_ability ||= Spina::Ability.new(current_user)
+      @current_ability ||= Ability.new(current_user)
     end
 
   end
