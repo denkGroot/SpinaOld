@@ -13,8 +13,8 @@ module Spina
       :extra_spam_words => %w()
     })
 
-    scope :new_messages, ham.where(archived: false)
-    scope :sorted, ham.order("created_at DESC")
+    scope :new_messages, -> { ham.where(archived: false) }
+    scope :sorted, -> { ham.order("created_at DESC") }
 
     def archive_if_spam
       self.archived = true if self.spam

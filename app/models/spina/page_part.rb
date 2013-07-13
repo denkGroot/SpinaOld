@@ -11,7 +11,7 @@ module Spina
     validates_presence_of :name, :page_partable_type, :tag
     validates_uniqueness_of :tag, scope: :page_id
 
-    scope :sorted, order(:position)
+    scope :sorted, -> { order(:position) }
 
     def to_s
       name
