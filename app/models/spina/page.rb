@@ -28,11 +28,11 @@ module Spina
     end
 
     def plugin
-      Spina::Engine.config.plugins.find { |plugin| plugin.name == name }
+      Engine.config.plugins.find { |plugin| plugin.name == name }
     end
 
     def is_plugin?
-      Spina::Engine.config.plugins.any? { |plugin| plugin.name == name }
+      Engine.config.plugins.any? { |plugin| plugin.name == name }
     end
 
     def previous_page

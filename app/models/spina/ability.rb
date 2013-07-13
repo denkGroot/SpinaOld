@@ -6,13 +6,13 @@ module Spina
       if user.admin?
         can :manage, :all
       else
-        can :manage, Spina::Page
-        can :manage, Spina::Photo
-        can :manage, Spina::Account
-        can :manage, Spina::Inquiry
+        can :manage, Page
+        can :manage, Photo
+        can :manage, Account
+        can :manage, Inquiry
 
-        Spina::Engine.config.plugins.each do |plugin|
-          can :manage, "Spina::#{plugin.class_name}".constantize
+        Engine.config.plugins.each do |plugin|
+          can :manage, "#{plugin.class_name}".constantize
         end
       end
     end

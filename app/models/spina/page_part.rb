@@ -18,10 +18,10 @@ module Spina
     end
 
     def position
-      if Spina::Engine.config.PAGE_TYPES.include?(self.page.name)
-        page_parts = Spina::Engine.config.PAGE_TYPES[self.page.name]
+      if Engine.config.PAGE_TYPES.include?(self.page.name)
+        page_parts = Engine.config.PAGE_TYPES[self.page.name]
       else
-        page_parts = Spina::Engine.config.PAGE_TYPES["default"]
+        page_parts = Engine.config.PAGE_TYPES["default"]
       end
       logger.debug ">" + page_parts.select{|page_part|  page_part[:tag] == self.tag }.inspect
       page_parts.select{|page_part|  page_part[:tag] == self.tag }.first[:position]

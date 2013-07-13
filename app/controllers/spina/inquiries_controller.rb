@@ -39,7 +39,7 @@ module Spina
 
     def setup_negative_captcha
       @captcha = NegativeCaptcha.new(
-        secret: Spina::Engine.config.NEGATIVE_CAPTCHA_SECRET,
+        secret: Engine.config.NEGATIVE_CAPTCHA_SECRET,
         spinner: request.remote_ip,
         fields: [:email, :message, :name],
         params: params
