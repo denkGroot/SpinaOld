@@ -15,9 +15,9 @@ module Spina
     accepts_nested_attributes_for :page_parts, allow_destroy: true
     validates_presence_of :title
 
-    scope :sorted, order(:position)
-    scope :custom_pages, where(deletable: false)
-    scope :root_pages, where(parent_id: nil)
+    scope :sorted, -> { order(:position) }
+    scope :custom_pages, -> { where(deletable: false) }
+    scope :root_pages, -> { where(parent_id: nil) }
 
     def to_s
       name
