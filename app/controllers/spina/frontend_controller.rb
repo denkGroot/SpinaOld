@@ -5,7 +5,7 @@ module Spina
     private
 
     def get_pages
-      @pages = Page.sorted.root_pages.where(show_in_menu: true)
+      @pages = Page.root_pages.sorted.where(show_in_menu: true)
     end
     
   end

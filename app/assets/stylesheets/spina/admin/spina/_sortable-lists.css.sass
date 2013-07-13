@@ -30,20 +30,54 @@ ol.sortable
     a.button
       text-indent: 0
 
-    &:hover
-      background-color: #f1f1f1
 
     a small
       display: inline
 
-  > li:last-child div
-    border-bottom: none
+  // > li:last-child > li:last-child div
+  //   border-bottom: none
 
-  li ol div
-    background: image-url("#{$spina-assets-path}/hook.png") no-repeat 40px
-    background-color: #f9f9f9
-    text-indent: 54px
+  li ol 
+    div
+      background: image-url("#{$spina-assets-path}/hook.png") no-repeat 40px
+      background-color: #f9f9f9
+      text-indent: 54px
+    .placeholder
+      margin-left: 54px
+      &:after
+        content: ''
+        display: block
+        position: absolute
+        left: - 12px
+        top: 20.5px
+        width: 20px
+        height: 40px
+        @include triangle(12px, #aaa, right)
+
+  li ol li ol 
+    div
+      background: image-url("#{$spina-assets-path}/hook.png") no-repeat 62px
+      background-color: #f9f9f9
+      text-indent: 76px
+    .placeholder
+      margin-left: 76px
+      &:before
+        content: ''
+        display: block
+        position: absolute
+        left: - 34px
+        top: 20.5px
+        width: 20px
+        height: 40px
+        @include triangle(12px, #aaa, right)
+
 
 .placeholder
+  position: relative
   background: #f7f8ec
   visibility: visible !important
+  margin-left: 32px
+  border-bottom: 1px solid #ddd
+
+.ui-sortable-helper
+  opacity: 0.5

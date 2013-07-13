@@ -36,25 +36,13 @@ module Spina
     end
 
     def previous_page
-      page = Page.sorted.where(parent_id: self.parent_id).where('position < ?', self.position).last 
-      if page.blank? && self.position.blank?
-        page = Page.sorted.where(parent_id: self.parent_id).where('position IS NOT NULL').last
-      end
-      if page.blank?
-        page = Page.sorted.where(parent_id: self.parent_id).where('id < ?', self.id).last 
-      end
-      page
+      page = Page.sorted.where(parent_id: self.parent_id).where('position < ?', self.position).last
+      page != self ? page :nil
     end
 
     def next_page
-      page = Page.sorted.where(parent_id: self.parent_id).where('position > ?', self.position).first 
-      if page.blank? && self.position.present?
-        page = Page.sorted.where(position: nil).first
-      end
-      if page.blank?
-        page = Page.sorted.where('id > ?', self.id).first
-      end
-      page
+      page = Page.sorted.where(parent_id: self.parent_id).where('position > ?', self.position).first
+      page != self ? page : nil
     end
 
     def menu_title
