@@ -4,7 +4,7 @@ module Spina
     def markdown(text)
       sha = Digest::SHA1.hexdigest(text.to_s)
       Rails.cache.fetch sha do
-        renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)
+        renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: false)
         options = {
           autolink: true,
           no_intra_emphasis: true,
@@ -26,7 +26,7 @@ module Spina
     end
 
     def nav_link_class(page)
-      "active" if active_page?(page) || page.pages.any? { |child_page| active_page?(child_page) }
+      "active" if active_page?(page) || page.pages.any? { |child_page| active_page?(child_page) || child_page.pages.any? { |child_child_page| active_page?(child_child_page) } }
     end
 
     def active_page?(page)
