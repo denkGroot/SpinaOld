@@ -1,4 +1,4 @@
-%p= "Beste beheerder van #{current_account.name},"
+%p= "Beste beheerder van #{@current_account.name},"
 
 %p 
   Er is een contactformulier verzonden op de website. Je kunt reageren door deze email te beantwoorden.
@@ -11,5 +11,5 @@
     %td Email
     %td= @inquiry.email
   %tr
-    %td Aanvraag
-    %td= @inquiry.message
+    %td Inhoud
+    %td= simple_format(@inquiry.message)
