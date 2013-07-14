@@ -1,5 +1,5 @@
 .gallery-select.gallery
-  - Photo.all.each do |photo|
+  - Spina::Photo.all.each do |photo|
     .item{class: ('selected' if photo_form.object.page_partable == photo)}
       .overlay= photo_form.radio_button :page_partable_id, photo.id
       = image_tag photo.file.thumb

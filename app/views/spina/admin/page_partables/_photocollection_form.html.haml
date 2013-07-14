@@ -1,6 +1,6 @@
 = photocollection_form.fields_for :page_partable, photocollection_form.object.page_partable do |form|                  
   .gallery-select.gallery{data: {multiselect: true}}
-    - Photo.all.each do |photo|
+    - Spina::Photo.all.each do |photo|
       .item{class: ('selected' if form.object.try(:photos).try(:include?, photo) )}
         .overlay= form.check_box :photo_ids, {multiple: true}, photo.id, nil
         = image_tag photo.file.thumb, id: "photo_#{photo.id}"
