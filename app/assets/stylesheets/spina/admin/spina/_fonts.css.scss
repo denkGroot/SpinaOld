@@ -1,10 +1,10 @@
-@include font-face("League Gothic", "spina/League_Gothic-webfont");
-@include font-face("Aller", "spina/aller_rg-webfont");
-@include font-face("Aller", "spina/aller_bd-webfont", bold);
-@include font-face("Aller", "spina/aller_it-webfont", normal, italic);
-@include font-face("Aller", "spina/aller_bdit-webfont", bold, italic);
-@include font-face("Aller", "spina/aller_lt-webfont", 100);
-@include font-face("Aller", "spina/aller_ltit-webfont", 100, italic);
+@include font-face("League Gothic", "League_Gothic-webfont");
+@include font-face("Aller", "aller_rg-webfont");
+@include font-face("Aller", "aller_bd-webfont", bold);
+@include font-face("Aller", "aller_it-webfont", normal, italic);
+@include font-face("Aller", "aller_bdit-webfont", bold, italic);
+@include font-face("Aller", "aller_lt-webfont", 100);
+@include font-face("Aller", "aller_ltit-webfont", 100, italic);
 
 //  Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it.
 //  Note, that will break hinting! In other OS-es font will be not as sharp as it could be
