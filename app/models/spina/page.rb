@@ -1,6 +1,8 @@
 module Spina
   class Page < ActiveRecord::Base
+    
     extend FriendlyId
+    acts_as_nested_set
 
     attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id, :name, :seo_title
 
@@ -15,7 +17,7 @@ module Spina
     accepts_nested_attributes_for :page_parts, allow_destroy: true
     validates_presence_of :title
 
-    scope :sorted, -> { order(:position) }
+    scope :sorted, -> { order('lft') }
     scope :custom_pages, -> { where(deletable: false) }
     scope :root_pages, -> { where(parent_id: nil) }
 
@@ -37,16 +39,39 @@ module Spina
 
     def previous_page
       page = Page.sorted.where(parent_id: self.parent_id).where('position < ?', self.position).last
-      page != self ? page :nil
     end
 
     def next_page
       page = Page.sorted.where(parent_id: self.parent_id).where('position > ?', self.position).first
-      page != self ? page : nil
+    end
+
+    def to_menu_item
+      {
+        :id => id,
+        :lft => lft,
+        :depth => depth,
+        # :menu_match => menu_match,
+        :parent_id => parent_id,
+        :rgt => rgt,
+        :title => menu_title.presence || title.presence,
+        :type => self.class.name,
+        is_plugin: is_plugin?,
+        name: name,
+        url: url
+      }
     end
 
     def menu_title
       read_attribute(:menu_title).blank? ? title : read_attribute(:menu_title)
+    end
+
+    def url
+      if self.is_plugin?
+        plugin = Engine.config.plugins.find { |plugin| plugin.name == self.name }
+        '/' + (plugin.path || plugin.controller)
+      else
+        Engine.routes.url_helpers.page_path(self)
+      end
     end
 
     def seo_title

@@ -14,6 +14,7 @@ require 'friendly_id'
 require 'redcarpet'
 require 'negative_captcha'
 require 'filters_spam'
+require 'awesome_nested_set'
 
 module Spina
   class Engine < ::Rails::Engine

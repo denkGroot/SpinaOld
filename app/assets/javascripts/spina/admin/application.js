@@ -5,5 +5,6 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require ./jquery.nestedsortable
+//= require ./serializelist
 //= require_directory .
 //= require ./bootstrap

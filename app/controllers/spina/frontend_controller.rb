@@ -1,12 +1,13 @@
 module Spina
   class FrontendController < ApplicationController
-    before_filter :get_pages
+    before_filter :default_menu
 
     private
 
-    def get_pages
-      @pages = Page.root_pages.sorted.where(show_in_menu: true)
+    def default_menu
+      Menu.new Page.sorted
     end
+    helper_method :default_menu
     
   end
 end

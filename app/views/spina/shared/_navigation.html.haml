@@ -1,17 +1,1 @@
-%ul
-  - @pages.each do |page|
-
-    %li{class: nav_link_class(page)}
-      - if page.is_plugin?
-        = link_to page.menu_title, method("#{page.name}_path").call
-      - else
-        = link_to page.menu_title, page
-
-      - if page.pages.size > 0
-        %ul
-          - page.pages.each do |child_page|
-            %li{class: nav_link_class(child_page)}
-              - if child_page.is_plugin?
-                = link_to child_page.menu_title, method("#{child_page.name}_path").call
-              - else
-                = link_to child_page.menu_title, child_page
+= Spina::Pages::MenuPresenter.new(default_menu, self).to_html
