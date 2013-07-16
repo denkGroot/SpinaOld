@@ -66,7 +66,9 @@ module Spina
     end
 
     def url
-      if self.is_plugin?
+      if self.name == 'homepage'
+        '/'
+      elsif self.is_plugin?
         plugin = Engine.config.plugins.find { |plugin| plugin.name == self.name }
         '/' + (plugin.path || plugin.controller)
       else
