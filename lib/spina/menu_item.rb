@@ -2,7 +2,7 @@ module Spina
   class MenuItem
 
     attr_accessor :menu, :title, :parent_id, :lft, :rgt, :depth, :url, :menu_match,
-                  :original_type, :original_id, :is_plugin, :name
+                  :original_type, :original_id, :is_plugin, :name, :show_in_menu
 
     def initialize(menu, options = {})
       @menu = menu

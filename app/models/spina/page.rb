@@ -47,17 +47,18 @@ module Spina
 
     def to_menu_item
       {
-        :id => id,
-        :lft => lft,
-        :depth => depth,
-        # :menu_match => menu_match,
-        :parent_id => parent_id,
-        :rgt => rgt,
-        :title => menu_title.presence || title.presence,
-        :type => self.class.name,
+        id: id,
+        lft: lft,
+        depth: depth,
+        # menu_match: menu_match,
+        parent_id: parent_id,
+        rgt: rgt,
+        title: menu_title.presence || title.presence,
+        type: self.class.name,
         is_plugin: is_plugin?,
         name: name,
-        url: url
+        url: url,
+        show_in_menu: show_in_menu
       }
     end
 

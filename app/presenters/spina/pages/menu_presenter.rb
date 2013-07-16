@@ -54,11 +54,13 @@ module Spina
       end
 
       def render_menu_item(menu_item, index)
-        content_tag(list_item_tag, :class => menu_item_css(menu_item, index)) do
-          buffer = ActiveSupport::SafeBuffer.new
-          buffer << link_to(menu_item.title, context.spina.url_for(menu_item.url))
-          buffer << render_menu_items(menu_item_children(menu_item))
-          buffer
+        unless menu_item.show_in_menu == false && menu_item.leaf?
+          content_tag(list_item_tag, :class => menu_item_css(menu_item, index)) do
+            buffer = ActiveSupport::SafeBuffer.new
+            buffer << link_to(menu_item.title, context.spina.url_for(menu_item.url))
+            buffer << render_menu_items(menu_item_children(menu_item))
+            buffer
+          end
         end
       end
 

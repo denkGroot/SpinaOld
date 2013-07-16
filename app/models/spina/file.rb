@@ -10,7 +10,7 @@ module Spina
     mount_uploader :file, FileUploader
 
     def name
-      file.file.filename
+      file.file.try(:filename)
     end
 
     alias_method :old_update_attributes, :update_attributes

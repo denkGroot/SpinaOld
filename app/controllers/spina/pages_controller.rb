@@ -8,7 +8,11 @@ module Spina
 
     def show
       @page = Page.find(params[:id])
-      @page.custom_page? ? method(@page.name.downcase).call : render(:show)
+      if @page.show_in_menu == false && @page.children.any?
+        redirect_to @page.children.first
+      else
+        @page.custom_page? ? method(@page.name.downcase).call : render(:show)
+      end
     end
 
   end
