@@ -37,14 +37,6 @@ module Spina
       Engine.config.plugins.any? { |plugin| plugin.name == name }
     end
 
-    def previous_page
-      page = Page.sorted.where(parent_id: self.parent_id).where('position < ?', self.position).last
-    end
-
-    def next_page
-      page = Page.sorted.where(parent_id: self.parent_id).where('position > ?', self.position).first
-    end
-
     def to_menu_item
       {
         id: id,
