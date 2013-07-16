@@ -1,5 +1,5 @@
 module Spina
-  class PagesController < FrontendController
+  class PagesController < ApplicationController
 
     def homepage
       @page = Page.find_by_name("homepage")
