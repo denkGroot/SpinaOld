@@ -38,7 +38,11 @@ module Spina
 
       private
       def render_menu(items)
-        content_tag(menu_tag, :id => dom_id, :class => css) do
+        if menu_tag
+          content_tag(menu_tag, :id => dom_id, :class => css) do
+            render_menu_items(items)
+          end
+        else
           render_menu_items(items)
         end
       end
