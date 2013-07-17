@@ -34,7 +34,7 @@ module Spina
     private
 
     def set_page
-      @page = Page.find_by_title 'Contact'
+      @page = Page.find_by_name 'inquiries'
     end
 
     def setup_negative_captcha
