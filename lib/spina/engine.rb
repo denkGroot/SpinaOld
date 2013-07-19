@@ -45,7 +45,7 @@ module Spina
     config.layout_template_whitelist = ['application']
 
     def self.valid_templates(*pattern)
-      ([Rails.root, Spina::Engine.root]).map { |path|
+      ([Rails.root, self.root]).map { |path|
         Dir[path.join(*pattern).to_s].flatten.map { |f|
           File.basename(f).split('.').first
         }
