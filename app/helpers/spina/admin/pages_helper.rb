@@ -10,7 +10,7 @@ module Spina
           { selected: current_page.parent.send(template_type) }
         else
           # Use Default Template (First in whitelist)
-          { selected: Engine.send("#{template_type}_whitelist").first }
+          { selected: Engine.config.send("#{template_type}_whitelist").first }
         end
       end
 

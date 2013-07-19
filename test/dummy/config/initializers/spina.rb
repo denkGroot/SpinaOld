@@ -15,12 +15,12 @@ Spina::Engine.configure do
       }, {
         tag: 'file',
         name: 'Super PDF',
-        page_partable_type: 'Spina::File',
+        page_partable_type: 'Spina::Attachment',
         position: 2
       }, {
         tag: 'files',
         name: 'Bijlagen',
-        page_partable_type: 'Spina::FileCollection',
+        page_partable_type: 'Spina::AttachmentCollection',
         position: 3
       }, {
         tag: 'new',
@@ -116,13 +116,13 @@ Spina::Engine.configure do
   # Set this to true to fully expand the page hierarchy in the admin
   # config.auto_expand_admin_tree = true
 
-  # config.layout_template_whitelist = ["application", "home"]
+  config.layout_template_whitelist = ["application"]
 
-  config.view_template_whitelist = ["home", "show"]
+  config.view_template_whitelist = ["show", "homepage"]
 
-  # config.use_layout_templates = true
+  config.use_layout_templates = true
 
-  config.use_view_templates = false
+  config.use_view_templates = true
 
   # config.page_title = {:chain_page_title=>false, :ancestors=>{:separator=>" | ", :class=>"ancestors", :tag=>"span"}, :page_title=>{:class=>nil, :tag=>nil, :wrap_if_not_chained=>false}}
 

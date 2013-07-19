@@ -1,8 +1,8 @@
 module Spina
-  class File < ActiveRecord::Base
+  class Attachment < ActiveRecord::Base
     
     has_one :page_part, as: :page_partable
-    has_and_belongs_to_many :file_collections, join_table: 'spina_file_collections_files'
+    has_and_belongs_to_many :attachment_collections, join_table: 'spina_attachment_collections_attachments'
 
     attr_accessible :file, :page_id, :_destroy
     attr_accessor :_destroy

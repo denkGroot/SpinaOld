@@ -4,7 +4,7 @@ module Spina
     extend FriendlyId
     acts_as_nested_set
 
-    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id, :name, :seo_title, :view_template, :skip_to_first_child, :draft, :link_url
+    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id, :name, :seo_title, :layout_template, :view_template, :skip_to_first_child, :draft, :link_url
 
     friendly_id :title, use: :slugged
 

@@ -47,7 +47,7 @@ module Spina
     def self.valid_templates(*pattern)
       ([Rails.root]).map { |path|
         Dir[path.join(*pattern).to_s].flatten.map { |f|
-          ::::File.basename(f).split('.').first
+          File.basename(f).split('.').first
         }
       }.flatten.uniq
     end

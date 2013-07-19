@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130719122158) do
+ActiveRecord::Schema.define(version: 20130719134709) do
 
   create_table "spina_accounts", force: true do |t|
     t.string   "name"
@@ -26,17 +26,17 @@ ActiveRecord::Schema.define(version: 20130719122158) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "spina_file_collections", force: true do |t|
+  create_table "spina_attachment_collections", force: true do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "spina_file_collections_files", force: true do |t|
-    t.integer "file_collection_id"
-    t.integer "file_id"
+  create_table "spina_attachment_collections_attachments", force: true do |t|
+    t.integer "attachment_collection_id"
+    t.integer "attachment_id"
   end
 
-  create_table "spina_files", force: true do |t|
+  create_table "spina_attachments", force: true do |t|
     t.string   "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
