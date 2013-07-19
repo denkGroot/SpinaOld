@@ -54,7 +54,7 @@ Spina::Engine.configure do
       }
     ],
 
-    'contact' => []
+    'inquiries' => []
   }
 
 

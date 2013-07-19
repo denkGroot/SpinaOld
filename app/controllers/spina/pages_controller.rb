@@ -49,10 +49,10 @@ module Spina
 
     def render_options_for_template(page)
       render_options = {}
-      if Spina::Engine.config.use_layout_templates && page.layout_template.present?
+      if Engine.config.use_layout_templates && page.layout_template.present?
         render_options[:layout] = page.layout_template
       end
-      if Spina::Engine.config.use_view_templates && page.view_template.present?
+      if Engine.config.use_view_templates && page.view_template.present?
         render_options[:template] = "spina/pages/#{page.view_template}"
       elsif
         render_options[:template] = "spina/pages/show"
