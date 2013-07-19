@@ -1,6 +1,5 @@
 module Spina
   class ApplicationController < ActionController::Base
-    before_filter :default_menu
 
     def current_ability
       @current_ability ||= Ability.new(current_user)
@@ -9,7 +8,7 @@ module Spina
     private
 
     def default_menu
-      Menu.new Page.sorted
+      @default_menu = Menu.new Page.sorted
     end
     helper_method :default_menu
     

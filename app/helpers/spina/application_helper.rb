@@ -15,8 +15,8 @@ module Spina
         }
         html = Redcarpet::Markdown.new(renderer, options).render(text.to_s)
 
-        html.sub!(/\[vimeo\s+(\d*)\]/, '<figure class="video"><iframe src="http://player.vimeo.com/video/\1?portrait=0&title=0&byline=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></figure>')
-        html.sub!(/\[button\s+(.*)\](.*)\[\/button\]/, '<a href="\1" class="button">\2</a>')
+        html.gsub!(/\[vimeo\s+(\d*)\]/, '<figure class="video"><iframe src="http://player.vimeo.com/video/\1?portrait=0&title=0&byline=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></figure>')
+        html.gsub!(/\[button\s+(.*)\](.*)\[\/button\]/, '<a href="\1" class="button">\2</a>')
         html.html_safe
       end
     end

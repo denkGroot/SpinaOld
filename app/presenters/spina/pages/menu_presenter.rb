@@ -12,9 +12,6 @@ module Spina
 
       config_accessor :roots, :menu_tag, :list_tag, :list_item_tag, :css, :dom_id,
                       :max_depth, :selected_css, :first_css, :last_css
-      self.dom_id = 'menu'
-      self.css = 'menu clearfix'
-      self.menu_tag = :nav
       self.list_tag = :ul
       self.list_item_tag = :li
       self.selected_css = :selected
@@ -33,19 +30,10 @@ module Spina
       end
 
       def to_html
-        render_menu(roots) if roots.present?
+        render_menu_items(roots) if roots.present?
       end
 
       private
-      def render_menu(items)
-        if menu_tag
-          content_tag(menu_tag, :id => dom_id, :class => css) do
-            render_menu_items(items)
-          end
-        else
-          render_menu_items(items)
-        end
-      end
 
       def render_menu_items(menu_items)
         if menu_items.present?

@@ -2,7 +2,9 @@ module Spina
   module Admin
     class PagesController < AdminController
       
-      skip_before_filter :verify_authenticity_token, only: [:create, :update]
+      before_action :load_valid_templates, only: [:new, :edit]
+      skip_before_action :verify_authenticity_token, only: [:create, :update]
+
 
       load_and_authorize_resource class: Page#, except: [:create, :update]
       # load_resource class: Page
@@ -115,6 +117,16 @@ module Spina
       def destroy
         @page.destroy
         redirect_to admin_pages_url, notice: "De pagina is verwijderd."
+      end
+
+      protected
+
+      def load_valid_templates
+        @valid_layout_templates = Engine.config.layout_template_whitelist &
+                                  Engine.valid_templates('app', 'views', '{layouts,spina/layouts}', '*html*')
+
+        @valid_view_templates = Engine.config.view_template_whitelist &
+                                Engine.valid_templates('app', 'views', '{pages,spina/pages}', '*html*')
       end
 
     end

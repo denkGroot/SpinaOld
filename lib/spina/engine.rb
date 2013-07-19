@@ -33,9 +33,24 @@ module Spina
       end
     end
 
+
+
     config.to_prepare &method(:require_decorators).to_proc
     config.autoload_paths += %W(#{config.root}/lib)
+    
+    config.use_view_templates = false
+    config.view_template_whitelist = ['home', 'show']
+    
+    config.use_layout_templates = false
+    config.layout_template_whitelist = ['application']
 
+    def self.valid_templates(*pattern)
+      ([Rails.root]).map { |path|
+        Dir[path.join(*pattern).to_s].flatten.map { |f|
+          ::::File.basename(f).split('.').first
+        }
+      }.flatten.uniq
+    end
 
   end
 end
