@@ -1,12 +1,9 @@
-%li{class: ('active' if params[:action] == "inbox")}
+%li{class: ('active' if action_name == "inbox")}
   = link_to inbox_admin_inquiries_path, data: {icon: 'I'} do
     - if @new_messages.present?
       = "Inbox (#{@new_messages.size})"
     - else
       Inbox
 
-%li{class: ('active' if params[:action] == "index")}
+%li{class: ('active' if ["index", "spam"].include? action_name )}
   = link_to "Alle berichten", admin_inquiries_path, data: {icon: 'J'}
-
-%li{ class: ('active' if params[:action] == 'spam')}
-  = link_to "Spam", spam_admin_inquiries_path, data: { icon: 'x' }

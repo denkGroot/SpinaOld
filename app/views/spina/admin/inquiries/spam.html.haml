@@ -1,11 +1,19 @@
 .well
   %h1 Gemarkeerd als spam
 
+  %ul.tabs
+    %li{class: ('active' if action_name == "index")}
+      = link_to admin_inquiries_path, data: {icon: 'J'} do
+        Alle berichten
+    %li{ class: ('active' if action_name == 'spam')}
+      = link_to spam_admin_inquiries_path, data: { icon: 'x' } do
+        Spam
+
 .table-container
   %table.table
     %thead
       %tr
-        %th Afzender
+        %th{width: 200} Afzender
         %th Bericht
         %th{colspan: 2}
 
@@ -16,13 +24,13 @@
             %td
               %p 
                 %strong= inquiry.name
-                = "<#{inquiry.email}>"
             %td
-              %p= inquiry.message
+              %p= link_to inquiry.summary, admin_inquiry_path(inquiry), class: 'button button-plain-link'
             %td 
               %small=l inquiry.created_at, format: '%e %B %Y %H:%M'
             %td
               = link_to "Geen spam", unmark_spam_admin_inquiry_path(inquiry), method: :put, class: 'button button-link button-primary', data: {icon: 'x'}
+              %br
               = link_to "Verwijderen", admin_inquiry_path(inquiry), method: :delete, class: 'button button-danger button-link', confirm: "Weet je zeker dat je het bericht van <strong>#{inquiry.name}</strong> definitief wilt verwijderen?"
       - else
         %tr

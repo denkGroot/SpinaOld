@@ -5,24 +5,26 @@
   %table.table
     %thead
       %tr
-        %th Afzender
+        %th{width: 200} Afzender
         %th Bericht
         %th{colspan: 2}
 
     %tbody
-      - if @new_messages.present?
-        - @new_messages.each do |inquiry|
+      - if @inquiries.present?
+        - @inquiries.each do |inquiry|
           %tr
             %td
               %p 
                 %strong= inquiry.name
-                = "<#{inquiry.email}>"
             %td
-              %p= inquiry.message
+              %p= link_to inquiry.summary, admin_inquiry_path(inquiry), class: 'button button-plain-link'
             %td 
               %small=l inquiry.created_at, format: '%e %B %Y %H:%M'
-            %td= link_to "Bericht markeren als gelezen", mark_as_read_admin_inquiry_path(inquiry), method: :put, class: 'button button-link button-primary', data: {icon: 'k'}
+            %td
+              = link_to "Bericht markeren als gelezen", mark_as_read_admin_inquiry_path(inquiry), method: :put, class: 'button button-link button-primary', data: {icon: 'k'}
+              %br
+              = link_to "Verwijderen", admin_inquiry_path(inquiry), method: :delete, class: 'button button-danger button-link', confirm: "Weet je zeker dat je het bericht van <strong>#{inquiry.name}</strong> definitief wilt verwijderen?"
       - else
         %tr
           %td.align-center{colspan: 3}
-            %em Je hebt geen nieuwe berichten ontvangen.
+            %em Inbox is leeg.

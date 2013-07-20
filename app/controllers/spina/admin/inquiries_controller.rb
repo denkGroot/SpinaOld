@@ -8,16 +8,20 @@ module Spina
         @inquiries = Inquiry.sorted
       end
 
+      def inbox
+        @inquiries = Inquiry.new_messages.sorted
+      end
+
+      def spam
+        @inquiries = Inquiry.spam.order('created_at DESC')
+      end
+
       def mark_as_read
         @inquiry.archived = true
         
         if @inquiry.save
           redirect_to inbox_admin_inquiries_path
         end
-      end
-
-      def spam
-        @inquiries = Inquiry.spam.order('created_at DESC')
       end
 
       def unmark_spam
