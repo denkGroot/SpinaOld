@@ -17,17 +17,13 @@ module Spina
       end
 
       def mark_as_read
-        @inquiry.archived = true
-        
-        if @inquiry.save
-          redirect_to inbox_admin_inquiries_path
-        end
+        @inquiry.update_attribute(:archived, true)
+        redirect_to inbox_admin_inquiries_path
       end
 
       def unmark_spam
-        if @inquiry.ham!
-          redirect_to admin_inquiries_path
-        end
+        @inquiry.ham!
+        redirect_to admin_inquiries_path
       end
 
       def destroy
