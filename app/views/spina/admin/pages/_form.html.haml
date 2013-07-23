@@ -85,16 +85,14 @@
             %td
               %label Layout template
             %td
-              %label
-                = f.select :layout_template, @valid_layout_templates, template_options(:layout_template, @page)
+              = f.select :layout_template, @valid_layout_templates, template_options(:layout_template, @page)
 
         - if Spina::Engine.config.use_view_templates
           %tr
             %td
               %label Pagina template
             %td
-              %label
-                = f.select :view_template, @valid_view_templates, template_options(:view_template, @page)
+              = f.select :view_template, @valid_view_templates, template_options(:view_template, @page)
 
 
         %tr
