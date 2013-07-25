@@ -1,11 +1,9 @@
-
 .well
   %h1 Pagina's
 
 .sortable-list-container
-  %ol.sortable{data: {:"update-url" => update_positions_admin_pages_url }}
+  %ol.sortable{data: {:"sort-url" => sort_admin_pages_url }}
     = render partial: 'page', collection: @pages.roots
-
 
 .actions
   .button-well

@@ -15,7 +15,6 @@ module Spina
 
     alias_method :old_update_attributes, :update_attributes
     def update_attributes(attributes)
-      logger.debug attributes.inspect
       if attributes["_destroy"] == "1" && attributes["file"].blank?
         self.page_part.destroy
       else

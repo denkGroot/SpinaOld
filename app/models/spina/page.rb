@@ -2,22 +2,20 @@ module Spina
   class Page < ActiveRecord::Base
     
     extend FriendlyId
-    acts_as_nested_set
+    has_ancestry orphan_strategy: :adopt # i.e. added to the parent of deleted node
 
     attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id, :name, :seo_title, :layout_template, :view_template, :skip_to_first_child, :draft, :link_url
 
     friendly_id :title, use: :slugged
 
     has_many :page_parts, dependent: :destroy
-    has_many :pages, foreign_key: :parent_id, dependent: :nullify
-    belongs_to :parent, class_name: "Page"
 
     before_validation :ensure_title
 
     accepts_nested_attributes_for :page_parts, allow_destroy: true
     validates_presence_of :title
 
-    scope :sorted, -> { order('lft') }
+    scope :sorted, -> { order('position') }
     scope :custom_pages, -> { where(deletable: false) }
     scope :live, -> { where(draft: false) }
 
@@ -37,37 +35,37 @@ module Spina
       Engine.config.plugins.any? { |plugin| plugin.name == name }
     end
 
-    def to_menu_item
-      {
-        id: id,
-        lft: lft,
-        depth: depth,
-        # menu_match: menu_match,
-        parent_id: parent_id,
-        rgt: rgt,
-        title: menu_title.presence || title.presence,
-        type: self.class.name,
-        is_plugin: is_plugin?,
-        name: name,
-        url: url,
-        show_in_menu: show_in_menu
-      }
-    end
+    # def to_menu_item
+    #   {
+    #     id: id,
+    #     lft: lft,
+    #     depth: depth,
+    #     # menu_match: menu_match,
+    #     parent_id: parent_id,
+    #     rgt: rgt,
+    #     title: menu_title.presence || title.presence,
+    #     type: self.class.name,
+    #     is_plugin: is_plugin?,
+    #     name: name,
+    #     url: url,
+    #     show_in_menu: show_in_menu
+    #   }
+    # end
 
     def menu_title
       read_attribute(:menu_title).blank? ? title : read_attribute(:menu_title)
     end
 
-    def url
-      if self.name == 'homepage'
-        '/'
-      elsif self.is_plugin?
-        plugin = Engine.config.plugins.find { |plugin| plugin.name == self.name }
-        '/' + (plugin.path || plugin.controller)
-      else
-        Engine.routes.url_helpers.page_path(self)
-      end
-    end
+    # def url
+    #   if self.name == 'homepage'
+    #     '/'
+    #   elsif self.is_plugin?
+    #     plugin = Engine.config.plugins.find { |plugin| plugin.name == self.name }
+    #     '/' + (plugin.path || plugin.controller)
+    #   else
+    #     Engine.routes.url_helpers.page_path(self)
+    #   end
+    # end
 
     def seo_title
       read_attribute(:seo_title).blank? ? title : read_attribute(:seo_title)

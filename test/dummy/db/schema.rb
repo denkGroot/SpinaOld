@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130719134709) do
+ActiveRecord::Schema.define(version: 20130725112244) do
 
   create_table "spina_accounts", force: true do |t|
     t.string   "name"
@@ -73,17 +73,15 @@ ActiveRecord::Schema.define(version: 20130719134709) do
     t.boolean  "deletable",           default: true
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "parent_id"
     t.string   "name"
     t.string   "seo_title"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.integer  "depth"
     t.boolean  "skip_to_first_child", default: false
     t.string   "view_template"
     t.string   "layout_template"
     t.boolean  "draft",               default: false
     t.string   "link_url"
+    t.string   "ancestry"
+    t.integer  "position"
   end
 
   create_table "spina_photo_collections", force: true do |t|

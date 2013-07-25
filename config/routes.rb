@@ -19,7 +19,7 @@ Spina::Engine.routes.draw do
     get "logout" => "sessions#destroy"
 
     resources :pages do
-      post :update_positions, on: :collection
+      post :sort, on: :collection
     end
 
     resources :photos do
