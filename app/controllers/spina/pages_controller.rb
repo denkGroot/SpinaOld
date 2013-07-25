@@ -10,7 +10,7 @@ module Spina
 
     def show
       if should_skip_to_first_child?
-        redirect_to first_live_child.url and return
+        redirect_to first_live_child and return
       elsif page.link_url.present?
         redirect_to page.link_url and return
       end
@@ -50,11 +50,11 @@ module Spina
     def render_options_for_template(page)
       render_options = {}
       if Engine.config.use_layout_templates && page.layout_template.present?
-        render_options[:layout] = page.layout_template
+        render_options[:layout] = "spina/#{page.layout_template}"
       end
       if Engine.config.use_view_templates && page.view_template.present?
         render_options[:template] = "spina/pages/#{page.view_template}"
-      elsif
+      else
         render_options[:template] = "spina/pages/show"
       end
       render_options

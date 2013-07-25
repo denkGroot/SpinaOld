@@ -83,7 +83,7 @@ module Spina
 
       def load_valid_templates
         @valid_layout_templates = Engine.config.layout_template_whitelist &
-                                  Engine.valid_templates('app', 'views', '{layouts,spina/layouts}', '*html*')
+                                  Engine.valid_templates('app', 'views', '{layouts,layouts/spina}', '*html*')
 
         @valid_view_templates = Engine.config.view_template_whitelist &
                                 Engine.valid_templates('app', 'views', '{pages,spina/pages}', '*html*')

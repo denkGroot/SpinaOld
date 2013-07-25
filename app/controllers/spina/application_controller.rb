@@ -7,11 +7,6 @@ module Spina
 
     private
 
-    def default_menu
-      @default_menu = Menu.new Page.sorted
-    end
-    helper_method :default_menu
-    
     def current_account
       @current_account ||= Account.first
     end
