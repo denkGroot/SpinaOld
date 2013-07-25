@@ -18,6 +18,7 @@ module Spina
     scope :sorted, -> { order('position') }
     scope :custom_pages, -> { where(deletable: false) }
     scope :live, -> { where(draft: false) }
+    scope :in_menu, -> { where(show_in_menu: true )}
 
     def to_s
       name

@@ -1,2 +1,2 @@
-- menu = Spina::Pages::MenuPresenter.new(Spina::Page.arrange, self, @page)
+- menu = Spina::Pages::MenuPresenter.new(Spina::Page.live.in_menu.arrange(order: :position), self, @page)
 = menu.to_html
