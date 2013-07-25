@@ -1,5 +1,0 @@
-= filecollection_form.fields_for :page_partable, filecollection_form.object.page_partable do |form|
-  = form.fields_for :files do |file_form|
-    = render 'file_fields', f: file_form
-
-  = link_to_add_fields "Bestand toevoegen", form, :files

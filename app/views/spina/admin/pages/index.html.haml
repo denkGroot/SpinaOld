@@ -2,21 +2,8 @@
   %h1 Pagina's
 
 .sortable-list-container
-  %ol.sortable{data: {:"update-url" => sort_admin_pages_url }}
-    - @pages.sorted.each do |page|
-      %li{id: "page_#{page.id}"}
-        = render 'page_link', page: page
-
-        %ol
-          - page.pages.each do |child_page|
-            %li{id: "page_#{child_page.id}"}
-              = render 'page_link', page: child_page
-
-              %ol
-                - child_page.pages.each do |child_child_page|
-                  %li{id: "page_#{child_child_page.id}"}
-                    = render 'page_link', page: child_child_page
-
+  %ol.sortable{data: {:"sort-url" => sort_admin_pages_url }}
+    = render partial: 'page', collection: @pages.roots
 
 .actions
   .button-well

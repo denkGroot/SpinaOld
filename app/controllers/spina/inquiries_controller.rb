@@ -1,5 +1,5 @@
 module Spina
-  class InquiriesController < FrontendController
+  class InquiriesController < ApplicationController
 
     before_filter :setup_negative_captcha, :only => [:index, :create]
     before_filter :set_page
@@ -10,17 +10,8 @@ module Spina
     end
 
     def create
-      if @captcha.valid?
-        @inquiry = Inquiry.new(@captcha.values)
-        @inquiry.attributes = params[:invoice_inquiry]
-      else
-        @inquiry = Inquiry.new
-        @inquiry.name = params[:name]
-        @inquiry.email = params[:email]
-        @inquiry.message = params[:message]
-        @inquiry.phone = params[:phone]
-        @inquiry.attributes = params[:invoice_inquiry]
-      end
+      @inquiry = Inquiry.new(@captcha.values)
+      @inquiry.attributes = params[:invoice_inquiry]
       if @inquiry.save
         @inquiry.spam! unless @captcha.valid?           
         InquiryMailer.inquiry(@inquiry).deliver unless @inquiry.spam
@@ -34,7 +25,7 @@ module Spina
     private
 
     def set_page
-      @page = Page.find_by_title 'Contact'
+      @page = Page.find_by_name 'inquiries'
     end
 
     def setup_negative_captcha

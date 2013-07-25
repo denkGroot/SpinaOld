@@ -2,13 +2,14 @@ module Spina
   module Admin
     class PagesController < AdminController
       
-      skip_before_filter :verify_authenticity_token, only: [:create, :update]
+      before_action :load_valid_templates, only: [:new, :edit]
+      skip_before_action :verify_authenticity_token, only: [:create, :update]
 
-      load_and_authorize_resource class: Page#, except: [:create, :update]
-      # load_resource class: Page
+
+      load_and_authorize_resource class: Page
 
       def index
-        @pages = Page.sorted.root_pages.includes(:pages)
+        @pages = Page.sorted.roots
       end
 
       def new
@@ -60,18 +61,34 @@ module Spina
         end
       end
 
+      # Based upon https://github.com/patrickshannon/Nested-Drag-and-Drop-with-Ancestry/blob/master/app/controllers/categories_controller.rb
+      def sort
+        params[:page].sort { |a, b| a <=> b }.each_with_index do |id, index|
+          value = id[1][:id]
+          position = id[1][:position]
+          position = position.to_i + 1
+          parent = id[1][:parent_id]
+          parent = nil if parent == 'null'
+          Page.update(value, position: position, parent_id: parent)
+        end
+        render nothing: true
+      end
+
       def destroy
         @page.destroy
         redirect_to admin_pages_url, notice: "De pagina is verwijderd."
       end
 
-      def sort
-        params[:page].each_with_index do |id, index|
-          parent_id = id[1] == 'null' ? nil : id[1]
-          Page.where(id: id[0]).update_all({position: index + 1, parent_id: parent_id})
-        end
-        render nothing: true
+      protected
+
+      def load_valid_templates
+        @valid_layout_templates = Engine.config.layout_template_whitelist &
+                                  Engine.valid_templates('app', 'views', '{layouts,layouts/spina}', '*html*')
+
+        @valid_view_templates = Engine.config.view_template_whitelist &
+                                Engine.valid_templates('app', 'views', '{pages,spina/pages}', '*html*')
       end
+
     end
   end
 end

@@ -29,11 +29,15 @@ Spina::Engine.routes.draw do
       end
     end
 
-    resources :inquiries do
-      get :inbox, on: :collection
-      put :mark_as_read, on: :member
-      get :spam, on: :collection      
-      put :unmark_spam, on: :member
+    resources :inquiries, only: [:index, :show, :destroy] do
+      collection do
+        get :inbox
+        get :spam
+      end
+      member do
+        patch :mark_as_read
+        patch :unmark_spam
+      end
     end
 
     # Plugin routes

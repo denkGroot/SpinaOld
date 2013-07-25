@@ -44,11 +44,18 @@
 
             - else 
               = render partial: "spina/admin/page_partables/#{page_part_form.object.page_partable_type.constantize.name.demodulize.downcase}_form", object: page_part_form
-
+      %tr
+        %td
+          %label Concept
+        %td
+          = f.check_box :draft, data: {switch: true}
+            
   .actions
     .button-well
       %button.button.button-primary{type: 'submit', data: {icon: 'v'}}
-        Pagina opslaan
+        Opslaan
+      -# %button.button.button-primary{type: 'submit', data: {icon: 'v'}}
+      -#   Opslaan en verder gaan met bewerken
 
     = link_to "Terug naar overzicht", admin_pages_path, class: 'button button-link', data: {icon: '['}
 
@@ -73,14 +80,35 @@
           %td
             = f.text_field :description, placeholder: "Een korte beschrijving van de pagina"
 
+        - if Spina::Engine.config.use_layout_templates
+          %tr
+            %td
+              %label Layout template
+            %td
+              = f.select :layout_template, @valid_layout_templates, template_options(:layout_template, @page)
+
+        - if Spina::Engine.config.use_view_templates
+          %tr
+            %td
+              %label Pagina template
+            %td
+              = f.select :view_template, @valid_view_templates, template_options(:view_template, @page)
+
+
         %tr
           %td
-            %label Naam in hoofdmenu
+            %label Menu titel
           %td
             = f.text_field :menu_title, placeholder: "Leeglaten om de titel van de pagina over te nemen"
 
         %tr
           %td
-            %label Weergeven in hoofdmenu
+            %label In menu tonen
           %td
             = f.check_box :show_in_menu, data: {switch: true}
+        %tr
+          %td
+            %label Doorsturen 
+            %small Doorsturen naar eerste onderliggende pagina
+          %td
+            = f.check_box :skip_to_first_child, data: {switch: true}

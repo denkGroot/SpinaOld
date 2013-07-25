@@ -15,28 +15,9 @@ module Spina
         }
         html = Redcarpet::Markdown.new(renderer, options).render(text.to_s)
 
-        html.sub!(/\[vimeo\s+(\d*)\]/, '<figure class="video"><iframe src="http://player.vimeo.com/video/\1?portrait=0&title=0&byline=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></figure>')
-        html.sub!(/\[button\s+(.*)\](.*)\[\/button\]/, '<a href="\1" class="button">\2</a>')
+        html.gsub!(/\[vimeo\s+(\d*)\]/, '<figure class="video"><iframe src="http://player.vimeo.com/video/\1?portrait=0&title=0&byline=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></figure>')
+        html.gsub!(/\[button\s+(.*)\](.*)\[\/button\]/, '<a href="\1" class="button">\2</a>')
         html.html_safe
-      end
-    end
-
-    def current_plugin?(link_path)
-      ['spina', controller.controller_name].join('/') == spina.routes.recognize_path(link_path)[:controller]
-    end
-
-    def nav_link_class(page)
-      "active" if active_page?(page) || page.pages.any? { |child_page| active_page?(child_page) || child_page.pages.any? { |child_child_page| active_page?(child_child_page) } }
-    end
-
-    def active_page?(page)
-      if current_page?(root_path) && page.name == 'homepage'
-        true
-      elsif page.is_plugin? 
-        plugin = Engine.config.plugins.select { |plugin| plugin.name == page.name }
-        current_plugin?(url_for(plugin[0].path || plugin[0].controller))
-      else
-        current_page?(url_for(page))
       end
     end
 
