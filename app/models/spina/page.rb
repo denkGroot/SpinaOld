@@ -73,7 +73,7 @@ module Spina
     end
 
     def set_view_template
-      self.view_template = self.name if Engine.config.view_template_whitelist.include? self.name
+      self.view_template = self.title.downcase if Engine.config.view_template_whitelist.include? self.title.downcase
     end
 
   end
