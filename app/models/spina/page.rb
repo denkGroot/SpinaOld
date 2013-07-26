@@ -36,37 +36,9 @@ module Spina
       Engine.config.plugins.any? { |plugin| plugin.name == name }
     end
 
-    # def to_menu_item
-    #   {
-    #     id: id,
-    #     lft: lft,
-    #     depth: depth,
-    #     # menu_match: menu_match,
-    #     parent_id: parent_id,
-    #     rgt: rgt,
-    #     title: menu_title.presence || title.presence,
-    #     type: self.class.name,
-    #     is_plugin: is_plugin?,
-    #     name: name,
-    #     url: url,
-    #     show_in_menu: show_in_menu
-    #   }
-    # end
-
     def menu_title
       read_attribute(:menu_title).blank? ? title : read_attribute(:menu_title)
     end
-
-    # def url
-    #   if self.name == 'homepage'
-    #     '/'
-    #   elsif self.is_plugin?
-    #     plugin = Engine.config.plugins.find { |plugin| plugin.name == self.name }
-    #     '/' + (plugin.path || plugin.controller)
-    #   else
-    #     Engine.routes.url_helpers.page_path(self)
-    #   end
-    # end
 
     def seo_title
       read_attribute(:seo_title).blank? ? title : read_attribute(:seo_title)
@@ -83,6 +55,14 @@ module Spina
 
     def live?
       !draft?
+    end
+
+    def previous_sibling
+      self.siblings.where('position < ?', self.position).sorted.last
+    end
+
+    def next_sibling
+      self.siblings.where('position > ?', self.position).sorted.first
     end
 
     private
