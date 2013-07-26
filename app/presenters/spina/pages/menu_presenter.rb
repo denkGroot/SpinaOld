@@ -66,37 +66,6 @@ module Spina
         end
       end
 
-      def selected_item_or_descendant_item_selected?(item)
-        selected_item?(item) || descendant_item_selected?(item)
-      end
-
-      def descendant_item_selected?(item)
-        item.has_children? && item.descendants.any?(&method(:selected_item?))
-      end
-
-      # Determine whether the supplied item is the currently open item according to Refinery.
-      def selected_item?(item)
-        # path = context.request.path
-        # path = path.force_encoding('utf-8') if path.respond_to?(:force_encoding)
-
-        # # Ensure we match the path without the locale, if present.
-        # if %r{^/#{::I18n.locale}/} === path
-        #   path = path.split(%r{^/#{::I18n.locale}}).last.presence || "/"
-        # end
-
-        # # First try to match against a "menu match" value, if available.
-        # # return true if item.try(:menu_match).present? && path =~ Regexp.new(item.menu_match)
-
-        # # Find the first url that is a string.
-        # # url = [item.url]
-        # # url << ['', item.url[:path]].compact.flatten.join('/') if item.url.respond_to?(:keys)
-        # url = [context.spina.url_for(item)]
-        # url = url.last.match(%r{^/#{::I18n.locale.to_s}(/.*)}) ? $1 : url.detect{|u| u.is_a?(String)}
-
-        # # Now use all possible vectors to try to find a valid match
-        # [path, URI.decode(path)].include?(url) || path == "/#{item.id}"
-      end
-
       def menu_item_css(menu_item, index, menu_items_length)
         css = []
         css << list_item_css
