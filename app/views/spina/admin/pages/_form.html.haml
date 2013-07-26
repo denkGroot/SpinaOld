@@ -23,7 +23,7 @@
 
             - when "Text"
               .wysihtml5-container
-                .toolbar{id: "wysihtml5-toolbar-#{page_part_form.object.id}"}
+                .toolbar{id: "wysihtml5-toolbar-#{page_part_form.object.object_id}"}
                   = link_to "B", "#", class: 'command command-bold', title: "CTRL+B", data: {:"wysihtml5-command" => "bold"}
                   = link_to "i", "#", class: 'command command-italic', title: "CTRL+I", data: {:"wysihtml5-command" => "italic"}
                   = link_to "l", "#", class: 'command command-insert-unordered-list', data: {:"wysihtml5-command" => "insertUnorderedList"}
