@@ -1,10 +1,10 @@
 %nav#primary
   %ul
-    %li{class: ('active' if %w[spina/admin/pages spina/admin/photos].include? controller_name)}
+    %li{class: ('active' if %w[pages photos].include? controller_name)}
       = link_to "Je website", admin_pages_path, data: {icon: 'b'}
 
     - if can? :manage, Spina::User
-      %li{class: ('active' if %w[spina/admin/users].include? controller_name)}
+      %li{class: ('active' if %w[users].include? controller_name)}
         = link_to "Gebruikers", admin_users_path, data: {icon: 'U'}
 
 .pull-right
