@@ -11,6 +11,7 @@ module Spina
     has_many :page_parts, dependent: :destroy
 
     before_validation :ensure_title
+    before_create :set_view_template, if: Engine.config.use_view_templates
 
     accepts_nested_attributes_for :page_parts, allow_destroy: true
     validates_presence_of :title
@@ -61,6 +62,10 @@ module Spina
 
     def ensure_title
       self.title = self.name.capitalize if self.title.blank? && self.name.present?
+    end
+
+    def set_view_template
+      self.view_template = self.name if Engine.config.view_template_whitelist.include? self.name
     end
 
   end
