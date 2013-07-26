@@ -58,6 +58,14 @@ module Spina
       !draft?
     end
 
+    def previous_sibling
+      self.siblings.where('position < ?', self.position).sorted.last
+    end
+
+    def next_sibling
+      self.siblings.where('position > ?', self.position).sorted.first
+    end
+
     private
 
     def ensure_title

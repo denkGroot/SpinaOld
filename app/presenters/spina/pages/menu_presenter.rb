@@ -2,20 +2,6 @@
 require 'active_support/configurable'
 require 'action_view/helpers/tag_helper'
 require 'action_view/helpers/url_helper'
-require 'active_support/core_ext/hash/slice'
-
-class ActiveSupport::OrderedHash
-  def slice_by_index(a, b = nil)  
-    k = if a.is_a?(Range)
-      keys[a]
-    elsif b.nil?
-      [keys[a]]
-    else
-      keys[a,b]
-    end
-    k.inject({}){|h, k| h[k] = self[k] ; h }
-  end
-end
 
 module Spina
   module Pages
