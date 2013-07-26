@@ -1,4 +1,12 @@
 .well
-  %h1= "Bewerk pagina"
+  %h1= "Bewerk pagina #{@page.title.downcase}"
+
+  %ul.tabs
+    %li.active
+      = link_to "Inhoud", "#page_content", data: {icon: 'p'}
+    %li
+      = link_to "SEO", "#page_seo", data: {icon: 's'}
+    %li
+      = link_to "Geavanceerd", "#advanced", data: {icon: '*'}
 
 = render 'form'

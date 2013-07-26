@@ -1,77 +1,64 @@
 = form_for [:admin, @page], multipart: true do |f|
 
-  .table-container.table-form
-    %table.table
-      %tr
-        %td
-          %label Titel
-        %td
-          = f.text_field :title, placeholder: "Titel in de pagina", class: 'large'
-
-      = f.fields_for :page_parts, @page_parts.sort { |a,b| a.position <=> b.position } do |page_part_form|
-        = page_part_form.hidden_field :name
-        = page_part_form.hidden_field :page_partable_type
-        = page_part_form.hidden_field :tag
-
+  #page_content.tab-content.active
+    .table-container.table-form
+      %table.table
         %tr
           %td
-            %label= page_part_form.object
+            %label Titel
           %td
-            - case page_part_form.object.page_partable_type
-            - when "Line"
-              = page_part_form.text_field :content, placeholder: "Paginsectie #{page_part_form.object.name.downcase}"
+            = f.text_field :title, placeholder: "Titel in de pagina", class: 'large'
 
-            - when "Text"
-              .wysihtml5-container
-                .toolbar{id: "wysihtml5-toolbar-#{page_part_form.object.object_id}"}
-                  = link_to "B", "#", class: 'command command-bold', title: "CTRL+B", data: {:"wysihtml5-command" => "bold"}
-                  = link_to "i", "#", class: 'command command-italic', title: "CTRL+I", data: {:"wysihtml5-command" => "italic"}
-                  = link_to "l", "#", class: 'command command-insert-unordered-list', data: {:"wysihtml5-command" => "insertUnorderedList"}
+        = f.fields_for :page_parts, @page_parts.sort { |a,b| a.position <=> b.position } do |page_part_form|
+          = page_part_form.hidden_field :name
+          = page_part_form.hidden_field :page_partable_type
+          = page_part_form.hidden_field :tag
 
-                  .pull-right
-                    .choose-text-type{data: {dropdown: true}}
-                      = link_to "Paragraaf", "#", data: {trigger: "dropdown"}
-                      %ul
-                        %li= link_to "Paragraaf", "#", data: {:"wysihtml5-command" => "formatBlock", :"wysihtml5-command-value" => "P"}
-                        %li= link_to "Kop 1", "#", data: {:"wysihtml5-command" => "formatBlock", :"wysihtml5-command-value" => "h1"}
-                        %li= link_to "Kop 2", "#", data: {:"wysihtml5-command" => "formatBlock", :"wysihtml5-command-value" => "h2"}
-                        %li= link_to "Kop 3", "#", data: {:"wysihtml5-command" => "formatBlock", :"wysihtml5-command-value" => "h3"}
-                        %li= link_to "Quote", "#", data: {:"wysihtml5-command" => "formatBlock", :"wysihtml5-command-value" => "blockquote"}
+          %tr
+            %td
+              %label= page_part_form.object
+            %td
+              - case page_part_form.object.page_partable_type
+              - when "Line"
+                = page_part_form.text_field :content, placeholder: "Paginsectie #{page_part_form.object.name.downcase}"
 
-                    = link_to "<", "#", class: 'command action-change-view', data: {:"wysihtml5-action" => "change_view"}
+              - when "Text"
+                .wysihtml5-container
+                  .toolbar{id: "wysihtml5-toolbar-#{page_part_form.object.object_id}"}
+                    = link_to "B", "#", class: 'command command-bold', title: "CTRL+B", data: {:"wysihtml5-command" => "bold"}
+                    = link_to "i", "#", class: 'command command-italic', title: "CTRL+I", data: {:"wysihtml5-command" => "italic"}
+                    = link_to "l", "#", class: 'command command-insert-unordered-list', data: {:"wysihtml5-command" => "insertUnorderedList"}
 
-                = page_part_form.text_area :content, placeholder: "Paginasectie #{page_part_form.object.name.downcase}", class: 'wysihtml5'
+                    .pull-right
+                      .choose-text-type{data: {dropdown: true}}
+                        = link_to "Paragraaf", "#", data: {trigger: "dropdown"}
+                        %ul
+                          %li= link_to "Paragraaf", "#", data: {:"wysihtml5-command" => "formatBlock", :"wysihtml5-command-value" => "P"}
+                          %li= link_to "Kop 1", "#", data: {:"wysihtml5-command" => "formatBlock", :"wysihtml5-command-value" => "h1"}
+                          %li= link_to "Kop 2", "#", data: {:"wysihtml5-command" => "formatBlock", :"wysihtml5-command-value" => "h2"}
+                          %li= link_to "Kop 3", "#", data: {:"wysihtml5-command" => "formatBlock", :"wysihtml5-command-value" => "h3"}
+                          %li= link_to "Quote", "#", data: {:"wysihtml5-command" => "formatBlock", :"wysihtml5-command-value" => "blockquote"}
 
-            - else 
-              = render partial: "spina/admin/page_partables/#{page_part_form.object.page_partable_type.constantize.name.demodulize.downcase}_form", object: page_part_form
-      %tr
-        %td
-          %label Concept
-        %td
-          = f.check_box :draft, data: {switch: true}
-            
-  .actions
-    .button-well
-      %button.button.button-primary{type: 'submit', data: {icon: 'v'}}
-        Opslaan
-      -# %button.button.button-primary{type: 'submit', data: {icon: 'v'}}
-      -#   Opslaan en verder gaan met bewerken
+                      = link_to "<", "#", class: 'command action-change-view', data: {:"wysihtml5-action" => "change_view"}
 
-    = link_to "Terug naar overzicht", admin_pages_path, class: 'button button-link', data: {icon: '['}
+                  = page_part_form.text_area :content, placeholder: "Paginasectie #{page_part_form.object.name.downcase}", class: 'wysihtml5'
 
-  - unless @page.new_record? || !@page.deletable
-    .pull-right= link_to "Definitief verwijderen", admin_page_path(@page), method: :delete, confirm: "Weet je zeker dat je de pagina <strong>#{@page.menu_title}</strong> wilt verwijderen?", class: 'button button-link button-danger'
+              - else 
+                = render partial: "spina/admin/page_partables/#{page_part_form.object.page_partable_type.constantize.name.demodulize.downcase}_form", object: page_part_form
+        %tr
+          %td
+            %label Concept
+          %td
+            = f.check_box :draft, data: {switch: true}
 
-  = link_to "Geavanceerd", "#", class: "button button-link", data: {icon: '*', collapse: "#advanced", :"no-turbolink" => true}
-
-  #advanced.collapsed
+  #page_seo.tab-content
     .table-container.table-form
       %table.table
         %tr
           %td
             %label SEO &lt;title&gt;
           %td
-            = f.text_field :seo_title, placeholder: "Deze titel komt in de <title>-tag van de broncode te staan"
+            = f.text_field :seo_title, placeholder: "Deze titel komt in de <title>-tag van de broncode te staan", class: 'large'
 
         %tr
           %td
@@ -80,21 +67,9 @@
           %td
             = f.text_field :description, placeholder: "Een korte beschrijving van de pagina"
 
-        - if Spina::Engine.config.use_layout_templates
-          %tr
-            %td
-              %label Layout template
-            %td
-              = f.select :layout_template, @valid_layout_templates, template_options(:layout_template, @page)
-
-        - if Spina::Engine.config.use_view_templates
-          %tr
-            %td
-              %label Pagina template
-            %td
-              = f.select :view_template, @valid_view_templates, template_options(:view_template, @page)
-
-
+  #advanced.tab-content
+    .table-container.table-form
+      %table.table
         %tr
           %td
             %label Menu titel
@@ -112,3 +87,29 @@
             %small Doorsturen naar eerste onderliggende pagina
           %td
             = f.check_box :skip_to_first_child, data: {switch: true}
+
+        - if Spina::Engine.config.use_layout_templates
+          %tr
+            %td
+              %label Layout template
+            %td
+              = f.select :layout_template, @valid_layout_templates, template_options(:layout_template, @page)
+
+        - if Spina::Engine.config.use_view_templates
+          %tr
+            %td
+              %label Pagina template
+            %td
+              = f.select :view_template, @valid_view_templates, template_options(:view_template, @page)
+
+  .actions
+    .button-well
+      %button.button.button-primary{type: 'submit', data: {icon: 'v'}}
+        Opslaan
+      -# %button.button.button-primary{type: 'submit', data: {icon: 'v'}}
+      -#   Opslaan en verder gaan met bewerken
+
+    = link_to "Terug naar overzicht", admin_pages_path, class: 'button button-link', data: {icon: '['}
+
+  - unless @page.new_record? || !@page.deletable
+    .pull-right= link_to "Definitief verwijderen", admin_page_path(@page), method: :delete, confirm: "Weet je zeker dat je de pagina <strong>#{@page.menu_title}</strong> wilt verwijderen?", class: 'button button-link button-danger'
