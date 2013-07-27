@@ -49,6 +49,9 @@ Spina::Engine.routes.draw do
   Spina::Engine.config.plugins.each do |plugin|
     resources plugin.controller.downcase.to_sym, path: plugin.path
   end
+
+  # Sitemap
+  resource :sitemap
   
   # Frontend
   root to: "pages#homepage"
