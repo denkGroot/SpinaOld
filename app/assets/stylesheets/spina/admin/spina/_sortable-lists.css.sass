@@ -24,8 +24,12 @@ ol.sortable
     border-bottom: 1px solid #ddd
     cursor: move
     padding: 10px 0
+    padding-right: 32px
     text-indent: 32px
     width: 100%
+
+    @include media($mobile)
+      padding-right: 16px
 
     a.button
       text-indent: 0
