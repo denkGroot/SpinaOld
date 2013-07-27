@@ -45,11 +45,6 @@
 
               - else 
                 = render partial: "spina/admin/page_partables/#{page_part_form.object.page_partable_type.constantize.name.demodulize.downcase}_form", object: page_part_form
-        %tr
-          %td
-            %label Concept
-          %td
-            = f.check_box :draft, data: {switch: true}
 
   #page_seo.tab-content
     .table-container.table-form
