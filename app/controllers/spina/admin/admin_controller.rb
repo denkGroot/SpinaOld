@@ -1,6 +1,6 @@
 module Spina
   module Admin
-    class AdminController < ActionController::Base
+    class AdminController < ApplicationController
       
       before_filter :authorize_user
       before_filter :new_messages
