@@ -1,4 +1,4 @@
-= form_for [:admin, @page], multipart: true do |f|
+= form_for [:admin, @page], multipart: true, remote: !@page.new_record? do |f|
 
   #page_content.tab-content.active
     .table-container.table-form
@@ -101,8 +101,6 @@
     .button-well
       %button.button.button-primary{type: 'submit', data: {icon: 'v'}}
         Opslaan
-      -# %button.button.button-primary{type: 'submit', data: {icon: 'v'}}
-      -#   Opslaan en verder gaan met bewerken
 
     = link_to "Terug naar overzicht", admin_pages_path, class: 'button button-link', data: {icon: '['}
 

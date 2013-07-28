@@ -49,7 +49,10 @@ module Spina
 
       def update
         if @page.update_attributes(params[:page])
-          redirect_to admin_pages_url
+          respond_to do |format|
+            format.html { redirect_to admin_pages_url }
+            format.js
+          end
         else
           @page_parts = @page.page_parts
           @page_parts = @page_parts.map do |page_part|

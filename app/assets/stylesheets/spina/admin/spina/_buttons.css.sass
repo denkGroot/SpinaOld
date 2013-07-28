@@ -46,6 +46,28 @@ button
   &:hover, &.hover
     color: #fff
 
+.button.button-saving i
+  display: inline-block
+  font-family: "Pictos Custom"
+  font-size: 20px
+  font-style: normal
+  font-weight: normal
+  height: 16px
+  line-height: 20px
+  margin-bottom: -2px
+  margin-left: -8px
+  margin-right: 4px
+  text-shadow: none
+  vertical-align: text-bottom
+  width: 16px
+  @include animation(rotation 1.5s linear infinite)
+
+@include keyframes(rotation)
+  from
+    @include transform(rotate(0deg))
+  to
+    @include transform(rotate(360deg))
+
 // Dark button
 
 .button.button-dark

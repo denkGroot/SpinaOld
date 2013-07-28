@@ -12,6 +12,13 @@ ready = ->
   # Gallery select
   $('.gallery-select').galleryselect()
 
+  # Form submit buttons
+  $(document).on 'click', 'form button.button[type=submit]', ->
+    button = $(this)
+    button.addClass('button-saving')
+    button.attr("data-icon", "")
+    button.html("<i>#</i> Wijzigingen opslaan...")
+
   # Sortable pages
   $('ol.sortable').nestedSortable
     listType: 'ol'
