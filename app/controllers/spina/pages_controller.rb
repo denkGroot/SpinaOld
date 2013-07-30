@@ -10,16 +10,16 @@ module Spina
 
     def show
       if should_skip_to_first_child?
-        redirect_to first_live_child and return
+        if page.is_root?
+          redirect_to subpage_path(page, first_live_child) and return
+        else
+          redirect_to third_level_page_path(page.parent, page, first_live_child) and return
+        end
       elsif page.link_url.present?
         redirect_to page.link_url and return
       end
 
       render_with_templates
-    end
-
-    def load_valid_templates
-      @valid_view_templa
     end
 
   private
