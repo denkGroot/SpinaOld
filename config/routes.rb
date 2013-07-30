@@ -55,5 +55,8 @@ Spina::Engine.routes.draw do
   
   # Frontend
   root to: "pages#homepage"
-  resources :pages, path: ''
+
+  get ':root/:subpage/:id' => "pages#show", as: "third_level_page"
+  get ':root/:id' => "pages#show", as: "subpage"
+  get ':id' => "pages#show", as: "page"
 end

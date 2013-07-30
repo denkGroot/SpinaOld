@@ -60,7 +60,14 @@ module Spina
       def render_menu_item(menu_item, index, menu_items_length)
         content_tag(list_item_tag, class: menu_item_css(menu_item[0], index, menu_items_length)) do
           buffer = ActiveSupport::SafeBuffer.new
-          buffer << link_to(menu_item[0].title, context.spina.url_for(menu_item[0]))
+          case menu_item[0].depth
+          when 0
+            buffer << link_to(menu_item[0].title, context.spina.page_path(menu_item[0]))
+          when 1
+            buffer << link_to(menu_item[0].title, context.spina.subpage_path(menu_item[0].parent, menu_item[0]))
+          when 2
+            buffer << link_to(menu_item[0].title, context.spina.third_level_page_path(menu_item[0].parent.parent, menu_item[0].parent, menu_item[0]))
+          end
           buffer << render_list_wrapper(menu_item[1]) 
           buffer
         end
