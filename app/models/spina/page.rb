@@ -13,6 +13,7 @@ module Spina
     before_validation :ensure_title
     before_create :set_view_template
     before_save :set_materialized_path
+    after_save :save_children
 
     accepts_nested_attributes_for :page_parts, allow_destroy: true
     validates_presence_of :title
@@ -32,6 +33,10 @@ module Spina
 
     def set_materialized_path
       self.materialized_path = generate_materialized_path
+    end
+
+    def save_children
+      self.children.each { |child| child.save }
     end
 
     def plugin
