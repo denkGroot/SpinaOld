@@ -4,7 +4,7 @@ module Spina
     extend FriendlyId
     has_ancestry orphan_strategy: :adopt # i.e. added to the parent of deleted node
 
-    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id, :name, :seo_title, :layout_template, :view_template, :skip_to_first_child, :draft, :link_url
+    attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id, :name, :seo_title, :layout_template, :view_template, :skip_to_first_child, :draft, :link_url, :materialized_path
 
     friendly_id :title, use: :slugged
 
@@ -12,6 +12,7 @@ module Spina
 
     before_validation :ensure_title
     before_create :set_view_template
+    before_save :set_materialized_path
 
     accepts_nested_attributes_for :page_parts, allow_destroy: true
     validates_presence_of :title
@@ -27,6 +28,10 @@ module Spina
 
     def custom_page?
       !deletable
+    end
+
+    def set_materialized_path
+      self.materialized_path = generate_materialized_path
     end
 
     def plugin
@@ -67,6 +72,17 @@ module Spina
     end
 
     private
+
+    def generate_materialized_path
+      case self.depth
+      when 0
+        "/#{slug}"
+      when 1
+        "/#{self.parent.slug}/#{slug}"
+      when 2
+        "/#{self.parent.parent.slug}/#{self.parent.slug}/#{slug}"
+      end
+    end
 
     def ensure_title
       self.title = self.name.capitalize if self.title.blank? && self.name.present?

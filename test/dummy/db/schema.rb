@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130725112244) do
+ActiveRecord::Schema.define(version: 20130730185551) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "spina_accounts", force: true do |t|
     t.string   "name"
@@ -82,6 +85,7 @@ ActiveRecord::Schema.define(version: 20130725112244) do
     t.string   "link_url"
     t.string   "ancestry"
     t.integer  "position"
+    t.string   "materialized_path"
   end
 
   create_table "spina_photo_collections", force: true do |t|
