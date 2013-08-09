@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require ./jquery.ui.min
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
