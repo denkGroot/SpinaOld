@@ -12,6 +12,6 @@ $.fn.galleryselect = ->
     else
       gallery.find('.item').click ->
         gallery.find('.item').removeClass('selected')
-        gallery.find('.item input').attr('checked', false)
+        gallery.find('.item input').prop('checked', false)
         $(this).toggleClass('selected')
-        $(this).find('input').attr('checked', true)
+        $(this).find('input').prop('checked', true)
