@@ -1,4 +1,4 @@
-= form_for [:admin, @page], multipart: true, remote: !@page.new_record? do |f|
+= form_for [:admin, @page], multipart: true, remote: !@page.new_record?, html: {autocomplete: "off"} do |f|
 
   #page_content.tab-content.active
     .table-container.table-form
