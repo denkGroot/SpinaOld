@@ -138,6 +138,10 @@ ready = ->
     $("#uploadbutton").removeClass('hover')
 
   # Colorpickers
+  $('input[data-colorpicker]').each ->
+    $(this).wrap('<div class="colorpicker" />')
+    $(this).parent().append('<div class="colorpicker-container" />')
+
   $('.colorpicker').each ->
     colorpicker = $(this).find('.colorpicker-container')
     field = $(this).find('input')

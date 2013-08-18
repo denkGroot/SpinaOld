@@ -15,6 +15,12 @@
 
       %tr
         %td
+          %label Primaire kleur
+        %td
+          = f.text_field :address, placeholder: "Straat en huisnummer", data: {colorpicker: true}
+
+      %tr
+        %td
           %label Postcode
         %td
           = f.text_field :postal_code, placeholder: "Postcode"
