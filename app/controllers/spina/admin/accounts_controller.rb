@@ -15,6 +15,9 @@ module Spina
 
       def social
       end
+
+      def style
+      end
     end
   end    
 end
