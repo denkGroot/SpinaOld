@@ -1,9 +1,10 @@
 GIT
   remote: git@github.com:FriendlyId/friendly_id.git
-  revision: c49ce30ff2b370669ccf1708e99fb08ab51435d9
-  branch: rails4
+  revision: 939b9ca18381a6e50e18fdf68eb04a7a408ae144
+  branch: 5.0-stable
   specs:
-    friendly_id (4.1.0.beta.2)
+    friendly_id (5.0.0.rc2)
+      activerecord (~> 4.0.0)
 
 PATH
   remote: .
@@ -36,7 +37,6 @@ PATH
     spina-template (0.0.1)
       bourbon
       coffee-rails
-      jquery-rails
       neat
       rails (~> 4.0.0)
 
@@ -207,6 +207,7 @@ PLATFORMS
 
 DEPENDENCIES
   brakeman
+  breadcrumbs_on_rails
   friendly_id!
   jquery-rails (= 2.1.4)
   letter_opener

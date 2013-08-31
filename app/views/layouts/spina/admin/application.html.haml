@@ -15,9 +15,16 @@
 
     / JavaScript
     = javascript_include_tag "spina/admin/application"
-
   %body
-    #login_wrapper
-      = yield
+    = render 'spina/admin/shared/navigation'
 
-    %a#denkgroot{href: 'http://www.denkgroot.com', target: '_blank'} een idee van denkGroot
+    = yield(:secondary_navigation)
+
+    %section#main
+      %header#main_content_header
+        .breadcrumbs= render_breadcrumbs separator: '<div class="divider"></div>'
+        = yield(:tertiary_navigation) if content_for?(:tertiary_navigation)
+
+        = render 'spina/admin/shared/notifications'
+
+      = content_for?(:content) ? yield(:content) : yield

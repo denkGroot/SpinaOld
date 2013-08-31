@@ -2,17 +2,21 @@ module Spina
   module Admin
     class PagesController < AdminController
       
-      before_action :load_valid_templates, only: [:new, :edit]
+      before_action :load_valid_templates, only: [:new, :edit, :update, :create]
       skip_before_action :verify_authenticity_token, only: [:create, :update]
 
+      add_breadcrumb "Pagina's", :admin_pages_path
 
       load_and_authorize_resource class: Page
+
+      layout "spina/admin/website"
 
       def index
         @pages = Page.sorted.roots
       end
 
       def new
+        add_breadcrumb "Nieuwe pagina"
         @page_parts = Engine.config.PAGE_TYPES.keys.include?(@page.name) ? Engine.config.page_parts[@page.name] || [] : Engine.config.default_page_parts
         @page_parts = @page_parts.map do |page_part|
           page_part = @page.page_parts.build(page_part)
@@ -25,6 +29,7 @@ module Spina
       end
      
       def create
+        add_breadcrumb "Nieuwe pagina"
         if @page.save
           redirect_to admin_pages_url, notice: "Nieuwe pagina is aangemaakt."
         else
@@ -38,7 +43,8 @@ module Spina
         end
       end
 
-      def edit      
+      def edit
+        add_breadcrumb @page.title
         @page_parts = Engine.config.PAGE_TYPES.keys.include?(@page.name) ? Engine.config.PAGE_TYPES[@page.name] || [] : Engine.config.default_page_parts
         @page_parts = @page_parts.map do |page_part|        
           page_part = @page.page_parts.where(tag: page_part[:tag]).limit(1).first || @page.page_parts.build(page_part)
@@ -48,6 +54,7 @@ module Spina
       end
 
       def update
+        add_breadcrumb @page.title
         if @page.update_attributes(params[:page])
           respond_to do |format|
             format.html { redirect_to admin_pages_url }

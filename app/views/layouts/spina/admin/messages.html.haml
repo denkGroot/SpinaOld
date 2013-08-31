@@ -1,0 +1,22 @@
+- content_for :secondary_navigation do
+  %nav#secondary
+    %h1 Berichten
+
+    %ul
+      %li{class: ('active' if ["index", "spam"].include? action_name )}
+        = link_to admin_inquiries_path, data: {icon: 'b'} do
+          Alle berichten
+          %small Alle berichten
+
+      %li{class: ('active' if action_name == "inbox")}
+        = link_to inbox_admin_inquiries_path, data: {icon: 'b'} do
+          - if @new_messages.present?
+            = "Inbox (#{@new_messages.size})"
+          - else
+            Inbox
+          %small Binnenkomende berichten
+
+- content_for :content do
+  = yield
+
+= render template: "layouts/spina/admin/application"

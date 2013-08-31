@@ -4,11 +4,16 @@ module Spina
       
       load_and_authorize_resource class: User
 
+      layout "spina/admin/users"
+
+      add_breadcrumb "Gebruikers", :admin_users_path
+
       def index
         @users = User.all
       end
 
       def new
+        add_breadcrumb "Nieuwe gebruiker"
       end
 
       def create
@@ -21,6 +26,7 @@ module Spina
       end
 
       def edit
+        add_breadcrumb "#{@user}"
       end
 
       def update

@@ -4,7 +4,7 @@
       = link_to "Dashboard", "#", data: {icon: 'g'}
 
     %li{class: ('active' if %w[pages photos].include? controller_name)}
-      = link_to "Je website", admin_pages_path, data: {icon: 'q'}
+      = link_to "Je website", admin_pages_path, data: {icon: 'y'}
 
     - if can? :manage, Spina::User
       %li{class: ('active' if %w[users].include? controller_name)}
@@ -12,11 +12,11 @@
 
     %li{class: ('active' if %w[inquiries].include? controller_name)}
       - if @new_messages.present?
-        = link_to "Berichten", admin_inquiries_path, data: {icon: 's', badge: "#{@new_messages.size}"}
+        = link_to "Berichten", admin_inquiries_path, data: {icon: 'A', badge: "#{@new_messages.size}"}
       - else
-        = link_to "Berichten", admin_inquiries_path, data: {icon: 's'}
+        = link_to "Berichten", admin_inquiries_path, data: {icon: 'A'}
 
-    %li{class: ('active' if %w[account].include? controller_name)}
+    %li{class: ('active' if %w[accounts].include? controller_name)}
       = link_to "Voorkeuren", edit_admin_account_path, data: {icon: 'f'}
 
     %li.bottom

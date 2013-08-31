@@ -1,12 +1,11 @@
-.well
-  %h1 Nieuwe pagina
-
-  %ul.tabs
-    %li.active
-      = link_to "Inhoud", "#page_content", data: {icon: 'p'}
-    %li
-      = link_to "SEO", "#page_seo", data: {icon: 's'}
-    %li
-      = link_to "Geavanceerd", "#advanced", data: {icon: '*'}
+- content_for :tertiary_navigation do
+  %nav.tabs
+    %ul
+      %li.active
+        = link_to "Inhoud", "#page_content"
+      %li
+        = link_to "Zoekmachines", "#page_seo"
+      %li
+        = link_to "Geavanceerd", "#advanced"
 
 = render 'form'

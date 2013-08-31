@@ -5,7 +5,7 @@ module Spina
       before_filter :authorize_user
       before_filter :new_messages
 
-      layout 'spina/admin'
+      layout 'spina/admin/application'
 
       private
 

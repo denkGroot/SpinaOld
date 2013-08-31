@@ -4,11 +4,15 @@ module Spina
 
       load_and_authorize_resource class: Inquiry
 
+      layout "spina/admin/messages"
+
       def index
+        add_breadcrumb "Alle berichten", admin_inquiries_path
         @inquiries = Inquiry.sorted
       end
 
       def inbox
+        add_breadcrumb "Inbox", inbox_admin_inquiries_path
         @inquiries = Inquiry.new_messages.sorted
       end
 

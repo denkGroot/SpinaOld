@@ -6,7 +6,7 @@ module Spina
 
     attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id, :name, :seo_title, :layout_template, :view_template, :skip_to_first_child, :draft, :link_url, :materialized_path
 
-    friendly_id :title, use: :slugged
+    friendly_id :title, use: [:slugged, :finders]
 
     has_many :page_parts, dependent: :destroy
 

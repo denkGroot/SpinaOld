@@ -4,6 +4,10 @@ module Spina
       
       load_and_authorize_resource class: Photo
 
+      add_breadcrumb "Foto's", :admin_photos_path
+
+      layout "spina/admin/website"
+
       def index
         @photos = Photo.all
         @photo = Photo.new

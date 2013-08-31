@@ -1,10 +1,5 @@
-.breadcrumbs
-  %h1 Pagina's
-
 .sortable-list-container
   %ol.sortable{data: {:"sort-url" => sort_admin_pages_url }}
     = render partial: 'page', collection: @pages.roots
 
-.actions
-  .button-well
-    = link_to "Nieuwe pagina", new_admin_page_path, class: 'button button-primary', data: {icon: '&'}
+= link_to "Nieuwe pagina", new_admin_page_path, class: 'button button-primary', data: {icon: 't'}

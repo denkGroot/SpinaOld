@@ -1,11 +1,11 @@
 %li{id: "page_#{page.id}"}
   %div
-    = link_to edit_admin_page_path(page), class: 'button button-plain-link' do
+    = link_to edit_admin_page_path(page), class: 'button button-link button-small sortable-link' do
       = page.menu_title
       - unless page.show_in_menu
         %small (niet zichtbaar in menu)
 
-    %span.pull-right= link_to "Bewerken", edit_admin_page_path(page), class: 'button button-plain', data: {icon: 'p'}
+    %span.pull-right= link_to "Bewerken", edit_admin_page_path(page), class: 'button button-small', data: {icon: 'q'}
 
   %ol
     = render partial: 'page', collection: page.children.sorted

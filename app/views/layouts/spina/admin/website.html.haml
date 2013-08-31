@@ -1,0 +1,24 @@
+- content_for :secondary_navigation do
+  %nav#secondary
+    %h1 Je website
+
+    %ul
+      %li{class: ('active' if params[:controller] == "spina/admin/pages")}
+        = link_to admin_pages_path, data: {icon: 'B'} do
+          Pagina's
+          %small Alle pagina's op je website
+
+      %li{class: ('active' if params[:controller] == "spina/admin/photos")}
+        = link_to admin_photos_path, data: {icon: 'C', :"no-turbolink" => true} do
+          Foto's
+          %small Hier staan alle afbeeldingen uit je account
+
+      / - Spina::Engine.config.plugins.each do |plugin|
+        
+      /   %li{class: ('active' if params[:controller] == "spina/admin/#{plugin.controller}")}
+      /     = link_to plugin.to_s.capitalize, method("admin_#{plugin.controller}_path").call, data: {icon: plugin.pictos_icon}
+
+- content_for :content do
+  = yield
+
+= render template: "layouts/spina/admin/application"
