@@ -1,33 +1,23 @@
 %nav#primary
   %ul
+    %li
+      = link_to "Dashboard", "#", data: {icon: 'g'}
+
     %li{class: ('active' if %w[pages photos].include? controller_name)}
-      = link_to "Je website", admin_pages_path, data: {icon: 'b'}
+      = link_to "Je website", admin_pages_path, data: {icon: 'q'}
 
     - if can? :manage, Spina::User
       %li{class: ('active' if %w[users].include? controller_name)}
-        = link_to "Gebruikers", admin_users_path, data: {icon: 'U'}
+        = link_to "Gebruikers", admin_users_path, data: {icon: 'i'}
 
-.pull-right
-  .button-well.button-well-dark{data: {dropdown: true}}
-    - if @new_messages.present?
-      = link_to "Berichten", "#", class: 'button button-dark', data: {icon: 'M', badge: "#{@new_messages.size}", trigger: 'dropdown'}
-    - else
-      = link_to "Berichten", admin_inquiries_path, class: 'button button-dark', data: {icon: 'M'}
-      
-    %ul
+    %li{class: ('active' if %w[inquiries].include? controller_name)}
       - if @new_messages.present?
-        %li
-          = link_to inbox_admin_inquiries_path, data: {icon: 'I'} do
-            %strong= t('misc.messages', count: @new_messages.size)
+        = link_to "Berichten", admin_inquiries_path, data: {icon: 's', badge: "#{@new_messages.size}"}
+      - else
+        = link_to "Berichten", admin_inquiries_path, data: {icon: 's'}
 
-      %li
-        = link_to admin_inquiries_path, data: {icon: 'J'} do
-          Bekijk 
-          %strong alle
-          berichten
+    %li{class: ('active' if %w[account].include? controller_name)}
+      = link_to "Voorkeuren", edit_admin_account_path, data: {icon: 'f'}
 
-  .button-well.button-well-dark
-    .button-group
-      = link_to "Bekijk website", "/", class: 'button button-dark', data: {icon: 'e', :"no-turbolink" => true}
-      = link_to "", edit_admin_account_path, data: {icon: 'y'}, class: 'button button-dark icon-only'
-      = link_to "", admin_logout_path, class: 'button button-dark icon-only', data: {icon: 'Q', :"no-turbolink" => true}
+    %li.bottom
+      = link_to "", admin_logout_path, data: {icon: 'h', :"no-turbolink" => true}

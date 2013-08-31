@@ -35,4 +35,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'filters_spam', '~> 0.3'
   s.add_dependency 'negative_captcha'
   s.add_dependency 'ancestry'
+  s.add_dependency 'breadcrumbs_on_rails'
+  s.add_dependency 'spina-template'
 end

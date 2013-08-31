@@ -19,39 +19,25 @@
     = javascript_include_tag "spina/admin/application"
 
   %body
-    #wrapper
-      %header#header
-        .inner-header
-          %span.pull-left
-            %a.button.button-dark.icon-only{href: '#', data: {icon: '-', toggle: 'navigation', :'no-turbolink' => true}}
-          %h1#logo
-            %a.fastbutton{href: '/admin'} denkWebsite
+    = render 'spina/admin/shared/navigation'
 
-          / Main navigation
-          = render 'spina/admin/shared/navigation'
+    = render 'spina/admin/shared/subnavigation'
 
+    %section#main
+      = yield
 
-      %aside#notifications
-        - if flash[:notice]
-          .notification
-            %i.icon-only{data: {icon: 'v '}}
-            = flash[:notice]
-            = link_to "", '#', class: 'icon-only', data: {icon: 'x', dismiss: 'notification'}
+      -# %aside#notifications
+      -#   - if flash[:notice]
+      -#     .notification
+      -#       %i.icon-only{data: {icon: 'v '}}
+      -#       = flash[:notice]
+      -#       = link_to "", '#', class: 'icon-only', data: {icon: 'x', dismiss: 'notification'}
 
-        - if flash[:alert]
-          .notification.danger
-            %i.icon-only{data: {icon: '! '}}
-            = flash[:alert]
-            = link_to "", '#', class: 'icon-only', data: {icon: 'x', dismiss: 'notification'}
-
-      %section#main
-        = render 'spina/admin/shared/subnavigation'
-
-        %section#content
-          = yield
-
-        %a#denkgroot{href: 'http://www.denkgroot.com', target: '_blank'} een idee van denkGroot
-
-
+      -#   - if flash[:alert]
+      -#     .notification.danger
+      -#       %i.icon-only{data: {icon: '! '}}
+      -#       = flash[:alert]
+      -#       = link_to "", '#', class: 'icon-only', data: {icon: 'x', dismiss: 'notification'}
+      
     / Aviary editor
     #injection_site
