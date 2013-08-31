@@ -70,7 +70,7 @@ Spina::Engine.configure do
   inquiries.name = "contact"
   inquiries.class_name = "Spina::Inquiry"
   inquiries.controller = "inquiries"
-  inquiries.pictos_icon = "M"
+  inquiries.pictos_icon = "z"
 
   config.plugins << inquiries
 
