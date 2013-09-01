@@ -65,9 +65,6 @@ ready = ->
   # Loading switches
   $('input[data-switch]').spinaSwitch()
 
-  # Load login form
-  $('#login_wrapper').css('margin-top', ($(document).innerHeight() / 2) - ($('#login_wrapper').innerHeight() / 2) + 'px')
-
   # Wysihtml5 editor
   $('.wysihtml5-container').each ->
     textarea = $(this).find('textarea')

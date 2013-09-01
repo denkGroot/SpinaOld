@@ -1,22 +1,9 @@
-.well
-  %h1 denkWebsite
+= form_tag admin_sessions_path, id: "login_wrapper" do
 
-= form_tag admin_sessions_path do
-  .table-container
-    %table.table.table-form
-      %tbody
-        %tr
-          %td
-            %label Email
-          %td
-            = text_field_tag :email, params[:email], placeholder: "Emailadres"
+  .row
+    .column-half
+      = text_field_tag :email, params[:email], placeholder: "Emailadres"
+    .column-half
+      = password_field_tag :password, nil, placeholder: "Wachtwoord"
 
-        %tr
-          %td
-            %label Wachtwoord
-          %td
-            = password_field_tag :password, nil, placeholder: "Wachtwoord"
-
-  .actions
-    .button-well
-      = button_tag "Inloggen", class: 'button button-primary', data: {icon: 'K'}
+  = button_tag "Inloggen", class: 'button button-primary', data: {icon: 'i'}
