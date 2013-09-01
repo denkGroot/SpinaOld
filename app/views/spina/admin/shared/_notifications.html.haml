@@ -2,8 +2,8 @@
   - if flash[:notice]
     .notification{data: {icon: 'L'}}
       %p
-        Er is iets gebeurd!
-        %small= flash[:notice]
+        = flash[:notice]
+        %small Wist je dat de eerste versie van Spina ontwikkeld is in slechts een week tijd?
 
   - if content_for?(:notification_alert) 
     = yield(:notification_alert)

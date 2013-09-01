@@ -218,3 +218,4 @@ DEPENDENCIES
   spina!
   spina-template!
   sqlite3
+  validates_email_format_of

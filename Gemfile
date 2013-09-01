@@ -24,3 +24,4 @@ gem 'friendly_id', git: 'git@github.com:FriendlyId/friendly_id.git', branch: '5.
 gem 'pg'
 gem 'spina-template', path: '~/Desktop/spina-template'
 gem 'breadcrumbs_on_rails'
+gem 'validates_email_format_of'
