@@ -1,11 +1,11 @@
 = form_for [:admin, current_account] do |f|
-  .table-container.table-form
-    %table.table
+  .table-container
+    %table.table.table-form
       %tr
         %td
           %label Naam website
         %td
-          = f.text_field :name, placeholder: "Naam van je website", class: 'large'
+          = f.text_field :name, placeholder: "Naam van je website"
 
       %tr
         %td
@@ -43,7 +43,5 @@
         %td
           = f.text_field :email, placeholder: "Emailadres"
 
-  .actions
-    .button-well
-      %button.button.button-primary{type: 'submit', data: {icon: 'v'}}
-        Gegevens opslaan
+  %button.button.button-primary{type: 'submit', data: {icon: 'o'}}
+    Gegevens opslaan

@@ -1,13 +1,12 @@
-.well
-  %h1 Gemarkeerd als spam
-
-  %ul.tabs
-    %li{class: ('active' if action_name == "index")}
-      = link_to admin_inquiries_path, data: {icon: 'J'} do
-        Alle berichten
-    %li{ class: ('active' if action_name == 'spam')}
-      = link_to spam_admin_inquiries_path, data: { icon: 'x' } do
-        Spam
+- content_for(:tertiary_navigation) do
+  %nav.tabs
+    %ul
+      %li{class: ('active' if action_name == "index")}
+        = link_to admin_inquiries_path do
+          Alle berichten
+      %li{ class: ('active' if action_name == 'spam')}
+        = link_to spam_admin_inquiries_path do
+          Spam
 
 .table-container
   %table.table

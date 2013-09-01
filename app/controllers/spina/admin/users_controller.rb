@@ -4,7 +4,7 @@ module Spina
       
       load_and_authorize_resource class: User
 
-      layout "spina/admin/users"
+      layout "spina/admin/settings"
 
       add_breadcrumb "Gebruikers", :admin_users_path
 
@@ -17,10 +17,11 @@ module Spina
       end
 
       def create
+        add_breadcrumb "Nieuwe gebruiker"
         if @user.save
           redirect_to admin_users_url, notice: "Gebruiker #{@user} is aangemaakt."
         else
-          flash[:alert] = "De gebruiker kan nog niet opgeslagen worden."
+          flash.now[:alert] = "De gebruiker kan nog niet worden opgeslagen."
           render :new
         end
       end
@@ -30,9 +31,11 @@ module Spina
       end
 
       def update
+        add_breadcrumb "#{@user}"
         if @user.update_attributes(params[:user])
           redirect_to admin_users_url
         else
+          flash.now[:alert] = "De gebruiker kan nog worden opgeslagen."
           render :edit
         end
       end

@@ -38,7 +38,7 @@ module Spina
             page_part.page = @page
             page_part
           end
-          flash[:alert] = "De pagina kan nog niet opgeslagen worden."
+          flash.now[:alert] = "De pagina kan nog niet opgeslagen worden."
           render :new
         end
       end
@@ -66,7 +66,7 @@ module Spina
             page_part.page = @page
             page_part
           end
-          flash[:alert] = "De pagina kan nog niet opgeslagen worden."
+          flash.now[:alert] = "De pagina kan nog niet opgeslagen worden."
           render :edit
         end
       end

@@ -3,9 +3,12 @@
     = link_to edit_admin_page_path(page), class: 'button button-link button-small sortable-link' do
       = page.menu_title
       - unless page.show_in_menu
-        %small (niet zichtbaar in menu)
+        %small (onzichtbaar)
 
-    %span.pull-right= link_to "Bewerken", edit_admin_page_path(page), class: 'button button-small', data: {icon: 'q'}
+      - if page.skip_to_first_child
+        %small (doorsturen naar 1<sup>e</sup> subpagina)
+
+    %span.pull-right= link_to "Bewerken", edit_admin_page_path(page), class: 'button button-small button-link', data: {icon: 'q'}
 
   %ol
     = render partial: 'page', collection: page.children.sorted

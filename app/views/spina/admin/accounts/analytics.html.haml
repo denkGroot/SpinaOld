@@ -1,16 +1,11 @@
-.well
-  %h1 Analytics
-
 = form_for [:admin, current_account] do |f|
-  .table-container.table-form
-    %table.table
+  .table-container
+    %table.table.table-form
       %tr
         %td
           %label Google Analytics
         %td
           = f.text_field :google_analytics, placeholder: "Google Analytics code", class: 'large'
 
-  .actions
-    .button-well
-      %button.button.button-primary{type: 'submit', data: {icon: 'v'}}
-        Opslaan
+  %button.button.button-primary{type: 'submit', data: {icon: 'o'}}
+    Google Analytics opslaan

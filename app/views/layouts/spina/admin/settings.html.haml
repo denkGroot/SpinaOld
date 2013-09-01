@@ -4,9 +4,15 @@
 
     %ul
       %li{class: ('active' if params[:action] == 'edit' && params[:controller] == 'spina/admin/accounts')}
-        = link_to edit_admin_account_path, data: {icon: 'x'} do
+        = link_to edit_admin_account_path, data: {icon: 'J'} do
           Algemene gegevens
           %small Persoonlijke instellingen
+
+      - if can? :manage, Spina::User
+        %li{class: ('active' if %w[users].include? controller_name)}
+          = link_to admin_users_path, data: {icon: 'K'} do
+            Gebruikers
+            %small Beheer gebruikers en beheerders
 
       %li{class: ('active' if params[:action] == 'social')}
         = link_to social_admin_account_path, data: {icon: 'D'} do
@@ -15,8 +21,8 @@
 
       %li{class: ('active' if params[:action] == 'analytics')}
         = link_to analytics_admin_account_path, data: {icon: 'E'} do
-          Statistieken
-          %small Op de hoogte van alle statistieken
+          Google Analytics
+          %small Koppel je account voor real-time statistieken
 
 - content_for :content do
   = yield

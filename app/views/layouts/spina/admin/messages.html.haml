@@ -3,11 +3,6 @@
     %h1 Berichten
 
     %ul
-      %li{class: ('active' if ["index", "spam"].include? action_name )}
-        = link_to admin_inquiries_path, data: {icon: 'b'} do
-          Alle berichten
-          %small Alle berichten
-
       %li{class: ('active' if action_name == "inbox")}
         = link_to inbox_admin_inquiries_path, data: {icon: 'b'} do
           - if @new_messages.present?
@@ -15,6 +10,11 @@
           - else
             Inbox
           %small Binnenkomende berichten
+          
+      %li{class: ('active' if ["index", "spam"].include? action_name )}
+        = link_to admin_inquiries_path, data: {icon: 'z'} do
+          Alle berichten
+          %small Alle berichten
 
 - content_for :content do
   = yield

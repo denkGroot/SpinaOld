@@ -1,10 +1,16 @@
 %aside#notifications
   - if flash[:notice]
-    .notification{data: {icon: 'l'}}
-      %p= flash[:notice]
+    .notification{data: {icon: 'L'}}
+      %p
+        Er is iets gebeurd!
+        %small= flash[:notice]
 
-  - if flash[:alert]
-    .notification.notification-error{data: {icon: 'l'}}
-      %p 
-        Oeps! Er is iets mis gegaan
-        %small= flash[:alert]
+  - if content_for?(:notification_alert) 
+    = yield(:notification_alert)
+
+  - else
+    - if flash[:alert]
+      .notification.notification-error{data: {icon: 'm'}}
+        %p 
+          Oeps! Er is iets mis gegaan
+          %small= flash[:alert]

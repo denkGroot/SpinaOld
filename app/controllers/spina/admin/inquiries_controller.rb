@@ -17,6 +17,8 @@ module Spina
       end
 
       def spam
+        add_breadcrumb "Alle berichten", admin_inquiries_path
+        add_breadcrumb "Spam", spam_admin_inquiries_path
         @inquiries = Inquiry.spam.order('created_at DESC')
       end
 

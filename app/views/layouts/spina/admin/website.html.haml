@@ -9,14 +9,16 @@
           %small Alle pagina's op je website
 
       %li{class: ('active' if params[:controller] == "spina/admin/photos")}
-        = link_to admin_photos_path, data: {icon: 'C', :"no-turbolink" => true} do
+        = link_to admin_photos_path, data: {icon: 'C'} do
           Foto's
           %small Hier staan alle afbeeldingen uit je account
 
-      / - Spina::Engine.config.plugins.each do |plugin|
+      - Spina::Engine.config.plugins.each do |plugin|
         
-      /   %li{class: ('active' if params[:controller] == "spina/admin/#{plugin.controller}")}
-      /     = link_to plugin.to_s.capitalize, method("admin_#{plugin.controller}_path").call, data: {icon: plugin.pictos_icon}
+        %li{class: ('active' if params[:controller] == "spina/admin/#{plugin.controller}")}
+          = link_to method("admin_#{plugin.controller}_path").call, data: {icon: plugin.pictos_icon} do
+            Plugin
+            %small= plugin.to_s.capitalize
 
 - content_for :content do
   = yield

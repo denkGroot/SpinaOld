@@ -37,4 +37,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'ancestry'
   s.add_dependency 'breadcrumbs_on_rails'
   s.add_dependency 'spina-template'
+  s.add_dependency 'validates_email_format_of'
 end

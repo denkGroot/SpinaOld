@@ -17,7 +17,7 @@ module Spina
       end
 
       def analytics
-        add_breadcrumb "Algemene gegevens", analytics_admin_account_path
+        add_breadcrumb "Google Analytics", analytics_admin_account_path
       end
 
       def social
@@ -25,7 +25,7 @@ module Spina
       end
 
       def style
-        add_breadcrumb "Stijling", style_admin_account_path
+        add_breadcrumb "Stijl", style_admin_account_path
       end
     end
   end    
