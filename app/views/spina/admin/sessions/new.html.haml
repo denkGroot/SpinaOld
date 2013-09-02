@@ -1,9 +1,13 @@
-= form_tag admin_sessions_path, id: "login_wrapper" do
+%video{height: "auto", width: 'auto', autoplay: true, loop: true, style: "min-width: 100%; min-height: 100%; position: fixed; z-index: -1000; opacity: .3"}
+  %source{src: "#{asset_path('spina/admin/login.mp4')}", type: "video/mp4"}
+  %source{src: "#{asset_path('spina/admin/login.ogv')}", type: "video/ogg"}
+  %source{src: "#{asset_path('spina/admin/login.webm')}", type: "video/webm"}
 
+= form_tag admin_sessions_path, id: "login_wrapper" do
   .row
     .column-half
       = text_field_tag :email, params[:email], placeholder: "Emailadres"
     .column-half
       = password_field_tag :password, nil, placeholder: "Wachtwoord"
 
-  = button_tag "Inloggen", class: 'button button-primary', data: {icon: 'i'}
+  = button_tag "Inloggen", class: 'button button-primary pull-right', style: 'margin-right: 0'
