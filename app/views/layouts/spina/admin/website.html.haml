@@ -9,9 +9,9 @@
           %small Alle pagina's op je website
 
       %li{class: ('active' if params[:controller] == "spina/admin/photos")}
-        = link_to admin_photos_path, data: {icon: 'C'} do
-          Foto's
-          %small Hier staan alle afbeeldingen uit je account
+        = link_to admin_photos_path, data: {icon: 'N'} do
+          Mediabibliotheek
+          %small Hier staan alle afbeeldingen, video's en documenten
 
       - Spina::Engine.config.plugins.each do |plugin|
         

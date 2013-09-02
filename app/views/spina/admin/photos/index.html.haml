@@ -1,3 +1,16 @@
+- content_for(:tertiary_navigation) do
+  %nav.tabs
+    %ul
+      %li{class: ('active' if controller_name == "photos")}
+        = link_to admin_photos_path do
+          Afbeeldingen
+      %li
+        = link_to '#' do
+          Video's
+      %li
+        = link_to '#' do
+          Documenten
+
 .gallery
   = render partial: 'spina/admin/photos/photo', collection: @photos
 
@@ -10,9 +23,27 @@
 
     #uploads
 
+    = link_to "Mediabibliotheek", "#media_library", data: {toggle: 'modal'}
+
 %script#template-upload{type: "text/x-tmpl"}
   .upload
     .upload-cloud
       .upload-cloud-done
       .upload-cloud-processing{style: "height: 100%"}
     .filename {%=o.name%}
+
+#media_library.modal.modal-large
+  %header
+    = link_to "", "#", class: 'close_modal', data: {dismiss: 'modal', icon: 'm'}
+    %h3 Afbeelding invoegen
+
+  %section
+    .gallery-select.gallery
+      - Spina::Photo.all.each do |photo|
+        .item
+          .overlay
+          = image_tag photo.file.thumb
+
+  %footer
+    = link_to "Annuleren", "#", data: {dismiss: 'modal'}
+    = link_to "Afbeelding invoegen", "#", class: 'primary', data: {icon: 't '}

@@ -31,7 +31,7 @@ module Spina
       def create
         add_breadcrumb "Nieuwe pagina"
         if @page.save
-          redirect_to admin_pages_url, notice: "Nieuwe pagina is aangemaakt."
+          redirect_to admin_pages_url, notice: "#{@page.title} is aangemaakt."
         else
           @page_parts = @page.page_parts
           @page_parts = @page_parts.map do |page_part|
@@ -57,7 +57,7 @@ module Spina
         add_breadcrumb @page.title
         if @page.update_attributes(params[:page])
           respond_to do |format|
-            format.html { redirect_to admin_pages_url }
+            format.html { redirect_to admin_pages_url, notice: "#{@page.title} opgeslagen" }
             format.js
           end
         else

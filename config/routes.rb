@@ -13,6 +13,7 @@ Spina::Engine.routes.draw do
     end
 
     resources :users
+    
     # Sessions
     resources :sessions
     get "login" => "sessions#new"
@@ -21,6 +22,9 @@ Spina::Engine.routes.draw do
     resources :pages do
       post :sort, on: :collection
     end
+
+    # Media library
+    get 'media_library' => 'photos#index', as: "media_library"
 
     resources :photos do
       member do
