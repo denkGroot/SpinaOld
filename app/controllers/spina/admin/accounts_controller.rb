@@ -12,7 +12,7 @@ module Spina
 
       def update
         if current_account.update_attributes(params[:account])
-          redirect_to :back
+          redirect_to :back, notice: "Voorkeuren zijn bijgewerkt"
         end
       end
 

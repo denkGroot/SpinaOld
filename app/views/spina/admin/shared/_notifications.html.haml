@@ -2,10 +2,10 @@
   - if flash[:notice]
     .notification{data: {icon: 'L'}}
       %p
-        = flash[:notice]
-        %small Wist je dat de eerste versie van Spina ontwikkeld is in slechts een week tijd?
+        Informatie
+        %small= flash[:notice]
 
-  - if content_for?(:notification_alert) 
+  - if content_for?(:notification_alert)
     = yield(:notification_alert)
 
   - else
