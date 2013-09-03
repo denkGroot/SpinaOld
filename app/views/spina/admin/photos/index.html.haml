@@ -12,25 +12,21 @@
           Documenten
 
 .gallery
+  .item
+    = form_for [:admin, @photo], html: {multipart: true} do |f|
+      = f.file_field :file, data: {customfileinput: true}
+
   = render partial: 'spina/admin/photos/photo', collection: @photos
 
 .actions
-  = form_for [:admin, @photo], html: {multipart: true} do |f|
-    = f.file_field :file
+  = link_to "Mediabibliotheek", "#media_library", data: {toggle: 'modal'}
 
-    .button-well
-      = link_to "Upload foto's", "#", id: "uploadbutton", class: 'button button-primary', data: {icon: 'u'}
-
-    #uploads
-
-    = link_to "Mediabibliotheek", "#media_library", data: {toggle: 'modal'}
-
-%script#template-upload{type: "text/x-tmpl"}
-  .upload
-    .upload-cloud
-      .upload-cloud-done
-      .upload-cloud-processing{style: "height: 100%"}
-    .filename {%=o.name%}
+-# %script#template-upload{type: "text/x-tmpl"}
+-#   .upload
+-#     .upload-cloud
+-#       .upload-cloud-done
+-#       .upload-cloud-processing{style: "height: 100%"}
+-#     .filename {%=o.name%}
 
 #media_library.modal.modal-large
   %header
@@ -39,6 +35,10 @@
 
   %section
     .gallery-select.gallery
+      .item
+        = form_for [:admin, @photo], html: {multipart: true} do |f|
+          = f.file_field :file, data: {customfileinput: true}
+      
       - Spina::Photo.all.each do |photo|
         .item
           .overlay
