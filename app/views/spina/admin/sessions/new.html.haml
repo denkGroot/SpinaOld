@@ -6,8 +6,9 @@
 = form_tag admin_sessions_path, id: "login_wrapper" do
   .row
     .column-half
-      = text_field_tag :email, params[:email], placeholder: "Emailadres"
+      denkGroot
+      
     .column-half
-      = password_field_tag :password, nil, placeholder: "Wachtwoord"
-
-  = button_tag "Inloggen", class: 'button button-primary pull-right', style: 'margin-right: 0'
+      %p= text_field_tag :email, params[:email], placeholder: "Emailadres"
+      %p= password_field_tag :password, nil, placeholder: "Wachtwoord"
+      %p= button_tag "Inloggen", class: 'button button-primary pull-right', style: 'margin-right: 0'
