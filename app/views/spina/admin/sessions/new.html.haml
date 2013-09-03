@@ -4,11 +4,11 @@
   %source{src: "#{asset_path('spina/admin/login.webm')}", type: "video/webm"}
 
 = form_tag admin_sessions_path, id: "login_wrapper" do
-  .row
+  .row      
     .column-half
-      denkGroot
-      
-    .column-half
-      %p= text_field_tag :email, params[:email], placeholder: "Emailadres"
+      = text_field_tag :email, params[:email], placeholder: "Emailadres"
       %p= password_field_tag :password, nil, placeholder: "Wachtwoord"
       %p= button_tag "Inloggen", class: 'button button-primary pull-right', style: 'margin-right: 0'
+    .column-half{style: 'padding-left: 20px'}
+      %h1 Spina
+      %p Jouw creatieve omgeving
