@@ -29,8 +29,8 @@
   %section
     .gallery-select.gallery
       .item
-        = form_for [:admin, @photo], html: {multipart: true} do |f|
-          = f.file_field :file, data: {customfileinput: true}
+        = form_for [:admin, @photo], html: {multipart: true, id: "new_photo_modal"} do |f|
+          = f.file_field :file, data: {customfileinput: true}, id: "photo_file_modal"
       
       - Spina::Photo.all.each do |photo|
         .item
