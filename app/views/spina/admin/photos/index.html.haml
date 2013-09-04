@@ -21,13 +21,6 @@
 .actions
   = link_to "Mediabibliotheek", "#media_library", data: {toggle: 'modal'}
 
--# %script#template-upload{type: "text/x-tmpl"}
--#   .upload
--#     .upload-cloud
--#       .upload-cloud-done
--#       .upload-cloud-processing{style: "height: 100%"}
--#     .filename {%=o.name%}
-
 #media_library.modal.modal-large
   %header
     = link_to "", "#", class: 'close_modal', data: {dismiss: 'modal', icon: 'm'}
