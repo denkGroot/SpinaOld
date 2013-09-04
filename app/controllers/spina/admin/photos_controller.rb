@@ -15,12 +15,13 @@ module Spina
       end
 
       def create
+        sleep 4
         @photo = Photo.create(params[:photo])
       end
 
       def destroy
         @photo.destroy
-        redirect_to admin_photos_url, notice: "De foto is verwijderd."
+        redirect_to admin_photos_url
       end
 
       def enhance
