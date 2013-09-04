@@ -17,26 +17,3 @@
       = f.file_field :file, data: {customfileinput: true}
 
   = render partial: 'spina/admin/photos/photo', collection: @photos
-
-.actions
-  = link_to "Mediabibliotheek", "#media_library", data: {toggle: 'modal'}
-
-#media_library.modal.modal-large
-  %header
-    = link_to "", "#", class: 'close_modal', data: {dismiss: 'modal', icon: 'm'}
-    %h3 Afbeelding invoegen
-
-  %section
-    .gallery-select.gallery
-      .item
-        = form_for [:admin, @photo], html: {multipart: true, id: "new_photo_modal"} do |f|
-          = f.file_field :file, data: {customfileinput: true}, id: "photo_file_modal"
-      
-      - Spina::Photo.all.each do |photo|
-        .item
-          .overlay
-          = image_tag photo.file.thumb
-
-  %footer
-    = link_to "Annuleren", "#", data: {dismiss: 'modal'}
-    = link_to "Afbeelding invoegen", "#", class: 'primary', data: {icon: 't '}

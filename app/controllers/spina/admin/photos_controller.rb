@@ -15,7 +15,6 @@ module Spina
       end
 
       def create
-        sleep 4
         @photo = Photo.create(params[:photo])
       end
 
@@ -30,6 +29,13 @@ module Spina
       end
 
       def link
+      end
+
+      def photo_select
+      end
+
+      def insert_photo
+        @photo = Photo.find(params[:photo_id])
       end
       
     end

@@ -19,12 +19,14 @@ Spina::Engine.routes.draw do
     get "login" => "sessions#new"
     get "logout" => "sessions#destroy"
 
+    # Media library
+    get 'media_library' => 'photos#index', as: "media_library"
+    get 'photo_select/:page_part_id' => 'photos#photo_select', as: "photo_select"
+    post 'photo_select/:page_part_id' => 'photos#insert_photo', as: "insert_photo"
+
     resources :pages do
       post :sort, on: :collection
     end
-
-    # Media library
-    get 'media_library' => 'photos#index', as: "media_library"
 
     resources :photos do
       member do

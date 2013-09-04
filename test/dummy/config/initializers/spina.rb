@@ -8,36 +8,37 @@ Spina::Engine.configure do
         page_partable_type: 'Spina::Photo',
         position: 0
       }, {
-        tag: 'gallery',
-        name: 'Fotogalerij',
-        page_partable_type: 'Spina::PhotoCollection',
-        position: 1
-      }, {
-        tag: 'file',
-        name: 'Super PDF',
-        page_partable_type: 'Spina::Attachment',
+        tag: 'content',
+        name: "Inhoud",
+        page_partable_type: "Text",
         position: 2
-      }, {
-        tag: 'files',
-        name: 'Bijlagen',
-        page_partable_type: 'Spina::AttachmentCollection',
-        position: 3
-      }, {
-        tag: 'new',
-        name: 'Nieuw',
-        page_partable_type: 'Text',
-        position: 4
-      }, {
-        tag: 'left',
-        name: 'Links',
-        page_partable_type: 'Text',
-        position: 5
-      }, {
-        tag: 'right',
-        name: 'Rechts',
-        page_partable_type: 'Text',
-        position: 6
       }
+      # }, {
+      #   tag: 'file',
+      #   name: 'Super PDF',
+      #   page_partable_type: 'Spina::Attachment',
+      #   position: 2
+      # }, {
+      #   tag: 'files',
+      #   name: 'Bijlagen',
+      #   page_partable_type: 'Spina::AttachmentCollection',
+      #   position: 3
+      # }, {
+      #   tag: 'new',
+      #   name: 'Nieuw',
+      #   page_partable_type: 'Text',
+      #   position: 4
+      # }, {
+      #   tag: 'left',
+      #   name: 'Links',
+      #   page_partable_type: 'Text',
+      #   position: 5
+      # }, {
+      #   tag: 'right',
+      #   name: 'Rechts',
+      #   page_partable_type: 'Text',
+      #   position: 6
+      # }
     ],
 
     'homepage' => [

@@ -1,0 +1,21 @@
+.modal.modal-large
+  %header
+    = link_to "", "#", class: 'close_modal', data: {dismiss: 'modal', icon: 'm'}
+    %h3 Afbeelding invoegen
+
+  %section
+    .gallery-select.gallery
+      .item
+        = form_for [:admin, Spina::Photo.new], html: {multipart: true} do |f|
+          = f.file_field :file, data: {customfileinput: true}
+      
+      = form_tag "/admin/photo_select/#{params[:page_part_id]}", remote: true do
+        - Spina::Photo.all.each do |photo|
+          .item
+            .overlay= radio_button_tag :photo_id, photo.id
+            = image_tag photo.file.thumb
+        = button_tag "Invoegen", type: 'submit'
+
+  %footer
+    = link_to "Annuleren", "#", data: {dismiss: 'modal'}
+    = link_to "Afbeelding invoegen", '#', class: 'primary', data: {icon: 't '}
