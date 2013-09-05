@@ -37,7 +37,7 @@ PATH
     spina-template (0.0.1)
       bourbon
       coffee-rails
-      jquery-rails
+      jquery-fileupload-rails
       neat
       rails (~> 4.0.0)
 
