@@ -1,12 +1,12 @@
 module Spina
   class Page < ActiveRecord::Base
-    
     extend FriendlyId
+    
     has_ancestry orphan_strategy: :adopt # i.e. added to the parent of deleted node
 
     attr_accessible :deletable, :description, :menu_title, :position, :show_in_menu, :slug, :title, :page_parts_attributes, :parent_id, :name, :seo_title, :layout_template, :view_template, :skip_to_first_child, :draft, :link_url, :materialized_path
 
-    friendly_id :title, use: [:slugged, :finders]
+    friendly_id :slug_candidates, use: [:slugged, :finders]
 
     has_many :page_parts, dependent: :destroy
 
@@ -22,6 +22,17 @@ module Spina
     scope :custom_pages, -> { where(deletable: false) }
     scope :live, -> { where(draft: false) }
     scope :in_menu, -> { where(show_in_menu: true )}
+
+    def slug_candidates
+      [
+        :title, 
+        [:title, :id]
+      ]
+    end
+
+    def should_generate_new_friendly_id?
+      title_changed?
+    end
 
     def to_s
       name
