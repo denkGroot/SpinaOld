@@ -1,4 +1,9 @@
-= link_to photo_select_admin_photos_path(photo_form.object_name), remote: true do
-  .image
-    = image_tag photo_form.object.page_partable.file.thumb
-    = photo_form.hidden_field :page_partable_id
+= link_to photo_select_admin_photos_path(photo_form.object_name), remote: true, class: "media_picker" do
+  - if photo_form.object.page_partable && photo_form.object.page_partable.file.present?
+    .image
+      = image_tag photo_form.object.page_partable.file.thumb
+  - else
+    .image.placeholder
+      %span{data: {icon: 't'}} Kies uit bibliotheek
+
+  = photo_form.hidden_field :page_partable_id
