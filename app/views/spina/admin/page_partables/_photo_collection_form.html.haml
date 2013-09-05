@@ -7,4 +7,4 @@
     - else
       .placeholder
         %span{data: {icon: 't'}} Kies uit bibliotheek
-    = form.hidden_field "photo_ids", value: form.object.photo_ids.join(",")
+    = form.hidden_field :photo_tokens, value: form.object.photo_ids.join(",")

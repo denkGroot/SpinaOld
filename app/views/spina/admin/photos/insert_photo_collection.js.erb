@@ -1,4 +1,4 @@
-var hidden_input = $("input[name='<%= j params[:page_part_id] %>[photo_ids]']");
+var hidden_input = $("input[name='<%= j params[:page_part_id] %>[photo_tokens]']");
 var photo_collection = $("<%= j render partial: 'photo_collection', locals: {photos: @photos} %>");
 
 hidden_input.parents('td').find('.image, .placeholder').remove();
