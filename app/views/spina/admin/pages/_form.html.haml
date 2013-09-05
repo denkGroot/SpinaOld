@@ -37,7 +37,7 @@
                 = render partial: "spina/admin/page_partables/text_form", object: page_part_form
 
               - else 
-                = render partial: "spina/admin/page_partables/#{page_part_form.object.page_partable_type.constantize.name.demodulize.downcase}_form", object: page_part_form
+                = render partial: "spina/admin/page_partables/#{page_part_form.object.page_partable_type.demodulize.underscore}_form", object: page_part_form
 
   #page_seo.tab-content
     .table-container

@@ -34,8 +34,15 @@ module Spina
       def photo_select
       end
 
+      def photo_collection_select
+      end
+
       def insert_photo
         @photo = Photo.find(params[:photo_id])
+      end
+
+      def insert_photo_collection
+        @photos = Photo.find(params[:photo_ids])
       end
       
     end

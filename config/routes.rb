@@ -29,7 +29,9 @@ Spina::Engine.routes.draw do
     resources :photos do
       collection do
         get 'photo_select/:page_part_id' => 'photos#photo_select', as: :photo_select
+        get 'photo_collection_select/:page_part_id' => 'photos#photo_collection_select', as: :photo_collection_select
         post 'insert_photo/:page_part_id' => 'photos#insert_photo', as: :insert_photo
+        post 'insert_photo_collection/:page_part_id' => 'photos#insert_photo_collection', as: :insert_photo_collection
       end
       member do
         post :enhance

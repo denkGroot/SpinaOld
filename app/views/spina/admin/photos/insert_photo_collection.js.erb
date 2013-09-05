@@ -1,0 +1,7 @@
+var hidden_input = $("input[name='<%= j params[:page_part_id] %>[photo_ids]']");
+var photo_collection = $("<%= j render partial: 'photo_collection', locals: {photos: @photos} %>");
+
+hidden_input.parents('td').find('.image').remove();
+hidden_input.parents('td a').append(photo_collection);
+hidden_input.val("<%= @photos.map(&:id).join(',') %>");
+$.hideModal();

@@ -10,6 +10,7 @@ module Spina
     alias_method :old_update_attributes, :update_attributes
     def update_attributes(attributes)
       self.photos.clear if attributes.reject{|key,value| key == "id" }.blank?
+      attributes[:photo_ids] = attributes[:photo_ids].split(",") if attributes[:photo_ids].instance_of? String
       old_update_attributes(attributes)
     end
 
