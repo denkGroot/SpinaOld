@@ -13,7 +13,7 @@ Spina::Engine.routes.draw do
     end
 
     resources :users
-    
+
     # Sessions
     resources :sessions
     get "login" => "sessions#new"
@@ -62,7 +62,7 @@ Spina::Engine.routes.draw do
 
   # Sitemap
   resource :sitemap
-  
+
   # Frontend
   root to: "pages#homepage"
 
