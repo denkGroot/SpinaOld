@@ -29,7 +29,6 @@
               %small=l inquiry.created_at, format: '%e %B %Y %H:%M'
             %td.nowrap
               = link_to "Geen spam", unmark_spam_admin_inquiry_path(inquiry), method: :patch, class: 'button button-link button-primary button-small', data: {icon: 'x'}
-              %br
               = link_to "Verwijderen", admin_inquiry_path(inquiry), method: :delete, class: 'button button-danger button-link button-small', confirm: "Weet je zeker dat je het bericht van <strong>#{inquiry.name}</strong> definitief wilt verwijderen?"
       - else
         %tr
