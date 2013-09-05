@@ -7,7 +7,7 @@ module Spina
     validates_presence_of :name, :email
     validates_presence_of :password, on: :create
     validates_uniqueness_of :email
-    validates :email, email_format: { message: "is geen geldig emailadres" }
+    validates :email, format: { with:/\A[^@]+@[^@]+\z/, message: 'is geen geldig emailadres' }
 
     def admin?
       admin
