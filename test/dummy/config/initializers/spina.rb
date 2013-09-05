@@ -5,13 +5,15 @@ Spina::Engine.configure do
       { 
         tag: 'header',
         name: 'Headerfoto',
-        page_partable_type: 'Spina::Photo',
-        position: 0
+        page_partable_type: 'Spina::Photo'
+      }, {
+        tag: 'gallery',
+        name: "Gallery",
+        page_partable_type: "Spina::PhotoCollection"
       }, {
         tag: 'content',
         name: "Inhoud",
-        page_partable_type: "Text",
-        position: 2
+        page_partable_type: "Text"
       }
       # }, {
       #   tag: 'file',
@@ -45,13 +47,11 @@ Spina::Engine.configure do
       {
         tag: 'left_column',
         name: 'Linkerkolom',
-        page_partable_type: 'Text',
-        position: 0
+        page_partable_type: 'Text'
       }, {
         tag: 'right_column',
         name: 'Rechterkolom',
-        page_partable_type: 'Text',
-        position: 1
+        page_partable_type: 'Text'
       }
     ],
 
@@ -67,13 +67,13 @@ Spina::Engine.configure do
   config.NEGATIVE_CAPTCHA_SECRET = 'fee3b3c8b2faa53dafe0978c10c691c29f9c0fdcf12e0052d8c4f5852903707f4a1b6c14f2ac270950b06a287b0683c02a383745025ae6aa3f85091a5deccf06'
   config.plugins = Array.new
 
-  inquiries = Spina::Plugin.new
-  inquiries.name = "contact"
-  inquiries.class_name = "Spina::Inquiry"
-  inquiries.controller = "inquiries"
-  inquiries.pictos_icon = "z"
+  # inquiries = Spina::Plugin.new
+  # inquiries.name = "contact"
+  # inquiries.class_name = "Spina::Inquiry"
+  # inquiries.controller = "inquiries"
+  # inquiries.pictos_icon = "z"
 
-  config.plugins << inquiries
+  # config.plugins << inquiries
 
 
   # Inspiratie ter verbetering van refinery
