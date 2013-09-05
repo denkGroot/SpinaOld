@@ -1,5 +1,6 @@
+.filters
+  = link_to "Nieuwe pagina", new_admin_page_path, class: 'button button-primary', data: {icon: 't'}
+
 .sortable-list-container
   %ol.sortable{data: {:"sort-url" => sort_admin_pages_url }}
     = render partial: 'page', collection: @pages.roots
-
-= link_to "Nieuwe pagina", new_admin_page_path, class: 'button button-primary', data: {icon: 't'}

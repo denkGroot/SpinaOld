@@ -1,3 +1,6 @@
+.filters
+  = link_to "Nieuwe gebruiker", new_admin_user_path, class: 'button button-primary', data: {icon: 't'}
+
 .table-container
   %table.table
     %thead
@@ -16,5 +19,3 @@
             - if user.last_logged_in.present?
               = time_ago_in_words(user.last_logged_in) + " geleden"
           %td= link_to "Bewerken", edit_admin_user_path(user), class: 'button button-small', data: {icon: 'q'}
-
-= link_to "Nieuwe gebruiker", new_admin_user_path, class: 'button button-primary', data: {icon: 't'}
