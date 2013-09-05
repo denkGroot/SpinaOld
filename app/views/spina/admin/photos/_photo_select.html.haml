@@ -4,11 +4,7 @@
     %h3 Afbeelding invoegen
 
   %section
-    .gallery-select.gallery
-      .item
-        = form_for [:admin, Spina::Photo.new], html: {multipart: true} do |f|
-          = f.file_field :file, data: {customfileinput: true}
-      
+    .gallery-select.gallery      
       = form_tag insert_photo_admin_photos_path(params[:page_part_id]), remote: true do
         - Spina::Photo.all.each do |photo|
           .item
