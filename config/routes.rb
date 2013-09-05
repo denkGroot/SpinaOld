@@ -21,14 +21,16 @@ Spina::Engine.routes.draw do
 
     # Media library
     get 'media_library' => 'photos#index', as: "media_library"
-    get 'photo_select/:page_part_id' => 'photos#photo_select', as: "photo_select"
-    post 'photo_select/:page_part_id' => 'photos#insert_photo', as: "insert_photo"
 
     resources :pages do
       post :sort, on: :collection
     end
 
     resources :photos do
+      collection do
+        get 'photo_select/:page_part_id' => 'photos#photo_select', as: :photo_select
+        post 'insert_photo/:page_part_id' => 'photos#insert_photo', as: :insert_photo
+      end
       member do
         post :enhance
         get :link

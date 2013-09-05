@@ -9,7 +9,7 @@
         = form_for [:admin, Spina::Photo.new], html: {multipart: true} do |f|
           = f.file_field :file, data: {customfileinput: true}
       
-      = form_tag "/admin/photo_select/#{params[:page_part_id]}", remote: true do
+      = form_tag insert_photo_admin_photos_path(params[:page_part_id]), remote: true do
         - Spina::Photo.all.each do |photo|
           .item
             .overlay= radio_button_tag :photo_id, photo.id
