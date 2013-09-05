@@ -23,8 +23,7 @@ module Spina
       else
         page_parts = Engine.config.PAGE_TYPES["default"]
       end
-      logger.debug ">" + page_parts.select{|page_part|  page_part[:tag] == self.tag }.inspect
-      page_parts.select{|page_part|  page_part[:tag] == self.tag }.first[:position]
+      page_parts.index { |page_part| page_part[:tag] == self.tag }
     end
 
     def content
