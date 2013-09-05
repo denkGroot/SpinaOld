@@ -7,6 +7,7 @@ module Spina
 
     attr_accessible :file
 
+    scope :sorted, -> { order('created_at DESC') }
 
     validates_presence_of :file
 

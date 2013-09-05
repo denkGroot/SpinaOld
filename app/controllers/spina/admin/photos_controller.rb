@@ -10,7 +10,7 @@ module Spina
 
       def index
         add_breadcrumb "Afbeeldingen", admin_photos_path
-        @photos = Photo.all
+        @photos = Photo.sorted
         @photo = Photo.new
       end
 
@@ -32,9 +32,13 @@ module Spina
       end
 
       def photo_select
+        @photos = Photo.sorted
+        @photo = Photo.new
       end
 
       def photo_collection_select
+        @photos = Photo.sorted
+        @photo = Photo.new
       end
 
       def insert_photo

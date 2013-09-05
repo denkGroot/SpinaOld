@@ -1,5 +1,7 @@
 .item
   .overlay
+    = radio_button_tag :photo_id, photo.id
+    = check_box_tag 'photo_ids[]', photo.id
     = link_to '', link_admin_photo_path(photo), class: 'icon-only', remote: true, data: {icon: 'P'}
     = link_to '', admin_photo_path(photo), method: :delete, confirm: "Weet je zeker dat je deze <strong>foto</strong> wilt verwijderen?", class: 'icon-only', data: {icon: 'Q'}
   = image_tag photo.file.thumb.url, id: "photo_#{photo.id}", data: {posturl: enhance_admin_photo_path(photo), image: request.protocol + request.host_with_port + photo.file.url}

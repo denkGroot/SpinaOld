@@ -5,8 +5,12 @@
 
   %section
     .gallery-select.gallery{data: {multiselect: true}}
-      = form_tag insert_photo_collection_admin_photos_path(params[:page_part_id]), remote: true do
-        - Spina::Photo.all.each do |photo|
+      .item
+        = form_for [:admin, @photo], html: {multipart: true} do |f|
+          = f.file_field :file, data: {customfileinput: true}
+          
+      = form_tag insert_photo_collection_admin_photos_path(params[:page_part_id]), remote: true, class: 'gallery-prepend-image' do
+        - @photos.each do |photo|
           .item
             .overlay= check_box_tag 'photo_ids[]', photo.id
             = image_tag photo.file.thumb
