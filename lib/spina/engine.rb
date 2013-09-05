@@ -15,6 +15,7 @@ require 'redcarpet'
 require 'negative_captcha'
 require 'filters_spam'
 require 'ancestry'
+require 'breadcrumbs_on_rails'
 
 module Spina
   class Engine < ::Rails::Engine
@@ -33,14 +34,12 @@ module Spina
       end
     end
 
-
-
     config.to_prepare &method(:require_decorators).to_proc
     config.autoload_paths += %W(#{config.root}/lib)
-    
+
     config.use_view_templates = false
     config.view_template_whitelist = ['home', 'show']
-    
+
     config.use_layout_templates = false
     config.layout_template_whitelist = ['application']
 
