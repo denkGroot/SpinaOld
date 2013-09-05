@@ -5,6 +5,6 @@
         .image
           = image_tag photo.file.thumb
     - else
-      .image.placeholder
+      .placeholder
         %span{data: {icon: 't'}} Kies uit bibliotheek
     = form.hidden_field "photo_ids", value: form.object.photo_ids.join(",")
