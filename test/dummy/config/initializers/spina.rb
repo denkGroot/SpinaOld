@@ -14,33 +14,15 @@ Spina::Engine.configure do
         tag: 'content',
         name: "Inhoud",
         page_partable_type: "Text"
+      }, {
+        tag: 'file',
+        name: "PDF",
+        page_partable_type: 'Spina::Attachment'
+      }, {
+        tag: 'file',
+        name: "Bijlagen",
+        page_partable_type: 'Spina::AttachmentCollection'
       }
-      # }, {
-      #   tag: 'file',
-      #   name: 'Super PDF',
-      #   page_partable_type: 'Spina::Attachment',
-      #   position: 2
-      # }, {
-      #   tag: 'files',
-      #   name: 'Bijlagen',
-      #   page_partable_type: 'Spina::AttachmentCollection',
-      #   position: 3
-      # }, {
-      #   tag: 'new',
-      #   name: 'Nieuw',
-      #   page_partable_type: 'Text',
-      #   position: 4
-      # }, {
-      #   tag: 'left',
-      #   name: 'Links',
-      #   page_partable_type: 'Text',
-      #   position: 5
-      # }, {
-      #   tag: 'right',
-      #   name: 'Rechts',
-      #   page_partable_type: 'Text',
-      #   position: 6
-      # }
     ],
 
     'homepage' => [
