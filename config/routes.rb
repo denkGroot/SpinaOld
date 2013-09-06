@@ -60,6 +60,9 @@ Spina::Engine.routes.draw do
     resources plugin.controller.downcase.to_sym, path: plugin.path
   end
 
+  # Inquiries
+  resources :inquiries
+
   # Sitemap
   resource :sitemap
 
