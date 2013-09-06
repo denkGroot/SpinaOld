@@ -4,17 +4,22 @@
     %h3 Document invoegen
 
   %section
-    .gallery-select.gallery
-      .item
-        = form_for [:admin, @attachment], html: {multipart: true} do |f|
-          = f.file_field :file, data: {customfileinput: true}
+    -# = form_for [:admin, @attachment], html: {multipart: true} do |f|
+    -#   = f.file_field :file, data: {customfileinput: true}
 
-      = form_tag insert_admin_attachments_path(params[:page_part_id]), remote: true, class: 'gallery-prepend-image' do
-        - @attachments.each do |attachment|
-          .item
-            .overlay= radio_button_tag :attachment_id, attachment.id
-            = attachment.name
+    = form_tag insert_admin_attachments_path(params[:page_part_id]), remote: true, class: 'gallery-prepend-attachment' do
+      .table-container
+        %table.table.table-clickable
+          %thead
+            %tr
+              %th 
+              %th Bestandsnaam
+          %tbody
+            - @attachments.each do |attachment|
+              %tr
+                %td= radio_button_tag :attachment_id, attachment.id
+                %td= attachment.name
 
-        %footer
-          = link_to "Annuleren", "#", data: {dismiss: 'modal'}
-          = button_tag "Document invoegen", type: 'submit', class: 'primary', data: {icon: 't '}
+      %footer
+        = link_to "Annuleren", "#", data: {dismiss: 'modal'}
+        = button_tag "Document invoegen", type: 'submit', class: 'primary', data: {icon: 't '}
