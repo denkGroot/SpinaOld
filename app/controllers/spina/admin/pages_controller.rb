@@ -1,7 +1,7 @@
 module Spina
   module Admin
     class PagesController < AdminController
-      
+
       before_action :load_valid_templates, only: [:new, :edit, :update, :create]
       skip_before_action :verify_authenticity_token, only: [:create, :update]
 
@@ -27,7 +27,7 @@ module Spina
         @page_parts
 
       end
-     
+
       def create
         add_breadcrumb "Nieuwe pagina"
         if @page.save
@@ -38,7 +38,6 @@ module Spina
             page_part.page = @page
             page_part
           end
-          flash.now[:alert] = "De pagina kan nog niet opgeslagen worden."
           render :new
         end
       end
@@ -46,7 +45,7 @@ module Spina
       def edit
         add_breadcrumb @page.title
         @page_parts = Engine.config.PAGE_TYPES.keys.include?(@page.name) ? Engine.config.PAGE_TYPES[@page.name] || [] : Engine.config.default_page_parts
-        @page_parts = @page_parts.map do |page_part|        
+        @page_parts = @page_parts.map do |page_part|
           page_part = @page.page_parts.where(tag: page_part[:tag]).limit(1).first || @page.page_parts.build(page_part)
           page_part.page_partable = page_part.page_partable_type.constantize.new() unless page_part.page_partable.present? ||["Text", "Line"].include?(page_part.page_partable_type)
           page_part
@@ -66,7 +65,6 @@ module Spina
             page_part.page = @page
             page_part
           end
-          flash.now[:alert] = "De pagina kan nog niet opgeslagen worden."
           render :edit
         end
       end

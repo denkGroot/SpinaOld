@@ -24,7 +24,7 @@ nl:
     - vri
     - zat
     abbr_month_names:
-    - 
+    -
     - jan
     - feb
     - mar
@@ -50,7 +50,7 @@ nl:
       long: ! '%e %B %Y'
       short: ! '%e %b'
     month_names:
-    - 
+    -
     - januari
     - februari
     - maart
@@ -134,6 +134,10 @@ nl:
       too_long: is te lang (maximaal %{count} tekens)
       too_short: is te kort (minimaal %{count} tekens)
       wrong_length: heeft onjuiste lengte (moet %{count} tekens lang zijn)
+      not_saved:
+        one: "1 fout zorgde ervoor dat %{resource} niet kon worden opgeslagen:"
+        other: "%{count} fouten zorgde ervoor dat %{resource} niet kon worden opgeslagen:"
+
     template:
       body: ! 'Controleer de volgende velden:'
       header:

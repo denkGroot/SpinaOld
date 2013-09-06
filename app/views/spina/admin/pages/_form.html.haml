@@ -1,14 +1,6 @@
-- if @page.errors.any?
-  - content_for :notification_alert do
-    .notification.notification-error{data: {icon: 'm'}}
-      %p 
-        De pagina kan niet worden opgeslagen
-        %small
-          - @page.errors.full_messages.each do |msg|
-            = msg
-            %br/
-
 = form_for [:admin, @page], multipart: true, html: {autocomplete: "off"} do |f|
+  - content_for :notification_alert do
+    = error_explanation!(@page)
 
   #page_content.tab-content.active
     .table-container
@@ -36,7 +28,7 @@
               - when "Text"
                 = render partial: "spina/admin/page_partables/text_form", object: page_part_form
 
-              - else 
+              - else
                 = render partial: "spina/admin/page_partables/#{page_part_form.object.page_partable_type.demodulize.underscore}_form", object: page_part_form
 
   #page_seo.tab-content
@@ -71,7 +63,7 @@
             = f.check_box :show_in_menu, data: {switch: true}
         %tr
           %td
-            Doorsturen 
+            Doorsturen
             %small Doorsturen naar eerste onderliggende pagina
           %td
             = f.check_box :skip_to_first_child, data: {switch: true}
@@ -92,7 +84,7 @@
 
   %button.button.button-primary{type: 'submit', data: {icon: 'o'}}
     Pagina opslaan
-  
+
   = link_to "Annuleren", admin_pages_path, class: 'button button-link'
 
   - unless @page.new_record? || !@page.deletable
