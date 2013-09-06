@@ -9,6 +9,7 @@ module Spina
         can :manage, Page
         can :manage, Photo
         can :manage, Account
+        can :manage, Inquiry
 
         Engine.config.plugins.each do |plugin|
           can :manage, "#{plugin.class_name}".constantize

@@ -6,7 +6,7 @@ module Spina
 
       add_breadcrumb "Mediabibliotheek", :admin_media_library_path
 
-      layout "spina/admin/website"
+      layout "spina/admin/media_library"
 
       def index
         add_breadcrumb "Afbeeldingen", admin_photos_path

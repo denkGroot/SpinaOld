@@ -1,16 +1,3 @@
-- content_for(:tertiary_navigation) do
-  %nav.tabs
-    %ul
-      %li{class: ('active' if controller_name == "photos")}
-        = link_to admin_photos_path do
-          Afbeeldingen
-      %li
-        = link_to '#' do
-          Video's
-      %li
-        = link_to '#' do
-          Documenten
-
 .gallery
   .item
     = form_for [:admin, @photo], html: {multipart: true} do |f|

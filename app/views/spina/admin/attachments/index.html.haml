@@ -1,0 +1,18 @@
+.table-container
+  %table.table
+    %thead
+      %tr
+        %th Bestandsnaam
+        %th Grootte
+        %th Aangemaakt op
+        %th 
+
+    %tbody
+      - @attachments.each do |attachment|
+        %tr
+          %td= attachment.name
+          %td.nowrap= number_to_human_size(attachment.file.size)
+          %td.nowrap
+            %small= l attachment.created_at, format: '%d %B %Y %H:%M'
+          %td.nowrap
+            = link_to "Verwijderen", "#", class: 'button button-link button-danger button-small', confirm: "Weet je zeker dat je het <strong>bestand</strong> wilt verwijderen?"

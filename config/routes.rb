@@ -26,6 +26,13 @@ Spina::Engine.routes.draw do
       post :sort, on: :collection
     end
 
+    resources :attachments do
+      collection do
+        get 'select/:page_part_id' => 'attachments#select', as: :select
+        post 'insert/:page_part_id' => 'attachments#insert', as: :insert
+      end
+    end
+
     resources :photos do
       collection do
         get 'photo_select/:page_part_id' => 'photos#photo_select', as: :photo_select
