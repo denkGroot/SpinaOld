@@ -14,13 +14,13 @@
         = f.fields_for :page_parts, @page_parts.sort { |a,b| a.position <=> b.position } do |page_part_form|
           %tr
             %td
+              %label= page_part_form.object
+            %td
               = page_part_form.hidden_field :id
               = page_part_form.hidden_field :name
               = page_part_form.hidden_field :page_partable_type
               = page_part_form.hidden_field :tag
 
-              %label= page_part_form.object
-            %td
               - case page_part_form.object.page_partable_type
               - when "Line"
                 = render partial: "spina/admin/page_partables/line_form", object: page_part_form
