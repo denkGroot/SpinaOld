@@ -73,14 +73,16 @@
             %td
               Layout template
             %td
-              = f.select :layout_template, @valid_layout_templates, template_options(:layout_template, @page)
+              .select-dropdown
+                = f.select :layout_template, @valid_layout_templates, template_options(:layout_template, @page)
 
         - if Spina::Engine.config.use_view_templates
           %tr
             %td
               Pagina template
             %td
-              = f.select :view_template, @valid_view_templates, template_options(:view_template, @page)
+              .select-dropdown
+                = f.select :view_template, @valid_view_templates, template_options(:view_template, @page)
 
   %button.button.button-primary{type: 'submit', data: {icon: 'o'}}
     Pagina opslaan
