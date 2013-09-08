@@ -11,7 +11,7 @@
       %li{class: ('active' if params[:controller] == "spina/admin/photos" || params[:controller] == "spina/admin/attachments")}
         = link_to admin_photos_path, data: {icon: 'N'} do
           Mediabibliotheek
-          %small Hier staan alle afbeeldingen, video's en documenten
+          %small Hier staan al je afbeeldingen, video's en documenten
 
       - Spina::Engine.config.plugins.each do |plugin|
         
