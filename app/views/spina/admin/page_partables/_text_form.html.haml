@@ -1,8 +1,9 @@
-.wysihtml5-container
+.wysihtml5-container{data: {:"object-id" => text_form.object.object_id}}
   .toolbar{id: "wysihtml5-toolbar-#{text_form.object.object_id}"}
     = link_to "", "#", class: 'command command-bold', title: "CTRL+B", data: {:"wysihtml5-command" => "bold", icon: 'H'}
     = link_to "", "#", class: 'command command-italic', title: "CTRL+I", data: {:"wysihtml5-command" => "italic", icon: 'G'}
     = link_to "", "#", class: 'command command-insert-unordered-list', data: {:"wysihtml5-command" => "insertUnorderedList", icon: 'F'}
+    = link_to "", wysihtml5_select_admin_photos_path(text_form.object.object_id), class: 'command', data: {icon: 'U'}, remote: true
 
     .pull-right
       .choose-text-type

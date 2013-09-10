@@ -48,6 +48,15 @@ module Spina
       def insert_photo_collection
         @photos = Photo.find(params[:photo_ids])
       end
+
+      def wysihtml5_insert
+        @photo = Photo.find(params[:photo_id])
+      end
+
+      def wysihtml5_select
+        @photos = Photo.sorted
+        @photo = Photo.new
+      end
       
     end
   end
