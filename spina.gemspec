@@ -7,8 +7,8 @@ require 'spina/version'
 Gem::Specification.new do |s|
   s.name        = 'spina'
   s.version     = Spina::VERSION
-  s.authors     = ['Bram Jetten']
-  s.email       = ['bram@denkgroot.com']
+  s.authors     = ['Bram Jetten', 'Harm de Wit']
+  s.email       = ['bram@denkgroot.com', 'harm@denkgroot.com']
   s.homepage    = 'http://www.denkgroot.com'
   s.summary     = 'Spina'
   s.description = 'CMS'
