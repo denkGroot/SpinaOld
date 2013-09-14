@@ -24,12 +24,6 @@ Spina::Engine.routes.draw do
 
     resources :pages do
       post :sort, on: :collection
-      resources :page_parts do
-        member do
-          get 'select'
-          post 'insert'
-        end
-      end
     end
 
     resources :attachments do
