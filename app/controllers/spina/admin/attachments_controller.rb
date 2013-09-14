@@ -31,6 +31,15 @@ module Spina
       def insert
         @attachment = Attachment.find(params[:attachment_id])
       end
+
+      def select_collection
+        @attachments = Attachment.file_attached.sorted
+        @attachment = Attachment.new
+      end
+
+      def insert_collection
+        @attachments = Attachment.find(params[:attachment_ids])
+      end
     end
   end
 end
