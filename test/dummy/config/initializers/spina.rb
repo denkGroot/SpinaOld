@@ -2,7 +2,7 @@ Spina::Engine.configure do
 
   config.PAGE_TYPES = {
     'default' => [
-      { 
+      {
         tag: 'header',
         name: 'Headerfoto',
         page_partable_type: 'Spina::Photo'
@@ -41,7 +41,7 @@ Spina::Engine.configure do
   }
 
 
-  
+
   config.default_page_parts = config.PAGE_TYPES['default']
   config.custom_pages = config.PAGE_TYPES.reject { |page_part| page_part == "default" }.keys
 
@@ -111,5 +111,27 @@ Spina::Engine.configure do
 
   # config.absolute_page_links = false
 
+
+# Spina::Portfolio::Engine do
+
+#   config.page_parts = [
+#     { name: 'main', title: 'Inhoud', type: Text },
+#     { name: 'aside', title: 'Zijbalk', type: Text },
+#     { name: 'gallery', title: 'Gallerij', type: PhotoCollection }
+#   ]
+
+#   config.view_template = [
+#     { name: 'show', title: 'Standaard', page_parts: ['main', 'aside'] },
+#     { name: 'homepage', title: 'Homepage', page_parts: ['main'] },
+#     { name: 'gallery', title: 'Fotogallerij', page_parts: ['gallery'] }
+#   ]
+
+#   config.plugins = [
+#     Portfolio,
+#     News,
+#     Blog
+#   ]
+
+end
 
 end
