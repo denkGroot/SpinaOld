@@ -1,6 +1,6 @@
 .filters
   = link_to "Nieuwe pagina", new_admin_page_path, class: 'button button-primary', data: {icon: 't'}
 
-.dd
-  %ol.dd-list{data: {:"sort-url" => sort_admin_pages_url }}
+.dd{data: {:"sort-url" => sort_admin_pages_url }}
+  %ol.dd-list
     = render partial: 'page', collection: @pages.roots

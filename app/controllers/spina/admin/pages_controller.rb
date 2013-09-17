@@ -69,15 +69,17 @@ module Spina
         end
       end
 
-      # Based upon https://github.com/patrickshannon/Nested-Drag-and-Drop-with-Ancestry/blob/master/app/controllers/categories_controller.rb
       def sort
-        params[:page].sort { |a, b| a <=> b }.each_with_index do |id, index|
-          value = id[1][:id]
-          position = id[1][:position]
-          position = position.to_i + 1
-          parent = id[1][:parent_id]
-          parent = nil if parent == 'null'
-          Page.update(value, position: position, parent_id: parent)
+        params[:list].each do |id|
+          if id[1][:children].present?
+            id[1][:children].each do |child|
+              if child[1][:children].present?
+                child[1][:children].each { |child_child| Page.update(child_child[1][:id], position: child_child[0].to_i + 1, parent_id: child[1][:id]) }
+              end
+            end
+            id[1][:children].each { |child| Page.update(child[1][:id], position: child[0].to_i + 1, parent_id: id[1][:id]) }
+          end
+          Page.update(id[1][:id], position: id[0].to_i + 1, parent_id: nil)
         end
         render nothing: true
       end

@@ -90,6 +90,8 @@ module Spina
     private
 
     def generate_materialized_path
+      logger.info self.inspect
+      logger.info self.parent.inspect
       case self.depth
       when 0
         "/#{slug}"
