@@ -1,6 +1,5 @@
 module Spina
   class PagesController < ApplicationController
-
     before_action :find_page
     before_action :current_user_can_view_page?
 
@@ -49,14 +48,7 @@ module Spina
 
     def render_options_for_template(page)
       render_options = {}
-      if Engine.config.use_layout_templates && page.layout_template.present?
-        render_options[:layout] = "spina/#{page.layout_template}"
-      end
-      if Engine.config.use_view_templates && page.view_template.present?
-        render_options[:template] = "spina/pages/#{page.view_template}"
-      else
-        render_options[:template] = "spina/pages/show"
-      end
+      render_options[:template] = "spina/pages/#{page.view_template}"
       render_options
     end
 
@@ -64,7 +56,5 @@ module Spina
       render_options.update render_options_for_template(page)
       render render_options
     end
-
-
   end
 end
