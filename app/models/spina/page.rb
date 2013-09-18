@@ -70,8 +70,8 @@ module Spina
       content(page_part).present?
     end
 
-    def content(page_part_tag)
-      page_part = page_parts.where(tag: page_part_tag).first
+    def content(page_part)
+      page_part = page_parts.where(name: page_part).first
       page_part.try(:content)
     end
 
