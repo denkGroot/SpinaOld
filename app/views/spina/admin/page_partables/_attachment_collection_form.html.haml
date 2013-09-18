@@ -1,5 +1,9 @@
 = attachment_collection_form.fields_for :page_partable, attachment_collection_form.object.page_partable do |form|
-  = form.fields_for :attachments do |attachment_form|
-    = render 'attachment_fields', f: attachment_form
-
-  = link_to_add_fields "Bestand toevoegen", form, :attachments
+  = link_to select_collection_admin_attachments_path(form.object_name), remote: true, class: "media_picker" do
+    - if form.object.attachments.any?
+      - form.object.attachments.each do |attachment|
+        .attachment= attachment.name
+    - else
+      .placeholder
+        %span{data: {icon: 't'}} Kies uit bibliotheek
+    = form.hidden_field :attachment_tokens, value: form.object.attachment_ids.join(",")

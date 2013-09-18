@@ -14,13 +14,13 @@
         = f.fields_for :page_parts, @page_parts.sort { |a,b| a.position <=> b.position } do |page_part_form|
           %tr
             %td
+              %label= page_part_form.object
+            %td
               = page_part_form.hidden_field :id
               = page_part_form.hidden_field :name
               = page_part_form.hidden_field :page_partable_type
               = page_part_form.hidden_field :tag
 
-              %label= page_part_form.object
-            %td
               - case page_part_form.object.page_partable_type
               - when "Line"
                 = render partial: "spina/admin/page_partables/line_form", object: page_part_form
@@ -73,14 +73,16 @@
             %td
               Layout template
             %td
-              = f.select :layout_template, @valid_layout_templates, template_options(:layout_template, @page)
+              .select-dropdown
+                = f.select :layout_template, @valid_layout_templates, template_options(:layout_template, @page)
 
         - if Spina::Engine.config.use_view_templates
           %tr
             %td
               Pagina template
             %td
-              = f.select :view_template, @valid_view_templates, template_options(:view_template, @page)
+              .select-dropdown
+                = f.select :view_template, @valid_view_templates, template_options(:view_template, @page)
 
   %button.button.button-primary{type: 'submit', data: {icon: 'o'}}
     Pagina opslaan

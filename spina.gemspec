@@ -7,8 +7,8 @@ require 'spina/version'
 Gem::Specification.new do |s|
   s.name        = 'spina'
   s.version     = Spina::VERSION
-  s.authors     = ['Bram Jetten']
-  s.email       = ['bram@denkgroot.com']
+  s.authors     = ['Bram Jetten', 'Harm de Wit']
+  s.email       = ['bram@denkgroot.com', 'harm@denkgroot.com']
   s.homepage    = 'http://www.denkgroot.com'
   s.summary     = 'Spina'
   s.description = 'CMS'
@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave'
   s.add_dependency 'mini_magick'
   s.add_dependency 'cancan'
-  # s.add_dependency 'friendly_id'
+  s.add_dependency 'friendly_id'
   s.add_dependency 'redcarpet'
   s.add_dependency 'filters_spam', '~> 0.3'
   s.add_dependency 'negative_captcha'

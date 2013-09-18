@@ -19,7 +19,7 @@ Spina::Engine.configure do
         name: "PDF",
         page_partable_type: 'Spina::Attachment'
       }, {
-        tag: 'file',
+        tag: 'files',
         name: "Bijlagen",
         page_partable_type: 'Spina::AttachmentCollection'
       }

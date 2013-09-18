@@ -22,6 +22,8 @@
 
     %section#main
       %header#main_content_header
+        .pull-right
+          = link_to "Bekijk je website", "/", class: 'button button-hollow button-round button-small', data: {:"no-turbolink" => true, icon: "W"}
         .breadcrumbs= render_breadcrumbs separator: '<div class="divider"></div>'
         = yield(:tertiary_navigation) if content_for?(:tertiary_navigation)
 

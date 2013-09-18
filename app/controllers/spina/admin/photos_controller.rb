@@ -6,7 +6,7 @@ module Spina
 
       add_breadcrumb "Mediabibliotheek", :admin_media_library_path
 
-      layout "spina/admin/website"
+      layout "spina/admin/media_library"
 
       def index
         add_breadcrumb "Afbeeldingen", admin_photos_path
@@ -47,6 +47,15 @@ module Spina
 
       def insert_photo_collection
         @photos = Photo.find(params[:photo_ids])
+      end
+
+      def wysihtml5_insert
+        @photo = Photo.find(params[:photo_id])
+      end
+
+      def wysihtml5_select
+        @photos = Photo.sorted
+        @photo = Photo.new
       end
       
     end

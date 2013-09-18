@@ -8,10 +8,10 @@
           Pagina's
           %small Alle pagina's op je website
 
-      %li{class: ('active' if params[:controller] == "spina/admin/photos")}
+      %li{class: ('active' if params[:controller] == "spina/admin/photos" || params[:controller] == "spina/admin/attachments")}
         = link_to admin_photos_path, data: {icon: 'N'} do
           Mediabibliotheek
-          %small Hier staan alle afbeeldingen, video's en documenten
+          %small Hier staan al je afbeeldingen, video's en documenten
 
       - Spina::Engine.config.plugins.each do |plugin|
         
@@ -20,7 +20,7 @@
             Plugin
             %small= plugin.to_s.capitalize
 
-- content_for :content do
-  = yield
-
+- content_for(:content) do
+  = content_for?(:website_content) ? yield(:website_content) : yield
+  
 = render template: "layouts/spina/admin/application"

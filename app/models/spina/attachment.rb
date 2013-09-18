@@ -7,6 +7,9 @@ module Spina
     attr_accessible :file, :page_id, :_destroy
     attr_accessor :_destroy
 
+    scope :sorted, -> { order('created_at DESC') }
+    scope :file_attached, -> { where('file IS NOT NULL') }
+
     mount_uploader :file, FileUploader
 
     def name
