@@ -57,15 +57,21 @@ module Spina
         if @page.update_attributes(params[:page])
           respond_to do |format|
             format.html { redirect_to admin_pages_url, notice: "#{@page.title} opgeslagen" }
+            format.json { respond_with_bip(@page) }
             format.js
           end
         else
-          @page_parts = @page.page_parts
-          @page_parts = @page_parts.map do |page_part|
-            page_part.page = @page
-            page_part
+          respond_to do |format|
+            format.html do
+              @page_parts = @page.page_parts
+              @page_parts = @page_parts.map do |page_part|
+                page_part.page = @page
+                page_part
+              end
+              render :edit
+            end
+            format.json { respond_with_bip(@page) }
           end
-          render :edit
         end
       end
 

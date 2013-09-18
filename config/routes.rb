@@ -26,6 +26,8 @@ Spina::Engine.routes.draw do
       post :sort, on: :collection
     end
 
+    resources :page_parts
+
     resources :attachments do
       collection do
         get 'select/:page_part_id' => 'attachments#select', as: :select
