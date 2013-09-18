@@ -1,3 +1,26 @@
+module Spina
+  class ThemeCollection
+    extend Forwardable
+
+    attr_reader :themes
+
+    def initialize
+      @themes = []
+    end
+
+    def_delegators :@themes, :<<
+
+    def self.registered
+      @registered_themes ||= new
+    end
+
+    def self.active_theme
+      @registered_themes.themes.first
+    end
+  end
+end
+
+
 # module Refinery
 #   class Plugins
 #     include Enumerable

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130730185551) do
+ActiveRecord::Schema.define(version: 20130918133920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 20130730185551) do
   end
 
   create_table "spina_page_parts", force: true do |t|
+    t.string   "title"
     t.string   "name"
-    t.string   "tag"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "page_id"

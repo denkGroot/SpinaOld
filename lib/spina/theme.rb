@@ -1,3 +1,14 @@
+module Spina
+  class Theme
+
+    attr_accessor :name, :config
+
+    def register
+      ::Spina::ThemeCollection.registered << self
+    end
+  end
+end
+
 # module Spina
 #   class Plugin
 

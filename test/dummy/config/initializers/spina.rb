@@ -1,5 +1,7 @@
 Spina::Engine.configure do
 
+  config.default_theme = "Business"
+
   config.PAGE_TYPES = {
     'default' => [
       {
@@ -131,7 +133,5 @@ Spina::Engine.configure do
 #     News,
 #     Blog
 #   ]
-
-end
 
 end

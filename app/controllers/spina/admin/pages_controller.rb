@@ -17,7 +17,8 @@ module Spina
 
       def new
         add_breadcrumb "Nieuwe pagina"
-        @page_parts = Engine.config.PAGE_TYPES.keys.include?(@page.name) ? Engine.config.page_parts[@page.name] || [] : Engine.config.default_page_parts
+
+        @page_parts = current_theme.page_parts
         @page_parts = @page_parts.map do |page_part|
           page_part = @page.page_parts.build(page_part)
           page_part.page = @page
@@ -44,9 +45,10 @@ module Spina
 
       def edit
         add_breadcrumb @page.title
-        @page_parts = Engine.config.PAGE_TYPES.keys.include?(@page.name) ? Engine.config.PAGE_TYPES[@page.name] || [] : Engine.config.default_page_parts
+        
+        @page_parts = current_theme.page_parts
         @page_parts = @page_parts.map do |page_part|
-          page_part = @page.page_parts.where(tag: page_part[:tag]).limit(1).first || @page.page_parts.build(page_part)
+          page_part = @page.page_parts.where(name: page_part[:name]).limit(1).first || @page.page_parts.build(page_part)
           page_part.page_partable = page_part.page_partable_type.constantize.new() unless page_part.page_partable.present? ||["Text", "Line"].include?(page_part.page_partable_type)
           page_part
         end

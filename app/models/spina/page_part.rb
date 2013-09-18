@@ -4,12 +4,12 @@ module Spina
     belongs_to :page
     belongs_to :page_partable, polymorphic: true, dependent: :destroy
 
-    attr_accessible :page_partable_type, :page_partable_id, :name, :position, :tag, :content, :page_id, :page_partable_attributes
+    attr_accessible :page_partable_type, :page_partable_id, :name, :title, :position, :content, :page_id, :page_partable_attributes
     accepts_nested_attributes_for :page_partable, allow_destroy: true
     attr_accessor :position
 
-    validates_presence_of :name, :page_partable_type, :tag
-    validates_uniqueness_of :tag, scope: :page_id
+    validates_presence_of :name, :page_partable_type, :title
+    validates_uniqueness_of :name, scope: :page_id
 
     scope :sorted, -> { order(:position) }
 
@@ -23,7 +23,7 @@ module Spina
       else
         page_parts = Engine.config.PAGE_TYPES["default"]
       end
-      page_parts.index { |page_part| page_part[:tag] == self.tag }
+      page_parts.index { |page_part| page_part[:name] == self.name }
     end
 
     def content

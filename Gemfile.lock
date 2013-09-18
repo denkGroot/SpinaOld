@@ -42,6 +42,13 @@ PATH
       neat
       rails (~> 4.0.0)
 
+PATH
+  remote: ~/Desktop/spina-themes-business
+  specs:
+    spina-themes-business (0.0.1)
+      rails (~> 4.0.0)
+      spina (~> 0.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -215,4 +222,5 @@ DEPENDENCIES
   quiet_assets
   spina!
   spina-template!
+  spina-themes-business!
   sqlite3

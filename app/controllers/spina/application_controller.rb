@@ -17,5 +17,11 @@ module Spina
     end
     helper_method :current_user
 
+    # TODO: Current thema setten
+    def current_theme
+      @current_theme = ::Spina.themes.first
+    end
+    helper_method :current_theme
+
   end
 end
