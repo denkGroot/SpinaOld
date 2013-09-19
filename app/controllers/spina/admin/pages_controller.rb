@@ -15,7 +15,7 @@ module Spina
       def new
         add_breadcrumb "Nieuwe pagina"
 
-        @page_parts = current_theme.page_parts
+        @page_parts = current_theme.config.page_parts
         @page_parts = @page_parts.map do |page_part|
           page_part = @page.page_parts.build(page_part)
           page_part.page = @page

@@ -19,7 +19,7 @@ module Spina
     end
 
     def position
-      page_parts = current_theme.view_templates[self.page.view_template || "show"][:page_parts]
+      page_parts = current_theme.config.view_templates[self.page.view_template || "show"][:page_parts]
       page_parts.index { |page_part| page_part == self.name }.to_i
     end
 
