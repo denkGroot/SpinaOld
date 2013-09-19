@@ -7,7 +7,6 @@ Spina::Account.destroy_all
 Spina::Account.create name: "Website"
 
 Spina::Page.destroy_all
-%x[rake spina:generate_pages]
 
 Spina::Photo.destroy_all
 ['after sun 2', 'after sun', 'amygdalus', 'at sunset-1', 'colorfull', 'nature tree', 'orchid', 'smooth', 'soft', 'spring memory', 'spring purple', 'spring', 'yew-tree'].each do |image|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130919074023) do
+ActiveRecord::Schema.define(version: 20130919074838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20130919074023) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "page_id"
-    t.text     "content"
     t.integer  "page_partable_id"
     t.string   "page_partable_type"
   end
