@@ -26,7 +26,7 @@ module Spina
     def find_page
       @page ||= case action_name
               when 'homepage'
-                Page.where(name: 'homepage').first
+                Page.where(name: 'homepage').first || Page.first
               when 'show'
                 Page.find(params[:id])
               end
