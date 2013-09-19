@@ -50,11 +50,11 @@ module Spina
     end
 
     def plugin
-      Engine.config.plugins.find { |plugin| plugin.name == name }
+      # Engine.config.plugins.find { |plugin| plugin.name == name }
     end
 
     def is_plugin?
-      Engine.config.plugins.any? { |plugin| plugin.name == name }
+      # Engine.config.plugins.any? { |plugin| plugin.name == name }
     end
 
     def menu_title

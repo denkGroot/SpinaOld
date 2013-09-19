@@ -13,12 +13,12 @@
           Mediabibliotheek
           %small Hier staan al je afbeeldingen, video's en documenten
 
-      - Spina::Engine.config.plugins.each do |plugin|
+      -# - Spina::Engine.config.plugins.each do |plugin|
         
-        %li{class: ('active' if params[:controller] == "spina/admin/#{plugin.controller}")}
-          = link_to method("admin_#{plugin.controller}_path").call, data: {icon: plugin.pictos_icon} do
-            Plugin
-            %small= plugin.to_s.capitalize
+      -#   %li{class: ('active' if params[:controller] == "spina/admin/#{plugin.controller}")}
+      -#     = link_to method("admin_#{plugin.controller}_path").call, data: {icon: plugin.pictos_icon} do
+      -#       Plugin
+      -#       %small= plugin.to_s.capitalize
 
 - content_for(:content) do
   = content_for?(:website_content) ? yield(:website_content) : yield
