@@ -50,5 +50,13 @@ module Spina
       html.html_safe
     end
 
+    def current_theme
+      @current_theme = ::Spina.themes.first
+    end
+
+    def current_user
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    end
+
   end
 end

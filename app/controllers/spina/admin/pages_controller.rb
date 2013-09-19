@@ -2,9 +2,6 @@ module Spina
   module Admin
     class PagesController < AdminController
 
-      before_action :load_valid_templates, only: [:new, :edit, :update, :create]
-      skip_before_action :verify_authenticity_token, only: [:create, :update]
-
       add_breadcrumb "Pagina's", :admin_pages_path
 
       load_and_authorize_resource class: Page
@@ -95,16 +92,6 @@ module Spina
       def destroy
         @page.destroy
         redirect_to admin_pages_url, notice: "De pagina is verwijderd."
-      end
-
-      protected
-
-      def load_valid_templates
-        @valid_layout_templates = Engine.config.layout_template_whitelist &
-                                  Engine.valid_templates('app', 'views', '{layouts,layouts/spina}', '*html*')
-
-        @valid_view_templates = Engine.config.view_template_whitelist &
-                                Engine.valid_templates('app', 'views', '{pages,spina/pages}', '*html*')
       end
 
     end

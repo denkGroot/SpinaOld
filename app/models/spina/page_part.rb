@@ -1,5 +1,6 @@
 module Spina
   class PagePart < ActiveRecord::Base
+    include ApplicationHelper
 
     belongs_to :page
     belongs_to :page_partable, polymorphic: true, dependent: :destroy
@@ -18,20 +19,12 @@ module Spina
     end
 
     def position
-      if Engine.config.PAGE_TYPES.include?(self.page.name)
-        page_parts = Engine.config.PAGE_TYPES[self.page.name]
-      else
-        page_parts = Engine.config.PAGE_TYPES["default"]
-      end
-      page_parts.index { |page_part| page_part[:name] == self.name }
+      page_parts = current_theme.view_templates[self.page.view_template || "show"][:page_parts]
+      page_parts.index { |page_part| page_part == self.name }.to_i
     end
 
     def content
-      if ["Line", "Text"].include? page_partable_type 
-        read_attribute(:content)
-      else
-        self.page_partable.try(:content) || self.page_partable
-      end
+      self.page_partable.try(:content) || self.page_partable
     end
 
     def page_partable_attributes=(attributes)

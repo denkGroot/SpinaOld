@@ -11,7 +11,6 @@ module Spina
     has_many :page_parts, dependent: :destroy
 
     before_validation :ensure_title
-    before_create :set_view_template
     before_save :set_materialized_path
     after_save :save_children
 
@@ -104,12 +103,6 @@ module Spina
 
     def ensure_title
       self.title = self.name.capitalize if self.title.blank? && self.name.present?
-    end
-
-    def set_view_template
-      if Engine.config.use_view_templates
-        self.view_template = self.title.downcase if Engine.config.view_template_whitelist.include? self.title.downcase
-      end
     end
 
   end

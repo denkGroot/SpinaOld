@@ -21,15 +21,7 @@
               = page_part_form.hidden_field :page_partable_type
               = page_part_form.hidden_field :name
 
-              - case page_part_form.object.page_partable_type
-              - when "Line"
-                = render partial: "spina/admin/page_partables/line_form", object: page_part_form
-
-              - when "Text"
-                = render partial: "spina/admin/page_partables/text_form", object: page_part_form
-
-              - else
-                = render partial: "spina/admin/page_partables/#{page_part_form.object.page_partable_type.demodulize.underscore}_form", object: page_part_form
+              = render partial: "spina/admin/page_partables/#{page_part_form.object.page_partable_type.demodulize.underscore}_form", object: page_part_form
 
   #page_seo.tab-content
     .table-container
