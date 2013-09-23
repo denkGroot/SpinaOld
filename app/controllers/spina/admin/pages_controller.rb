@@ -14,16 +14,12 @@ module Spina
 
       def new
         add_breadcrumb "Nieuwe pagina"
-
-        @page_parts = current_theme.config.page_parts
-        @page_parts = @page_parts.map do |page_part|
+        @page_parts = current_theme.config.page_parts.map do |page_part|
           page_part = @page.page_parts.build(page_part)
           page_part.page = @page
-          page_part.page_partable = page_part.page_partable_type.constantize.new unless ["Text", "Line"].include? page_part.page_partable_type
+          page_part.page_partable = page_part.page_partable_type.constantize.new
           page_part
         end
-        @page_parts
-
       end
 
       def create
@@ -31,8 +27,7 @@ module Spina
         if @page.save
           redirect_to admin_pages_url, notice: "#{@page.title} is aangemaakt."
         else
-          @page_parts = @page.page_parts
-          @page_parts = @page_parts.map do |page_part|
+          @page_parts = @page.page_parts.map do |page_part|
             page_part.page = @page
             page_part
           end
@@ -42,11 +37,9 @@ module Spina
 
       def edit
         add_breadcrumb @page.title
-        
-        @page_parts = current_theme.page_parts
-        @page_parts = @page_parts.map do |page_part|
+        @page_parts = current_theme.config.page_parts.map do |page_part|
           page_part = @page.page_parts.where(name: page_part[:name]).limit(1).first || @page.page_parts.build(page_part)
-          page_part.page_partable = page_part.page_partable_type.constantize.new() unless page_part.page_partable.present? ||["Text", "Line"].include?(page_part.page_partable_type)
+          page_part.page_partable = page_part.page_partable_type.constantize.new unless page_part.page_partable.present?
           page_part
         end
       end
@@ -62,8 +55,7 @@ module Spina
         else
           respond_to do |format|
             format.html do
-              @page_parts = @page.page_parts
-              @page_parts = @page_parts.map do |page_part|
+              @page_parts = @page.page_parts.map do |page_part|
                 page_part.page = @page
                 page_part
               end
