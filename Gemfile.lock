@@ -35,14 +35,14 @@ PATH
 PATH
   remote: ~/Desktop/spina-template
   specs:
-    spina-template (0.0.1)
+    spina-template (0.0.2)
       bourbon
       coffee-rails
       jquery-fileupload-rails
       neat
 
 PATH
-  remote: ~/Desktop/spina-themes-business
+  remote: ~/Desktop/spina-themes/spina-themes-business
   specs:
     spina-themes-business (0.0.1)
       rails (~> 4.0.0)
