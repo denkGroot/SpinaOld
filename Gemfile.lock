@@ -40,7 +40,6 @@ PATH
       coffee-rails
       jquery-fileupload-rails
       neat
-      rails (~> 4.0.0)
 
 PATH
   remote: ~/Desktop/spina-themes-business
