@@ -35,12 +35,11 @@ PATH
 PATH
   remote: ~/Desktop/spina-template
   specs:
-    spina-template (0.0.1)
+    spina-template (0.0.2)
       bourbon
       coffee-rails
       jquery-fileupload-rails
       neat
-      rails (~> 4.0.0)
 
 GEM
   remote: http://rubygems.org/

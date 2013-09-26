@@ -3,7 +3,7 @@ source "http://rubygems.org"
 gemspec
 
 gem 'friendly_id', git: 'git@github.com:FriendlyId/friendly_id.git', branch: '5.0-stable'
-gem 'spina-template', path: '~/Desktop/spina-template'
+gem 'spina-template', git: 'git@github.com:Bramjetten/Spina-template.git'
 
 group :development do
   gem 'pg'

@@ -9,11 +9,6 @@ nl:
       one: "1 nieuw bericht"
       other: "%{count} nieuwe berichten"
 
-  backgrounds:
-    city: Stad
-    wood: Hout
-    grunge: Grunge
-
   date:
     abbr_day_names:
     - zon
