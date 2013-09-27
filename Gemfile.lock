@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    spina (0.1.0)
+    spina (0.1.1)
       ancestry
       bcrypt-ruby (~> 3.0.0)
       bourbon
@@ -33,7 +33,7 @@ PATH
       turbolinks
 
 PATH
-  remote: ~/Desktop/spina-template
+  remote: ~/desktop/spina-template
   specs:
     spina-template (0.0.2)
       bourbon
