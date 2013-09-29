@@ -26,7 +26,12 @@ Spina::Engine.routes.draw do
       post :sort, on: :collection
     end
 
-    resources :page_parts
+    resources :page_parts do
+      collection do
+        get 'wysihtml5_link/:object_id' => 'page_parts#wysihtml5_link', as: :wysihtml5_link
+        post 'wysihtml5_link/:object_id' => 'page_parts#insert_wysihtml5_link'
+      end
+    end
 
     resources :attachments do
       collection do

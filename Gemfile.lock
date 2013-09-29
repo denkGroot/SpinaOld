@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    spina (0.1.0)
+    spina (0.1.1)
       ancestry
       bcrypt-ruby (~> 3.0.0)
       bourbon
@@ -84,7 +84,7 @@ GEM
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
-    brakeman (2.1.1)
+    brakeman (2.1.2)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
       haml (>= 3.0, < 5.0)

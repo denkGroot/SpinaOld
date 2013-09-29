@@ -3,7 +3,7 @@ module Spina
     include ApplicationHelper
 
     belongs_to :page
-    belongs_to :page_partable, polymorphic: true, dependent: :destroy
+    belongs_to :page_partable, polymorphic: true
 
     attr_accessible :page_partable_type, :page_partable_id, :name, :title, :position, :content, :page_id, :page_partable_attributes
     accepts_nested_attributes_for :page_partable, allow_destroy: true
