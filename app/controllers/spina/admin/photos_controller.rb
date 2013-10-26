@@ -2,7 +2,7 @@ module Spina
   module Admin
     class PhotosController < AdminController
       
-      load_and_authorize_resource class: Photo
+      authorize_resource class: Photo
 
       add_breadcrumb "Mediabibliotheek", :admin_media_library_path
 
@@ -15,15 +15,17 @@ module Spina
       end
 
       def create
-        @photo = Photo.create(params[:photo])
+        @photo = Photo.create(photo_params)
       end
 
       def destroy
+        @photo = Photo.find(params[:id])
         @photo.destroy
         redirect_to admin_photos_url
       end
 
       def enhance
+        @photo = Photo.find(params[:id])
         @photo.remote_file_url = params[:new_image]
         @photo.save
       end
@@ -56,6 +58,12 @@ module Spina
       def wysihtml5_select
         @photos = Photo.sorted
         @photo = Photo.new
+      end
+
+      private
+
+      def photo_params
+        params.require(:photo).permit(:file)
       end
       
     end

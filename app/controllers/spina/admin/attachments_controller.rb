@@ -2,7 +2,7 @@ module Spina
   module Admin
     class AttachmentsController < AdminController
 
-      load_and_authorize_resource class: Attachment
+      authorize_resource class: Attachment
 
       add_breadcrumb "Mediabibliotheek", :admin_media_library_path
 
@@ -15,10 +15,11 @@ module Spina
       end
 
       def create
-        @attachment = Attachment.create(params[:attachment])
+        @attachment = Attachment.create(attachment_params)
       end
 
       def destroy
+        @attachment = Attachment.find(params[:id])
         @attachment.destroy
         redirect_to admin_attachments_url
       end
@@ -39,6 +40,12 @@ module Spina
 
       def insert_collection
         @attachments = Attachment.find(params[:attachment_ids])
+      end
+
+      private
+
+      def attachment_params
+        params.require(:attachment).permit(:file, :page_id, :_destroy)
       end
     end
   end

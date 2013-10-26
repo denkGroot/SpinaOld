@@ -2,7 +2,7 @@ module Spina
   module Admin
     class AccountsController < AdminController
 
-      load_and_authorize_resource class: Account
+      authorize_resource class: Account
 
       layout "spina/admin/settings"
 

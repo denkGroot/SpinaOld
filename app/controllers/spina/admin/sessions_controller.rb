@@ -10,7 +10,7 @@ module Spina
       end
 
       def create
-        user = User.find_by_email(params[:email])
+        user = User.where(email: params[:email]).first
         if user && user.authenticate(params[:password])
           session[:user_id] = user.id
           user.update_last_logged_in!

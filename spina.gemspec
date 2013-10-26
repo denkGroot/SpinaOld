@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.test_files = Dir['test/**/*']
 
   s.add_dependency 'rails', '~> 4.0.0'
-  s.add_dependency 'protected_attributes' # deprecated
   s.add_dependency 'bcrypt-ruby', '~> 3.0.0'
   s.add_dependency 'haml-rails'
   s.add_dependency 'sass-rails', '~> 4.0.0'

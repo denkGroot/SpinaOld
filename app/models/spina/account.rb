@@ -21,7 +21,6 @@ module Spina
             self.preferences ||= {}
             self.preferences[:#{method_name}] = value
           end
-          attr_accessible :#{method_name}
         "
       end
     end

@@ -4,7 +4,6 @@ module Spina
     before_filter :setup_negative_captcha, :only => [:index, :create]
     before_filter :set_page
 
-
     def index
       @inquiry = Inquiry.new
     end

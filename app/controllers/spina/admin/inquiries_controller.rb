@@ -2,7 +2,7 @@ module Spina
   module Admin
     class InquiriesController < AdminController
 
-      load_and_authorize_resource class: Inquiry
+      authorize_resource class: Inquiry
 
       layout "spina/admin/messages"
 
@@ -23,18 +23,27 @@ module Spina
       end
 
       def mark_as_read
+        @inquiry = Inquiry.find(params[:id])
         @inquiry.update_attribute(:archived, true)
         redirect_to inbox_admin_inquiries_path
       end
 
       def unmark_spam
+        @inquiry = Inquiry.find(params[:id])
         @inquiry.ham!
         redirect_to admin_inquiries_path
       end
 
       def destroy
+        @inquiry = Inquiry.find(params[:id])
         @inquiry.destroy
         redirect_to admin_inquiries_path, notice: "Het bericht is verwijderd."
+      end
+
+      private
+
+      def inquiry_params
+        params.require(:inquiry).permit(:archived, :email, :message, :name, :phone)
       end
     end
   end

@@ -1,7 +1,5 @@
 module Spina
   class User < ActiveRecord::Base
-    attr_accessible :admin, :email, :name, :password_digest, :password, :password_confirmation, :last_logged_in
-
     has_secure_password
 
     validates_presence_of :name, :email

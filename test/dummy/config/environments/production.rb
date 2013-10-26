@@ -5,6 +5,7 @@ Dummy::Application.configure do
   config.cache_classes = true
 
   config.eager_load = true
+  config.assets.js_compressor = :uglifier
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false

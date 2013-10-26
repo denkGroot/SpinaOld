@@ -4,7 +4,7 @@ module Spina
 
       add_breadcrumb "Pagina's", :admin_pages_path
 
-      load_and_authorize_resource class: Page
+      authorize_resource class: Page
 
       layout "spina/admin/website"
 
@@ -13,6 +13,7 @@ module Spina
       end
 
       def new
+        @page = Page.new
         add_breadcrumb "Nieuwe pagina"
         @page_parts = current_theme.config.page_parts.map do |page_part|
           page_part = @page.page_parts.build(page_part)
@@ -23,6 +24,7 @@ module Spina
       end
 
       def create
+        @page = Page.new(page_params)
         add_breadcrumb "Nieuwe pagina"
         if @page.save
           redirect_to admin_pages_url, notice: "#{@page.title} is aangemaakt."
@@ -36,6 +38,7 @@ module Spina
       end
 
       def edit
+        @page = Page.find(params[:id])
         add_breadcrumb @page.title
         @page_parts = current_theme.config.page_parts.map do |page_part|
           page_part = @page.page_parts.where(name: page_part[:name]).limit(1).first || @page.page_parts.build(page_part)
@@ -45,8 +48,9 @@ module Spina
       end
 
       def update
+        @page = Page.find(params[:id])
         add_breadcrumb @page.title
-        if @page.update_attributes(params[:page])
+        if @page.update_attributes(page_params)
           respond_to do |format|
             format.html { redirect_to admin_pages_url, notice: "#{@page.title} opgeslagen" }
             format.json { respond_with_bip(@page) }
@@ -82,8 +86,24 @@ module Spina
       end
 
       def destroy
+        @page = Page.find(params[:id])
         @page.destroy
         redirect_to admin_pages_url, notice: "De pagina is verwijderd."
+      end
+
+      private
+
+      def page_params
+        params.require(:page).permit(:deletable, :description, :menu_title, 
+                                      :position, :show_in_menu, :slug, :title, 
+                                      :parent_id, :name, :seo_title, :layout_template, 
+                                      :view_template, :skip_to_first_child, :draft, 
+                                      :link_url, :materialized_path, 
+                                      page_parts_attributes: 
+                                        [:id, :page_partable_type, :page_partable_id, 
+                                          :name, :title, :position, :content, :page_id, 
+                                          page_partable_attributes: 
+                                            [:content, :photo_tokens, :attachment_tokens, :id]])
       end
 
     end

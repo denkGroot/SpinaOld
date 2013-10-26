@@ -21,7 +21,7 @@ module Spina
       render_with_templates
     end
 
-  private
+    private
 
     def find_page
       @page ||= case action_name
@@ -57,5 +57,6 @@ module Spina
       render_options.update render_options_for_template(page)
       render render_options
     end
+
   end
 end
