@@ -11,7 +11,7 @@ module Spina
       end
 
       def update
-        if current_account.update_attributes(params[:account])
+        if current_account.update_attributes(account_params)
           redirect_to :back, notice: "Voorkeuren zijn bijgewerkt"
         end
       end
@@ -26,6 +26,12 @@ module Spina
 
       def style
         add_breadcrumb "Stijl", style_admin_account_path
+      end
+
+      private
+
+      def account_params
+        params.require(:account).permit(:address, :city, :email, :logo, :name, :phone, :postal_code, :preferences, :google_analytics, :google_site_verification, :facebook, :twitter)
       end
     end
   end    

@@ -1,7 +1,5 @@
 module Spina
   class Account < ActiveRecord::Base
-    attr_accessible :address, :city, :email, :logo, :name, :phone, :postal_code, :preferences
-
     serialize :preferences
 
     mount_uploader :logo, LogoUploader
