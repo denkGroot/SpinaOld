@@ -31,6 +31,7 @@ module Spina
       end
 
       def link
+        @photo = Photo.find(params[:id])
       end
 
       def photo_select
