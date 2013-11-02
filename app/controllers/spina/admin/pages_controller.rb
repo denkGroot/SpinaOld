@@ -41,7 +41,7 @@ module Spina
         @page = Page.find(params[:id])
         add_breadcrumb @page.title
         @page_parts = current_theme.config.page_parts.map do |page_part|
-          page_part = @page.page_parts.where(name: page_part[:name]).limit(1).first || @page.page_parts.build(page_part)
+          page_part = @page.page_parts.where(name: page_part[:name]).first || @page.page_parts.build(page_part)
           page_part.page_partable = page_part.page_partable_type.constantize.new unless page_part.page_partable.present?
           page_part
         end
@@ -50,22 +50,15 @@ module Spina
       def update
         @page = Page.find(params[:id])
         add_breadcrumb @page.title
-        if @page.update_attributes(page_params)
-          respond_to do |format|
+        respond_to do |format|
+          if @page.update_attributes(page_params)
             format.html { redirect_to admin_pages_url, notice: "#{@page.title} opgeslagen" }
-            format.json { respond_with_bip(@page) }
             format.js
-          end
-        else
-          respond_to do |format|
+          else
             format.html do
-              @page_parts = @page.page_parts.map do |page_part|
-                page_part.page = @page
-                page_part
-              end
+              @page_parts = @page.page_parts
               render :edit
             end
-            format.json { respond_with_bip(@page) }
           end
         end
       end

@@ -11,7 +11,7 @@
           %td
             = f.text_field :title, placeholder: "Titel in de pagina"
 
-        = f.fields_for :page_parts, @page_parts.sort { |a,b| a.position <=> b.position } do |page_part_form|
+        = f.fields_for :page_parts, @page_parts.sort { |a,b| a.position(current_theme) <=> b.position(current_theme) } do |page_part_form|
           %tr.page-part{data: {name: page_part_form.object.name}}
             %td
               %label= page_part_form.object.title
