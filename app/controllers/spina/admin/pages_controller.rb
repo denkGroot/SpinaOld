@@ -15,12 +15,7 @@ module Spina
       def new
         @page = Page.new
         add_breadcrumb "Nieuwe pagina"
-        @page_parts = current_theme.config.page_parts.map do |page_part|
-          page_part = @page.page_parts.build(page_part)
-          page_part.page = @page
-          page_part.page_partable = page_part.page_partable_type.constantize.new
-          page_part
-        end
+        @page_parts = current_theme.config.page_parts.map { |page_part| @page.page_part(page_part) }
       end
 
       def create
@@ -37,11 +32,7 @@ module Spina
       def edit
         @page = Page.find(params[:id])
         add_breadcrumb @page.title
-        @page_parts = current_theme.config.page_parts.map do |page_part|
-          page_part = @page.page_parts.where(name: page_part[:name]).first || @page.page_parts.build(page_part)
-          page_part.page_partable = page_part.page_partable_type.constantize.new unless page_part.page_partable.present?
-          page_part
-        end
+        @page_parts = current_theme.config.page_parts.map { |page_part| @page.page_part(page_part) }
       end
 
       def update
