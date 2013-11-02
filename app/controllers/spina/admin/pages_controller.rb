@@ -56,14 +56,18 @@ module Spina
           if id[1][:children].present?
             id[1][:children].each do |child|
               if child[1][:children].present?
-                child[1][:children].each { |child_child| Page.update(child_child[1][:id], position: child_child[0].to_i + 1, parent_id: child[1][:id]) }
+                child[1][:children].each { |child_child| update_page_position(child_child, child[1][:id]) }
               end
             end
-            id[1][:children].each { |child| Page.update(child[1][:id], position: child[0].to_i + 1, parent_id: id[1][:id]) }
+            id[1][:children].each { |child| update_page_position(child, id[1][:id]) }
           end
-          Page.update(id[1][:id], position: id[0].to_i + 1, parent_id: nil)
+          update_page_position(id)
         end
         render nothing: true
+      end
+
+      def update_page_position(page, parent_id = nil)
+        Page.update(page[1][:id], position: page[0].to_i + 1, parent_id: parent_id )
       end
 
       def destroy
