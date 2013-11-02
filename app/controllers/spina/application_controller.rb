@@ -2,11 +2,21 @@ module Spina
   class ApplicationController < ActionController::Base
     include ApplicationHelper
 
+    private
+
     def current_ability
       @current_ability ||= Ability.new(current_user)
     end
 
-    private
+    def current_theme
+      @current_theme = ::Spina.themes.first
+    end
+    helper_method :current_theme
+
+    def current_user
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    end
+    helper_method :current_user
 
     def current_account
       @current_account ||= Account.first

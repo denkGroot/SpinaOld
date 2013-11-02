@@ -6,9 +6,5 @@ module Spina
     def to_s
       name
     end
-
-    def register
-      ::Spina::ThemeCollection.registered << self
-    end
   end
 end
