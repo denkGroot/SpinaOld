@@ -55,19 +55,13 @@ module Spina
         params[:list].each do |id|
           if id[1][:children].present?
             id[1][:children].each do |child|
-              if child[1][:children].present?
-                child[1][:children].each { |child_child| update_page_position(child_child, child[1][:id]) }
-              end
+              child[1][:children].each { |child_child| update_page_position(child_child, child[1][:id]) } if child[1][:children].present?
+              update_page_position(child, id[1][:id])
             end
-            id[1][:children].each { |child| update_page_position(child, id[1][:id]) }
           end
-          update_page_position(id)
+          update_page_position(id, nil)
         end
         render nothing: true
-      end
-
-      def update_page_position(page, parent_id = nil)
-        Page.update(page[1][:id], position: page[0].to_i + 1, parent_id: parent_id )
       end
 
       def destroy
@@ -77,6 +71,10 @@ module Spina
       end
 
       private
+
+      def update_page_position(page, parent_id = nil)
+        Page.update(page[1][:id], position: page[0].to_i + 1, parent_id: parent_id )
+      end
 
       def page_params
         params.require(:page).permit(:deletable, :description, :menu_title, 
