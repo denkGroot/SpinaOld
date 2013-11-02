@@ -29,10 +29,7 @@ module Spina
         if @page.save
           redirect_to admin_pages_url, notice: "#{@page.title} is aangemaakt."
         else
-          @page_parts = @page.page_parts.map do |page_part|
-            page_part.page = @page
-            page_part
-          end
+          @page_parts = @page.page_parts
           render :new
         end
       end
