@@ -1,4 +1,4 @@
 - if current_user.present?
   #admin_bar
-    = link_to "Bewerk je website", admin_root_url, data: {icon: 'W'}, class: 'button button-hollow button-round button-small'
-    = link_to "Uitloggen", admin_logout_path, data: {icon: 'h'}, class: 'button button-hollow button-round button-small'
+    = link_to "Bewerk je website", spina.admin_root_url, data: {icon: 'W'}, class: 'button button-hollow button-round button-small'
+    = link_to "Uitloggen", spina.admin_logout_path, data: {icon: 'h'}, class: 'button button-hollow button-round button-small'

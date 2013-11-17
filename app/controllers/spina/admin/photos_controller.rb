@@ -1,15 +1,14 @@
 module Spina
   module Admin
     class PhotosController < AdminController
+      before_filter :set_breadcrumbs
       
       authorize_resource class: Photo
-
-      add_breadcrumb "Mediabibliotheek", :admin_media_library_path
 
       layout "spina/admin/media_library"
 
       def index
-        add_breadcrumb "Afbeeldingen", admin_photos_path
+        add_breadcrumb "Afbeeldingen", spina.admin_photos_path
         @photos = Photo.sorted
         @photo = Photo.new
       end
@@ -62,6 +61,10 @@ module Spina
       end
 
       private
+
+      def set_breadcrumbs
+        add_breadcrumb "Mediabibliotheek", spina.admin_media_library_path
+      end
 
       def photo_params
         params.require(:photo).permit(:file)

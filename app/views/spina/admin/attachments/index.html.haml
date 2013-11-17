@@ -12,7 +12,7 @@
         %th 
       %tr
         %td{colspan: 4}
-          = form_for [:admin, @attachment], html: {multipart: true, class: "new_document"} do |f|
+          = form_for [spina, :admin, @attachment], html: {multipart: true, class: "new_document"} do |f|
             = f.file_field :file, data: {customfileinput: true}
 
     %tbody.table-prepend-document      

@@ -1,5 +1,5 @@
 var editor = $(".wysihtml5-container[data-object-id=<%= params[:object_id] %>]").data('wysihtml5');
 editor.focus();
-editor.composer.commands.exec("insertHTML", "<img src='<%= root_url + @photo.file.url %>' />");
+editor.composer.commands.exec("insertHTML", "<img src='<%= spina.root_url + @photo.file.url %>' />");
 editor.focus();
 $.hideModal();

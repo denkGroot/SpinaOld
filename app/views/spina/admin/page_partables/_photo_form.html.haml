@@ -1,4 +1,4 @@
-= link_to photo_select_admin_photos_path(photo_form.object_name), remote: true, class: "media_picker" do
+= link_to spina.photo_select_admin_photos_path(photo_form.object_name), remote: true, class: "media_picker" do
   - if photo_form.object.page_partable && photo_form.object.page_partable.file.present?
     .image
       = image_tag photo_form.object.page_partable.file.thumb

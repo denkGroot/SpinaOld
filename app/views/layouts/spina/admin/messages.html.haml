@@ -4,7 +4,7 @@
 
     %ul
       %li{class: ('active' if action_name == "inbox")}
-        = link_to inbox_admin_inquiries_path, data: {icon: 'b'} do
+        = link_to spina.inbox_admin_inquiries_path, data: {icon: 'b'} do
           - if @new_messages.present?
             = "Inbox (#{@new_messages.size})"
           - else
@@ -12,7 +12,7 @@
           %small Binnenkomende berichten
           
       %li{class: ('active' if ["index", "spam"].include? action_name )}
-        = link_to admin_inquiries_path, data: {icon: 'z'} do
+        = link_to spina.admin_inquiries_path, data: {icon: 'z'} do
           Alle berichten
           %small Alle berichten
 

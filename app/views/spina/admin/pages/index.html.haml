@@ -1,6 +1,6 @@
 .filters
-  = link_to "Nieuwe pagina", new_admin_page_path, class: 'button button-primary', data: {icon: 't'}
+  = link_to "Nieuwe pagina", spina.new_admin_page_path, class: 'button button-primary', data: {icon: 't'}
 
-.dd{data: {:"sort-url" => sort_admin_pages_url }}
+.dd{data: {:"sort-url" => spina.sort_admin_pages_url }}
   %ol.dd-list
     = render partial: 'page', collection: @pages.roots

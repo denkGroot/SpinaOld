@@ -2,7 +2,7 @@ module Spina
   module Admin
     class PagesController < AdminController
 
-      add_breadcrumb "Pagina's", :admin_pages_path
+      before_filter :set_breadcrumb
 
       authorize_resource class: Page
 
@@ -22,7 +22,7 @@ module Spina
         @page = Page.new(page_params)
         add_breadcrumb "Nieuwe pagina"
         if @page.save
-          redirect_to admin_pages_url, notice: "#{@page.title} is aangemaakt."
+          redirect_to spina.admin_pages_url, notice: "#{@page.title} is aangemaakt."
         else
           @page_parts = @page.page_parts
           render :new
@@ -40,7 +40,7 @@ module Spina
         add_breadcrumb @page.title
         respond_to do |format|
           if @page.update_attributes(page_params)
-            format.html { redirect_to admin_pages_url, notice: "#{@page.title} opgeslagen" }
+            format.html { redirect_to spina.admin_pages_url, notice: "#{@page.title} opgeslagen" }
             format.js
           else
             format.html do
@@ -67,10 +67,14 @@ module Spina
       def destroy
         @page = Page.find(params[:id])
         @page.destroy
-        redirect_to admin_pages_url, notice: "De pagina is verwijderd."
+        redirect_to spina.admin_pages_url, notice: "De pagina is verwijderd."
       end
 
       private
+
+      def set_breadcrumb
+        add_breadcrumb "Pagina's", spina.admin_pages_path
+      end
 
       def update_page_position(page, parent_id = nil)
         Page.update(page[1][:id], position: page[0].to_i + 1, parent_id: parent_id )

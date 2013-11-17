@@ -7,7 +7,7 @@ module Spina
       layout "spina/admin/settings"
 
       def edit
-        add_breadcrumb "Algemene gegevens", edit_admin_account_path
+        add_breadcrumb "Algemene gegevens", spina.edit_admin_account_path
       end
 
       def update
@@ -17,15 +17,15 @@ module Spina
       end
 
       def analytics
-        add_breadcrumb "Google Analytics", analytics_admin_account_path
+        add_breadcrumb "Google Analytics", spina.analytics_admin_account_path
       end
 
       def social
-        add_breadcrumb "Social media", social_admin_account_path
+        add_breadcrumb "Social media", spina.social_admin_account_path
       end
 
       def style
-        add_breadcrumb "Stijl", style_admin_account_path
+        add_breadcrumb "Stijl", spina.style_admin_account_path
       end
 
       private

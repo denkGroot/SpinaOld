@@ -3,7 +3,7 @@
   %source{src: "#{asset_path('spina/admin/login.ogv')}", type: "video/ogg"}
   %source{src: "#{asset_path('spina/admin/login.webm')}", type: "video/webm"}
 
-= form_tag admin_sessions_path, id: "login_wrapper" do
+= form_tag spina.admin_sessions_path, id: "login_wrapper" do
   .row      
     .column-half
       = text_field_tag :email, params[:email], placeholder: "Emailadres"

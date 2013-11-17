@@ -1,12 +1,11 @@
 module Spina
   module Admin
     class UsersController < AdminController
+      before_filter :set_breadcrumbs
       
       authorize_resource class: User
 
       layout "spina/admin/settings"
-
-      add_breadcrumb "Gebruikers", :admin_users_path
 
       def index
         @users = User.all
@@ -51,6 +50,10 @@ module Spina
       end
 
       private
+
+      def set_breadcrumbs
+        add_breadcrumb "Gebruikers", spina.admin_users_path
+      end
 
       def user_params
         params.require(:user).permit(:admin, :email, :name, :password_digest, :password, :password_confirmation, :last_logged_in)

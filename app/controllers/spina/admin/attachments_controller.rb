@@ -1,15 +1,14 @@
 module Spina
   module Admin
     class AttachmentsController < AdminController
+      before_filter :set_breadcrumbs
 
       authorize_resource class: Attachment
-
-      add_breadcrumb "Mediabibliotheek", :admin_media_library_path
 
       layout "spina/admin/media_library"
 
       def index
-        add_breadcrumb "Documenten", admin_attachments_path
+        add_breadcrumb "Documenten", spina.admin_attachments_path
         @attachments = Attachment.file_attached.sorted
         @attachment = Attachment.new
       end
@@ -21,7 +20,7 @@ module Spina
       def destroy
         @attachment = Attachment.find(params[:id])
         @attachment.destroy
-        redirect_to admin_attachments_url
+        redirect_to spina.admin_attachments_url
       end
 
       def select
@@ -43,6 +42,10 @@ module Spina
       end
 
       private
+
+      def set_breadcrumbs
+        add_breadcrumb "Mediabibliotheek", spina.admin_media_library_path
+      end
 
       def attachment_params
         params.require(:attachment).permit(:file, :page_id, :_destroy)
