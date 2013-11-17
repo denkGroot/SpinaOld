@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    spina (0.2.0)
+    spina (0.2.1)
       ancestry
       bcrypt-ruby (~> 3.1.2)
       bourbon
@@ -106,6 +106,7 @@ GEM
     filters_spam (0.3)
     friendly_id (5.0.1)
       activerecord (~> 4.0.0)
+    gem-release (0.6.0)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -206,6 +207,7 @@ PLATFORMS
 
 DEPENDENCIES
   brakeman
+  gem-release
   letter_opener
   pg
   quiet_assets

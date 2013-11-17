@@ -6,6 +6,7 @@ gem 'spina-template', path: '~/Desktop/spina-template'
 gem 'spina-themes-business', path: '~/Desktop/spina-themes/spina-themes-business'
 
 group :development do
+  gem 'gem-release'
   gem 'pg'
   gem 'quiet_assets'
   gem 'letter_opener'
