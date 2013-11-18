@@ -24,10 +24,6 @@ module Spina
         add_breadcrumb "Social media", spina.social_admin_account_path
       end
 
-      def style
-        add_breadcrumb "Stijl", spina.style_admin_account_path
-      end
-
       private
 
       def account_params

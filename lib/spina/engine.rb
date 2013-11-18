@@ -29,15 +29,6 @@ module Spina
 
     config.to_prepare &method(:require_decorators).to_proc
     config.autoload_paths += %W( #{config.root}/lib )
-
-    def self.valid_templates(*pattern)
-      ([Rails.root, self.root]).map { |path|
-        Dir[path.join(*pattern).to_s].flatten.map { |f|
-          File.basename(f).split('.').first
-        }
-      }.flatten.uniq
-    end
-
   end
 
   class << self
