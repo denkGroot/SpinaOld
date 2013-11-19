@@ -10,6 +10,7 @@ module Spina
 
     before_validation :ensure_title
     before_save :set_materialized_path
+    before_save :ancestry_is_nil
     after_save :save_children
 
     accepts_nested_attributes_for :page_parts, allow_destroy: true
@@ -100,6 +101,12 @@ module Spina
         "/#{self.parent.slug}/#{slug}"
       when 2
         "/#{self.parent.parent.slug}/#{self.parent.slug}/#{slug}"
+      end
+    end
+
+    def ancestry_is_nil
+      if self.ancestry && self.ancestry.empty?
+        self.ancestry = nil
       end
     end
 

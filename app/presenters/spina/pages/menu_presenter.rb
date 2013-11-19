@@ -60,7 +60,7 @@ module Spina
       def render_menu_item(menu_item, index, menu_items_length)
         content_tag(list_item_tag, class: menu_item_css(menu_item[0], index, menu_items_length)) do
           buffer = ActiveSupport::SafeBuffer.new
-          buffer << link_to(menu_item[0].title, "#{menu_item[0].materialized_path}")
+          buffer << link_to(menu_item[0].menu_title, "#{menu_item[0].materialized_path}")
           buffer << render_list_wrapper(menu_item[1]) 
           buffer
         end
