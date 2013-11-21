@@ -38,6 +38,10 @@ module Spina
       @@themes << theme
     end
 
+    def theme(theme_name)
+      @@themes.find { |theme| theme.name == theme_name }
+    end
+
     def themes
       @@themes
     end
