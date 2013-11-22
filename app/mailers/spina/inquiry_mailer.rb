@@ -1,7 +1,5 @@
 module Spina
   class InquiryMailer < ActionMailer::Base
-    default from: Account.first.email
-
     layout 'spina/email'
 
     def inquiry(inquiry)
@@ -12,7 +10,7 @@ module Spina
 
       mail( 
         to: "\"#{@current_account.name}\" <#{ @current_account.email }>", 
-        from: "\"#{@inquiry.name}\" <#{@inquiry.email}>", 
+        from: "\"#{@inquiry.name}\" <#{@inquiry.email}>",
         subject: @inquiry.message.truncate(97, separator: ' ')
       )
     end
