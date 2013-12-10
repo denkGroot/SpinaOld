@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    spina (0.3.1)
+    spina (0.3.2)
       ancestry
       bcrypt-ruby (~> 3.1.2)
       bourbon
@@ -26,7 +26,7 @@ PATH
 PATH
   remote: ~/Desktop/spina-template
   specs:
-    spina-template (0.1.0)
+    spina-template (0.1.5)
       bourbon
       coffee-rails
       jquery-fileupload-rails
@@ -35,7 +35,7 @@ PATH
 PATH
   remote: ~/Desktop/spina-themes/spina-themes-business
   specs:
-    spina-themes-business (0.1.1)
+    spina-themes-business (0.1.4)
       rails (~> 4.0.0)
       spina (~> 0.3)
 
@@ -109,11 +109,11 @@ GEM
     gem-release (0.6.0)
     haml (4.0.3)
       tilt
-    haml-rails (0.4)
-      actionpack (>= 3.1, < 4.1)
-      activesupport (>= 3.1, < 4.1)
-      haml (>= 3.1, < 4.1)
-      railties (>= 3.1, < 4.1)
+    haml-rails (0.5.1)
+      actionpack (~> 4.0.0)
+      activesupport (~> 4.0.0)
+      haml (>= 3.1, < 5.0)
+      railties (~> 4.0.0)
     highline (1.6.19)
     hike (1.2.3)
     i18n (0.6.5)
@@ -131,8 +131,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.25)
-    mini_magick (3.6.0)
+    mime-types (1.25.1)
+    mini_magick (3.7.0)
       subexec (~> 0.2.1)
     minitest (4.7.5)
     multi_json (1.8.2)
@@ -178,7 +178,7 @@ GEM
     slim (2.0.1)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    sprockets (2.10.0)
+    sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
