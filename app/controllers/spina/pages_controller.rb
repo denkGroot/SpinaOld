@@ -48,8 +48,8 @@ module Spina
 
     def render_options_for_template(page)
       render_options = {}
-      render_options[:layout] = "#{current_theme}/application"
-      render_options[:template] = "#{current_theme}/pages/#{page.view_template || 'show'}"
+      render_options[:layout] = "#{current_theme.to_s.underscore}/application"
+      render_options[:template] = "#{current_theme.to_s.underscore}/pages/#{page.view_template || 'show'}"
       render_options
     end
 
