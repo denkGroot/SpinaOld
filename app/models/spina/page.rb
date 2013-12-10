@@ -94,13 +94,17 @@ module Spina
     private
 
     def generate_materialized_path
-      case self.depth
-      when 0
-        "/#{slug}"
-      when 1
-        "/#{self.parent.slug}/#{slug}"
-      when 2
-        "/#{self.parent.parent.slug}/#{self.parent.slug}/#{slug}"
+      if self.name == 'homepage'
+        "/"
+      else
+        case self.depth
+        when 0
+          "/#{slug}"
+        when 1
+          "/#{self.parent.slug}/#{slug}"
+        when 2
+          "/#{self.parent.parent.slug}/#{self.parent.slug}/#{slug}"
+        end
       end
     end
 
