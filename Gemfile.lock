@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    spina (0.2.1)
+    spina (0.3.1)
       ancestry
       bcrypt-ruby (~> 3.1.2)
       bourbon
@@ -26,7 +26,7 @@ PATH
 PATH
   remote: ~/Desktop/spina-template
   specs:
-    spina-template (0.0.2)
+    spina-template (0.1.0)
       bourbon
       coffee-rails
       jquery-fileupload-rails
@@ -35,9 +35,9 @@ PATH
 PATH
   remote: ~/Desktop/spina-themes/spina-themes-business
   specs:
-    spina-themes-business (0.0.1)
+    spina-themes-business (0.1.1)
       rails (~> 4.0.0)
-      spina (~> 0.2.1)
+      spina (~> 0.3)
 
 GEM
   remote: http://rubygems.org/
@@ -93,15 +93,15 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
-    coffee-rails (4.0.0)
+    coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
-      railties (>= 4.0.0.beta, < 5.0)
+      railties (>= 4.0.0, < 5.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
     erubis (2.7.0)
-    execjs (2.0.1)
+    execjs (2.0.2)
     fastercsv (1.5.5)
     filters_spam (0.3)
     friendly_id (5.0.1)
@@ -136,7 +136,7 @@ GEM
       subexec (~> 0.2.1)
     minitest (4.7.5)
     multi_json (1.8.2)
-    neat (1.4.0)
+    neat (1.5.0)
       bourbon (>= 2.1)
       sass (>= 3.2)
     negative_captcha (0.3.3)
