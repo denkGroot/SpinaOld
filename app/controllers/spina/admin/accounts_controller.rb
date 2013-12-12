@@ -27,7 +27,7 @@ module Spina
       private
 
       def account_params
-        params.require(:account).permit(:address, :city, :email, :logo, :name, :phone, :postal_code, :preferences, :google_analytics, :google_site_verification, :facebook, :twitter)
+        params.require(:account).permit(:address, :city, :email, :logo, :name, :phone, :postal_code, :preferences, :google_analytics, :google_site_verification, :facebook, :twitter, :kvk_identifier, :vat_identifier)
       end
     end
   end    
