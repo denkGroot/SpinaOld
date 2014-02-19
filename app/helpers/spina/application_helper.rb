@@ -50,5 +50,14 @@ module Spina
       html.html_safe
     end
 
+    def captcha
+      NegativeCaptcha.new(
+        secret: Engine.config.NEGATIVE_CAPTCHA_SECRET,
+        spinner: request.remote_ip,
+        fields: [:email, :message, :name],
+        params: params
+      )
+    end
+
   end
 end

@@ -9,8 +9,10 @@ module Spina
 
     filters_spam({
       author_field: :name,
-      :other_fields => [],
-      :extra_spam_words => %w()
+      message_field: :message,
+      email_field: :email,
+      other_fields: [],
+      extra_spam_words: %w()
     })
 
     scope :ham, -> { where(spam: [false, nil]) }
@@ -33,7 +35,6 @@ module Spina
     def spam!
       update_attributes({spam: true}, without_protection: true)
     end
-
 
   end
 end

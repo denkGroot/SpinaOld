@@ -6,6 +6,11 @@ module Spina
 
       layout "spina/admin/messages"
 
+      def show
+        @inquiry = Inquiry.find(params[:id])
+        add_breadcrumb "Bericht", spina.admin_inquiries_path
+      end
+
       def index
         add_breadcrumb "Alle berichten", spina.admin_inquiries_path
         @inquiries = Inquiry.sorted
