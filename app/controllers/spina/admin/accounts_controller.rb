@@ -24,10 +24,24 @@ module Spina
         add_breadcrumb "Social media", spina.social_admin_account_path
       end
 
+      def style
+        add_breadcrumb "Vormgeving", spina.style_admin_account_path
+        @themes = ::Spina.themes
+        @layout_parts = current_theme.config.layout_parts.map { |layout_part| current_account.layout_part(layout_part) }
+      end
+
       private
 
       def account_params
-        params.require(:account).permit(:address, :city, :email, :logo, :name, :phone, :postal_code, :preferences, :google_analytics, :google_site_verification, :facebook, :twitter, :kvk_identifier, :vat_identifier)
+        params.require(:account).permit(:address, :city, :email, :logo, :name, :phone, 
+                                        :postal_code, :preferences, :google_analytics, 
+                                        :google_site_verification, :facebook, :twitter, 
+                                        :kvk_identifier, :theme, :vat_identifier, 
+                                        layout_parts_attributes: 
+                                          [:id, :layout_partable_type, :layout_partable_id, 
+                                            :name, :title, :position, :content, :page_id, 
+                                            layout_partable_attributes: 
+                                              [:content, :photo_tokens, :attachment_tokens, :id]])
       end
     end
   end    

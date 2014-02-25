@@ -4,8 +4,22 @@ module Spina
 
     mount_uploader :logo, LogoUploader
 
+    has_many :layout_parts, dependent: :destroy
+    accepts_nested_attributes_for :layout_parts, allow_destroy: true
+
     def to_s
       name
+    end
+
+    def layout_part(layout_part)
+      layout_part = layout_parts.where(name: layout_part[:name]).first || layout_parts.build(layout_part)
+      layout_part.layout_partable = layout_part.layout_partable_type.constantize.new unless layout_part.layout_partable.present?
+      layout_part
+    end
+
+    def content(layout_part)
+      layout_part = layout_parts.where(name: layout_part).first
+      layout_part.try(:content)
     end
 
     private
@@ -25,7 +39,7 @@ module Spina
       end
     end
 
-    serialized_attr_accessor :google_analytics, :google_site_verification, :facebook, :twitter
+    serialized_attr_accessor :google_analytics, :google_site_verification, :facebook, :twitter, :theme
 
   end
 end

@@ -1,0 +1,4 @@
+= line_form.fields_for :layout_partable, line_form.object.layout_partable do |form|
+  .colorpicker
+    = form.text_field :content, placeholder: "Paginsectie #{line_form.object.name.downcase}"
+    .colorpicker-container
