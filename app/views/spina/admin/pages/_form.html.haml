@@ -74,4 +74,4 @@
   = link_to "Annuleren", spina.admin_pages_path, class: 'button button-link'
 
   - unless @page.new_record? || !@page.deletable
-    .pull-right= link_to "Definitief verwijderen", admin_page_path(@page), method: :delete, confirm: "Weet je zeker dat je de pagina <strong>#{@page.menu_title}</strong> wilt verwijderen?", class: 'button button-link button-danger'
+    .pull-right= link_to "Definitief verwijderen", spina.admin_page_path(@page), method: :delete, confirm: "Weet je zeker dat je de pagina <strong>#{@page.menu_title}</strong> wilt verwijderen?", class: 'button button-link button-danger'

@@ -1,5 +1,11 @@
 .filters
-  = link_to "Nieuwe pagina", spina.new_admin_page_path, class: 'button button-primary', data: {icon: 't'}
+  %div{data: {dropdown: true}}
+    .button-group
+      = link_to "Nieuwe pagina", spina.new_admin_page_path, class: 'button button-primary', data: {icon: 't'}
+      = link_to '', '#', class: 'button button-primary button-shaded icon-only', data: {icon: '0', trigger: 'dropdown', target: '#create_page_dropdown'}
+    %ul#create_page_dropdown
+      - current_theme.config.view_templates.each do |template|
+        %li= link_to template[1][:title], spina.new_admin_page_path
 
 .dd{data: {:"sort-url" => spina.sort_admin_pages_url }}
   %ol.dd-list
