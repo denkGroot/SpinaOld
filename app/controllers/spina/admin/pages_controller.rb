@@ -14,6 +14,9 @@ module Spina
 
       def new
         @page = Page.new
+        if current_theme.new_page_templates.any? { |template| template[0] == params[:view_template] }
+          @page.view_template = params[:view_template] 
+        end
         add_breadcrumb "Nieuwe pagina"
         @page_parts = current_theme.config.page_parts.map { |page_part| @page.page_part(page_part) }
       end
