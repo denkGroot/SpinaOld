@@ -9,7 +9,7 @@ module Spina
     attr_accessor :position
 
     validates_presence_of :name, :layout_partable_type, :title
-    validates_uniqueness_of :name
+    validates_uniqueness_of :name, scope: :account_id
 
     scope :sorted, -> { order(:position) }
 
