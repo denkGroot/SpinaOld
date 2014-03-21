@@ -6,7 +6,8 @@ module Spina
       @inquiry = inquiry
       @current_account = Account.first
 
-      attachments.inline['logo.jpg'] = File.read(@current_account.logo.path) if @current_account.logo.path
+      # TODO Fix deze shit
+      attachments.inline['logo.jpg'] = LogoUploader.new.read(@current_account.logo) if @current_account.logo.url
 
       mail( 
         to: "\"#{@current_account.name}\" <#{ @current_account.email }>", 
