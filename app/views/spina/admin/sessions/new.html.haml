@@ -1,14 +1,4 @@
-%video{height: "auto", width: 'auto', autoplay: true, loop: true, style: "min-width: 100%; min-height: 100%; position: fixed; z-index: -1000; opacity: .3"}
-  %source{src: "#{asset_path('spina/admin/login.mp4')}", type: "video/mp4"}
-  %source{src: "#{asset_path('spina/admin/login.ogv')}", type: "video/ogg"}
-  %source{src: "#{asset_path('spina/admin/login.webm')}", type: "video/webm"}
-
 = form_tag spina.admin_sessions_path, id: "login_wrapper" do
-  .row      
-    .column-half
-      = text_field_tag :email, params[:email], placeholder: "Emailadres"
-      %p= password_field_tag :password, nil, placeholder: "Wachtwoord"
-      %p= button_tag "Inloggen", class: 'button button-primary pull-right', style: 'margin-right: 0'
-    .column-half{style: 'padding-left: 20px'}
-      %h1 denkWebsite
-      %p 
+  = text_field_tag :email, params[:email], placeholder: "emailadres"
+  = password_field_tag :password, nil, placeholder: "wachtwoord"
+  = button_tag "aanmelden", class: 'button button-primary', data: {icon: '3'}
