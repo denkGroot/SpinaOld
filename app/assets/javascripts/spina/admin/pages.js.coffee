@@ -5,6 +5,7 @@ ready = ->
 
 $(document).on 'ready page:load', ready
 
+# Change templates makes page parts appear and disappear
 $(document).on 'change', '.page-template select', ->
   page_parts = $(this).find('option:selected').data('page-parts').split(" ")
   show_page_parts(page_parts)
@@ -13,3 +14,15 @@ show_page_parts = (page_parts) ->
   $('tr.page-part').hide()
   for page_part in page_parts
     $('tr.page-part[data-name=' + page_part + ']').show()
+
+# Dynamically add and remove fields in a nested form
+$(document).on 'click', 'form .add_fields', (event) ->
+  time = new Date().getTime()
+  regexp = new RegExp($(this).data('id'), 'g')
+  $(this).before($(this).data('fields').replace(regexp, time))
+  event.preventDefault()
+
+$(document).on 'click', 'form .remove_fields', (event) ->
+  $(this).prev('input[type=hidden]').val('1')
+  $(this).closest('fieldset').hide()
+  event.preventDefault()

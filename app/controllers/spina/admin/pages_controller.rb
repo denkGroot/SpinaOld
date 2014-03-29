@@ -84,16 +84,7 @@ module Spina
       end
 
       def page_params
-        params.require(:page).permit(:deletable, :description, :menu_title, 
-                                      :position, :show_in_menu, :slug, :title, 
-                                      :parent_id, :name, :seo_title, :layout_template, 
-                                      :view_template, :skip_to_first_child, :draft, 
-                                      :link_url, :materialized_path, 
-                                      page_parts_attributes: 
-                                        [:id, :page_partable_type, :page_partable_id, 
-                                          :name, :title, :position, :content, :page_id, 
-                                          page_partable_attributes: 
-                                            [:content, :photo_tokens, :attachment_tokens, :id]])
+        params.require(:page).permit!
       end
 
     end
