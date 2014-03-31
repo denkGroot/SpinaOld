@@ -20,7 +20,7 @@ module Spina
       def destroy
         @photo = Photo.find(params[:id])
         @photo.destroy
-        redirect_to admin_photos_url
+        redirect_to spina.admin_photos_url
       end
 
       def enhance

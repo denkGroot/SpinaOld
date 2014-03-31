@@ -24,5 +24,5 @@ $(document).on 'click', 'form .add_fields', (event) ->
 
 $(document).on 'click', 'form .remove_fields', (event) ->
   $(this).prev('input[type=hidden]').val('1')
-  $(this).closest('fieldset').hide()
+  $(this).closest('fieldset').slideUp()
   event.preventDefault()
