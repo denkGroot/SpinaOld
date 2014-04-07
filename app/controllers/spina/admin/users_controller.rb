@@ -35,8 +35,8 @@ module Spina
       def update
         @user = User.find(params[:id])
         add_breadcrumb "#{@user}"
-        if @user.update_attributes(params[:user])
-          redirect_to admin_users_url
+        if @user.update_attributes(user_params)
+          redirect_to spina.admin_users_url
         else
           flash.now[:alert] = "De gebruiker kan nog worden opgeslagen."
           render :edit

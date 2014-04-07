@@ -7,6 +7,8 @@ module Spina
     has_many :layout_parts, dependent: :destroy
     accepts_nested_attributes_for :layout_parts, allow_destroy: true
 
+    before_update :bootstrap_website, if: :theme_changed?
+
     def to_s
       name
     end
