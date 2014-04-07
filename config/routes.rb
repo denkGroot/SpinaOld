@@ -67,16 +67,7 @@ Spina::Engine.routes.draw do
         patch :unmark_spam
       end
     end
-
-    # # Plugin routes
-    # Spina::Engine.config.plugins.each do |plugin|
-    #   resources plugin.controller.downcase.to_sym
-    # end
   end
-
-  # Spina::Engine.config.plugins.each do |plugin|
-  #   resources plugin.controller.downcase.to_sym, path: plugin.path
-  # end
 
   # Inquiries
   resources :inquiries

@@ -10,6 +10,6 @@
 
     %span.pull-right= link_to "Bewerken", spina.edit_admin_page_path(page), class: 'button button-small button-link dd-nodrag', data: {icon: 'q'}
 
-  - if page.children.present?
+  - if page.children.active.present?
     %ol.dd-list
-      = render partial: 'page', collection: page.children.sorted
+      = render partial: 'page', collection: page.children.active.sorted

@@ -9,7 +9,7 @@ module Spina
       layout "spina/admin/website"
 
       def index
-        @pages = Page.sorted.roots
+        @pages = Page.active.sorted.roots
       end
 
       def new

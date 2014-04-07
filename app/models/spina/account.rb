@@ -7,7 +7,7 @@ module Spina
     has_many :layout_parts, dependent: :destroy
     accepts_nested_attributes_for :layout_parts, allow_destroy: true
 
-    before_update :bootstrap_website, if: :theme_changed?
+    after_save :bootstrap_website
 
     def to_s
       name
@@ -25,6 +25,14 @@ module Spina
     end
 
     private
+
+    def bootstrap_website
+      theme = Spina.theme(self.theme)
+      theme.config.custom_pages.each do |page| 
+        Spina::Page.where(name: page[:name], deletable: false).first_or_create(title: page[:title], view_template: page[:view_template]).activate!
+      end
+      Spina::Page.where.not(view_template: theme.config.view_templates.map{|t|t[0]}).each &:deactivate!
+    end
 
     def self.serialized_attr_accessor(*args)
       args.each do |method_name|

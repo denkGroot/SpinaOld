@@ -18,8 +18,9 @@ module Spina
 
     scope :sorted, -> { order('position') }
     scope :custom_pages, -> { where(deletable: false) }
-    scope :live, -> { where(draft: false) }
-    scope :in_menu, -> { where(show_in_menu: true )}
+    scope :live, -> { where(draft: false, active: true) }
+    scope :in_menu, -> { where(show_in_menu: true) }
+    scope :active, -> { where(active: true) }
 
     def slug_candidates
       [
@@ -48,14 +49,6 @@ module Spina
       self.children.each { |child| child.save }
     end
 
-    def plugin
-      # Engine.config.plugins.find { |plugin| plugin.name == name }
-    end
-
-    def is_plugin?
-      # Engine.config.plugins.any? { |plugin| plugin.name == name }
-    end
-
     def menu_title
       read_attribute(:menu_title).blank? ? title : read_attribute(:menu_title)
     end
@@ -80,7 +73,7 @@ module Spina
     end
 
     def live?
-      !draft?
+      !draft? && active?
     end
 
     def previous_sibling
@@ -89,6 +82,16 @@ module Spina
 
     def next_sibling
       self.siblings.where('position > ?', self.position).sorted.first
+    end
+
+    def deactivate!
+      self.active = false
+      self.save
+    end
+
+    def activate!
+      self.active = true
+      self.save
     end
 
     private
