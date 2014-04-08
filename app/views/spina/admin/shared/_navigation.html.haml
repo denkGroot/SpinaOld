@@ -5,7 +5,7 @@
 
     %li{class: ('active' if %w[inquiries].include? controller_name)}
       - if @new_messages.present?
-        = link_to "", spina.admin_inquiries_path, data: {icon: 'A', badge: "#{@new_messages.size}"}
+        = link_to "", spina.inbox_admin_inquiries_path, data: {icon: 'A', badge: "#{@new_messages.size}"}
       - else
         = link_to "", spina.admin_inquiries_path, data: {icon: 'A'}
 

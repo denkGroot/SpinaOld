@@ -8,7 +8,15 @@ module Spina
 
       def show
         @inquiry = Inquiry.find(params[:id])
-        add_breadcrumb "Bericht", spina.admin_inquiries_path
+        add_breadcrumb "Alle berichten", spina.admin_inquiries_path
+        add_breadcrumb @inquiry.name
+      end
+
+      def inbox_show
+        @inquiry = Inquiry.find(params[:id])
+        add_breadcrumb "Inbox", spina.inbox_admin_inquiries_path
+        add_breadcrumb @inquiry.name
+        render :show
       end
 
       def index

@@ -63,6 +63,7 @@ Spina::Engine.routes.draw do
         get :spam
       end
       member do
+        get :inbox_show
         patch :mark_as_read
         patch :unmark_spam
       end

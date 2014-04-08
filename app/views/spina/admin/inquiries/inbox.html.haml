@@ -15,7 +15,7 @@
                 %strong= inquiry.name
 
             %td
-              %p= link_to inquiry.summary, spina.admin_inquiry_path(inquiry)
+              %p= link_to inquiry.summary, spina.inbox_show_admin_inquiry_path(inquiry)
 
             %td.nowrap
               = l inquiry.created_at, format: '%e %B %Y %H:%M'
