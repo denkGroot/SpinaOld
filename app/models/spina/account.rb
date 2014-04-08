@@ -27,11 +27,11 @@ module Spina
     private
 
     def bootstrap_website
-      theme = Spina.theme(self.theme)
+      theme = ::Spina.theme(self.theme)
       theme.config.custom_pages.each do |page| 
-        Spina::Page.where(name: page[:name], deletable: false).first_or_create(title: page[:title], view_template: page[:view_template]).activate!
+        Page.where(name: page[:name], deletable: false).first_or_create(title: page[:title], view_template: page[:view_template]).activate!
       end
-      Spina::Page.where.not(view_template: theme.config.view_templates.map{|t|t[0]}).each &:deactivate!
+      Page.where.not(view_template: theme.config.view_templates.map{|t|t[0]}).each &:deactivate!
     end
 
     def self.serialized_attr_accessor(*args)
