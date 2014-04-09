@@ -37,7 +37,7 @@ module Spina
       def account_params
         params.require(:account).permit(:address, :city, :email, :logo, :name, :phone, 
                                         :postal_code, :preferences, :google_analytics, 
-                                        :google_site_verification, :facebook, :twitter, 
+                                        :google_site_verification, :facebook, :twitter, :google_plus, 
                                         :kvk_identifier, :theme, :vat_identifier, 
                                         layout_parts_attributes: 
                                           [:id, :layout_partable_type, :layout_partable_id, 
