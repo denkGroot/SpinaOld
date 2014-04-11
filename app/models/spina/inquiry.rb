@@ -7,13 +7,14 @@ module Spina
 
     before_save :archive_if_spam
 
-    filters_spam({
-      author_field: :name,
-      message_field: :message,
-      email_field: :email,
-      other_fields: [],
-      extra_spam_words: %w()
-    })
+    # Filters spam gem incompatible met rails 4.1
+    # filters_spam({
+    #   author_field: :name,
+    #   message_field: :message,
+    #   email_field: :email,
+    #   other_fields: [],
+    #   extra_spam_words: %w()
+    # })
 
     scope :ham, -> { where(spam: [false, nil]) }
     scope :spam, -> { where(spam: true)}

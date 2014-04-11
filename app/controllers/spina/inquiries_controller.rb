@@ -5,7 +5,6 @@ module Spina
 
     def create
       @inquiry = Inquiry.new(@captcha.values)
-      @inquiry.attributes = params[:invoice_inquiry]
 
       if @inquiry.save
         @inquiry.spam! unless @captcha.valid?
