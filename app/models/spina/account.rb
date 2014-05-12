@@ -28,6 +28,10 @@ module Spina
 
     def bootstrap_website
       theme = ::Spina.theme(self.theme)
+      bootstrap_pages(theme) if theme
+    end
+
+    def bootstrap_pages(theme)
       theme.config.custom_pages.each do |page| 
         Page.where(name: page[:name], deletable: false).first_or_create(title: page[:title], view_template: page[:view_template]).activate!
       end

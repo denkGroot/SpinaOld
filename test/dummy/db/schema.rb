@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130919074838) do
+ActiveRecord::Schema.define(version: 20140407095608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 20130919074838) do
     t.string   "email"
     t.text     "preferences"
     t.string   "logo"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "kvk_identifier"
+    t.string   "vat_identifier"
   end
 
   create_table "spina_attachment_collections", force: true do |t|
@@ -54,6 +56,16 @@ ActiveRecord::Schema.define(version: 20130919074838) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "spam"
+  end
+
+  create_table "spina_layout_parts", force: true do |t|
+    t.string   "title"
+    t.string   "name"
+    t.integer  "layout_partable_id"
+    t.string   "layout_partable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "account_id"
   end
 
   create_table "spina_lines", force: true do |t|
@@ -91,6 +103,7 @@ ActiveRecord::Schema.define(version: 20130919074838) do
     t.string   "ancestry"
     t.integer  "position"
     t.string   "materialized_path"
+    t.boolean  "active",              default: true
   end
 
   create_table "spina_photo_collections", force: true do |t|
@@ -110,7 +123,7 @@ ActiveRecord::Schema.define(version: 20130919074838) do
   end
 
   create_table "spina_texts", force: true do |t|
-    t.string   "content"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
