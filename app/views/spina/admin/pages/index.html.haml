@@ -1,10 +1,13 @@
 .filters
-  %div{data: {dropdown: true}}
+
+  %span{data: {dropdown: true}}
     = link_to "Nieuwe pagina", spina.new_admin_page_path, class: 'button button-primary', data: {icon: 't', trigger: ('dropdown' if current_theme.new_page_templates.size > 1), target: '#create_page_dropdown'}
     %ul#create_page_dropdown
       - current_theme.new_page_templates.each do |template|
         %li= link_to template[1], spina.new_admin_page_path(params: {view_template: template[0]})
 
-.dd{data: {:"sort-url" => spina.sort_admin_pages_url }}
+  = link_to 'Volgorde wijzigen', '#pages_list', class: 'button button-link sort-switch', data: {icon: '8'}
+
+.dd#pages_list{data: {:"sort-url" => spina.sort_admin_pages_url }}
   %ol.dd-list
     = render partial: 'page', collection: @pages.roots

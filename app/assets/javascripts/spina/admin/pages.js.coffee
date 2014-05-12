@@ -26,3 +26,18 @@ $(document).on 'click', 'form .remove_fields', (event) ->
   $(this).prev('input[type=hidden]').val('1')
   $(this).closest('fieldset').slideUp()
   event.preventDefault()
+
+# Sort pages
+$(document).on 'click', '.sort-switch', (event) ->
+  $($(this).attr('href') + ' .dd-item-inner').toggleClass('dd-handle')
+  if $(this).attr('data-icon') == 'j'
+    $(this).attr('data-icon', '8')
+    $(this).removeClass('button-success')
+    $(this).addClass('button-link')
+    $(this).text('Volgorde wijzigen')
+  else
+    $(this).attr('data-icon', 'j')
+    $(this).addClass('button-success')
+    $(this).removeClass('button-link')
+    $(this).text('Klaar met slepen')
+  return false
