@@ -19,7 +19,7 @@ module Spina
       end
 
       def analytics
-        add_breadcrumb "Google Analytics", spina.analytics_admin_account_path
+        add_breadcrumb "Statistieken en zoekmachines", spina.analytics_admin_account_path
       end
 
       def social
@@ -38,7 +38,7 @@ module Spina
         params.require(:account).permit(:address, :city, :email, :logo, :name, :phone, 
                                         :postal_code, :preferences, :google_analytics, 
                                         :google_site_verification, :facebook, :twitter, :google_plus, 
-                                        :kvk_identifier, :theme, :vat_identifier, 
+                                        :kvk_identifier, :theme, :vat_identifier, :robots_allowed, 
                                         layout_parts_attributes: 
                                           [:id, :layout_partable_type, :layout_partable_id, 
                                             :name, :title, :position, :content, :page_id, 

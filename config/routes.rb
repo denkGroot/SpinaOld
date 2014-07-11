@@ -76,6 +76,9 @@ Spina::Engine.routes.draw do
   # Sitemap
   resource :sitemap
 
+  # Robots.txt
+  get '/robots', to: 'pages#robots', format: :txt
+
   # Frontend
   root to: "pages#homepage"
 

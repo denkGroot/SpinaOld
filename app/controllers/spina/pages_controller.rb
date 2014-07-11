@@ -1,7 +1,7 @@
 module Spina
   class PagesController < ApplicationController
     before_action :find_page
-    before_action :current_user_can_view_page?
+    before_action :current_user_can_view_page?, except: [:robots]
 
     def homepage
       render_with_templates
@@ -19,6 +19,9 @@ module Spina
       end
 
       render_with_templates
+    end
+
+    def robots
     end
 
     private

@@ -3,6 +3,11 @@
     %table.table.table-form
       %tr
         %td
+          %label Website zichtbaar in zoekmachines
+        %td
+          = f.check_box :robots_allowed, data: {switch: true}
+      %tr
+        %td
           %label Google Analytics
         %td
           = f.text_field :google_analytics, placeholder: "Google Analytics code"
@@ -13,4 +18,4 @@
           = f.text_field :google_site_verification, placeholder: "Google Site Verification code"
 
   %button.button.button-primary{type: 'submit', data: {icon: 'o'}}
-    Google Analytics opslaan
+    Voorkeuren opslaan
