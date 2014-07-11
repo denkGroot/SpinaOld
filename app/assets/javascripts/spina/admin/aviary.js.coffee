@@ -1,6 +1,7 @@
 featherEditor = new Aviary.Feather
-  apiKey: 'N7Aoe3eOAEe8P5hJGR5PQw',
-  apiVersion: 2,
+  apiKey: 'e7a5e1c28334eb7a',
+  apiVersion: 3,
+  theme: 'light',
   language: 'nl',
   minimumStyling: true,
   tools: 'crop,enhance,contrast,sharpness,text,whiten,effects,warmth,orientation,brightness,saturation,redeye,blemish',
