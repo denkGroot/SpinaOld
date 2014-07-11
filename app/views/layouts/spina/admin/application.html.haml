@@ -14,6 +14,7 @@
       = javascript_include_tag "//html5shiv.googlecode.com/svn/trunk/html5.js"
 
     / JavaScript
+    = javascript_include_tag "http://feather.aviary.com/js/feather.js"
     = javascript_include_tag "spina/admin/application"
   %body
     = render 'spina/admin/shared/navigation'
@@ -30,3 +31,6 @@
         = render 'spina/admin/shared/notifications'
 
       = content_for?(:content) ? yield(:content) : yield
+
+    / Aviary editor
+    #injection_site
