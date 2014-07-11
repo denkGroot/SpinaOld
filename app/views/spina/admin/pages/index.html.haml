@@ -1,5 +1,10 @@
-.filters
+- content_for(:notification_alert) do
+  .notification{data: {icon: 'k'}}
+    %p
+      Je website is niet zichtbaar voor zoekmachines
+      %small Bij instellingen voor #{link_to "Statistieken en zoekmachines", spina.analytics_admin_account_path} kun je dit activeren.
 
+.filters
   %span{data: {dropdown: true}}
     = link_to "Nieuwe pagina", spina.new_admin_page_path, class: 'button button-primary', data: {icon: 't', trigger: ('dropdown' if current_theme.new_page_templates.size > 1), target: '#create_page_dropdown'}
     %ul#create_page_dropdown
