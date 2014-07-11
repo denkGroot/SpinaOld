@@ -20,4 +20,4 @@
   - if @inquiry.spam
     = link_to "Geen spam", spina.unmark_spam_admin_inquiry_path(@inquiry), method: :patch, class: 'button', data: {icon: 'v'}
 
-  = link_to "Verwijderen", spina.admin_inquiry_path(@inquiry), method: :delete, class: 'button button-danger button-link', confirm: "Weet je zeker dat je het bericht van <strong>#{@inquiry.name}</strong> definitief wilt verwijderen?"
+  = link_to "Verwijderen", spina.admin_inquiry_path(@inquiry), method: :delete, class: 'button button-danger button-link', data: {confirm: "Weet je zeker dat je het bericht van <strong>#{@inquiry.name}</strong> definitief wilt verwijderen?"}
