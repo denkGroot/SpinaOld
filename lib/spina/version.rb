@@ -1,3 +1,3 @@
 module Spina
-  VERSION = "0.4.23.patc1"
+  VERSION = "0.4.24"
 end
