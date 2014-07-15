@@ -1,8 +1,9 @@
-- content_for(:notification_alert) do
-  .notification{data: {icon: 'k'}}
-    %p
-      Je website is niet zichtbaar voor zoekmachines
-      %small Bij instellingen voor #{link_to "Statistieken en zoekmachines", spina.analytics_admin_account_path} kun je dit activeren.
+- content_for(:permanent_notice) do
+  - unless current_account.robots_allowed?
+    .permanent-notice.permanent-notice-info{data: {icon: 'k'}}
+      %p
+        Je website is niet zichtbaar voor zoekmachines
+        %small Bij instellingen voor #{link_to "Statistieken en zoekmachines", spina.analytics_admin_account_path} kun je dit activeren.
 
 .filters
   %span{data: {dropdown: true}}

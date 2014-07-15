@@ -23,6 +23,7 @@
 
     %section#main
       %header#main_content_header
+        = yield(:permanent_notice) if content_for?(:permanent_notice)
         .pull-right
           = link_to "Bekijk je website", "/", class: 'button button-hollow button-round button-small', data: {:"no-turbolink" => true, icon: "W"}
         .breadcrumbs= render_breadcrumbs separator: '<div class="divider"></div>'
