@@ -44,21 +44,27 @@
       %table.table.table-form
         %tr
           %td
-            Menu titel
+            Concept
+            %small Handig wanneer de pagina nog niet helemaal af is
           %td
-            = f.text_field :menu_title, placeholder: "Leeglaten om de titel van de pagina over te nemen"
-
-        %tr
-          %td
-            In menu tonen
-          %td
-            = f.check_box :show_in_menu, data: {switch: true}
+            = f.check_box :draft, data: {switch: true}
         %tr
           %td
             Doorsturen
             %small Doorsturen naar eerste onderliggende pagina
           %td
             = f.check_box :skip_to_first_child, data: {switch: true}
+        %tr
+          %td
+            In menu weergeven
+            %small Als dit uit staat komt de pagina niet voor in het menu
+          %td
+            = f.check_box :show_in_menu, data: {switch: true}
+        %tr
+          %td
+            Menu titel
+          %td
+            = f.text_field :menu_title, placeholder: "Leeglaten om de titel van de pagina over te nemen"
 
         - unless @page.custom_page?
           %tr
