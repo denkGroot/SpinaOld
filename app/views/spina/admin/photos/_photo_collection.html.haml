@@ -1,3 +1,4 @@
-- photos.each do |photo|
-  .image
-    = image_tag photo.file.thumb
+- if photos.present?
+  - photos.each do |photo|
+    .image
+      = image_tag photo.file.thumb

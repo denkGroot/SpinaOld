@@ -5,7 +5,7 @@ module Spina
     has_and_belongs_to_many :photos, join_table: 'spina_photo_collections_photos'
 
     attr_reader :photo_tokens
-    accepts_nested_attributes_for :photos, :allow_destroy => true
+    accepts_nested_attributes_for :photos, allow_destroy: true
 
     def photo_tokens=(ids)
       self.photo_ids = ids.split(",")

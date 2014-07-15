@@ -44,11 +44,11 @@ module Spina
       end
 
       def insert_photo
-        @photo = Photo.find(params[:photo_id])
+        @photo = Photo.find(params[:photo_id]) if params[:photo_id].present?
       end
 
       def insert_photo_collection
-        @photos = Photo.find(params[:photo_ids])
+        @photos = Photo.find(params[:photo_ids]) if params[:photo_ids].present?
       end
 
       def wysihtml5_insert
