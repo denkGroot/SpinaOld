@@ -42,8 +42,7 @@ module Spina
       def photo_collection_select
         @photos = Photo.sorted
         @photo = Photo.new
-        @selected_photos = Photo.where(id: params[:selected_photo_ids]) if params[:selected_photo_ids]
-        logger.info @selected_photos.inspect
+        @selected_photos = params[:selected_photo_ids] ? Photo.where(id: params[:selected_photo_ids]) : Photo.none
       end
 
       def insert_photo
