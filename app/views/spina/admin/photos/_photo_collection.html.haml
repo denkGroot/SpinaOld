@@ -1,4 +1,6 @@
 - if photos.present?
+  .placeholder.pull-right
+    %span.button.button-small.button-round{data: {icon: 'U'}} Foto's kiezen
   - photos.each do |photo|
     .image
       = image_tag photo.file.thumb

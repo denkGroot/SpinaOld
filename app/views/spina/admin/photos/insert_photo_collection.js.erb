@@ -6,7 +6,7 @@ hidden_input.parents('td').find('.image, .placeholder').remove();
   hidden_input.parents('td a').append(photo_collection);
   hidden_input.val("<%= @photos.map(&:id).join(',') %>");
 <% else %>
-  hidden_input.parents('td').find('a').prepend("<div class='placeholder'><span data-icon='t'>Kies uit bibliotheek</span></div>");
+  hidden_input.parents('td').find('a').prepend("<div class='placeholder'><span class='button button-round button-small' data-icon='U'>Foto's kiezen</span></div>");
   hidden_input.val("");
 <% end %>
 
