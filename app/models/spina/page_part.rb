@@ -30,7 +30,7 @@ module Spina
       if self.page_partable.present?
         self.page_partable.update_attributes(attributes)
       else
-        self.page_partable = self.page_partable_type.constantize.create(attributes)
+        self.page_partable = self.page_partable_type.constantize.new(attributes)
       end
     end
 
