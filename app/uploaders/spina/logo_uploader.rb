@@ -34,7 +34,7 @@ module Spina
     #   process :scale => [50, 50]
     # end
 
-    process resize_to_fit: [300, 100]
+    process resize_to_fit: [300, 300]
 
     # Add a white list of extensions which are allowed to be uploaded.
     # For images you might use something like this:

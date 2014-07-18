@@ -21,7 +21,9 @@ module Spina
     end
 
     version :image do
-      process resize_to_fit: [800, 800]
+      if file.size > 120
+        process resize_to_fit: [800, 800]
+      end
     end
 
     # Create different versions of your uploaded files:
