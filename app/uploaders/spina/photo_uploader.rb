@@ -21,14 +21,16 @@ module Spina
     end
 
     version :image do
-      if file.size > 120
-        process resize_to_fit: [800, 800]
-      end
+      process resize_to_fit: [800, 800], if: :too_large?
     end
 
     # Create different versions of your uploaded files:
     version :thumb do
       process resize_to_fill: [240, 135]
+    end
+
+    def too_large?(new_file)
+      new_file.size > 120 * 1000
     end
 
     # Add a white list of extensions which are allowed to be uploaded.
