@@ -1,6 +1,5 @@
 - if photos.present?
-  .placeholder.pull-right
-    %span.button.button-small.button-round{data: {icon: 'U'}} Foto's kiezen
-  - photos.each do |photo|
-    .image
-      = image_tag photo.file.thumb
+  %ul.sortable-grid
+    - photos.each do |photo|
+      %li.image{data: {photo_id: photo.id}}
+        = image_tag photo.file.thumb

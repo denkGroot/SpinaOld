@@ -3,6 +3,12 @@ ready = ->
     page_parts = $('.page-template').data('page-parts')
     show_page_parts(page_parts)
 
+  $('.sortable-grid').sortable().bind 'sortupdate', (e) ->
+    position_array = []
+    $(e.target).find('li.image').each (index) ->
+      position_array.push $(this).data('photo-id')
+    $(e.target).parents('td').find('.photo-positions').val(position_array.join(","))
+
 $(document).on 'ready page:load', ready
 
 # Change templates makes page parts appear and disappear
