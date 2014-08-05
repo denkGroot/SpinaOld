@@ -15,7 +15,7 @@ module Spina
     def photo_positions=(positions)
       positions = positions.split(",")
       self.photo_collections_photos.each do |photo|
-        photo.position = positions.index(photo.photo.id.to_s)
+        photo.position = positions.index(photo.photo.try(:id).try(:to_s))
       end
       logger.info self.photo_collections_photos.inspect
     end
