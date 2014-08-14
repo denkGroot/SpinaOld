@@ -106,7 +106,7 @@ module Spina
         when 1
           "/#{self.parent.slug}/#{slug}"
         when 2
-          "/#{self.parent.parent.slug}/#{self.parent.slug}/#{slug}"
+          "/#{self.parent.parent.try(:slug)}/#{self.parent.slug}/#{slug}"
         end
       end
     end
