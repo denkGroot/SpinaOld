@@ -9,7 +9,7 @@ module Spina
 
     def new_page_templates
       config.view_templates.map do |view_template|
-        [view_template[0], view_template[1][:title]] unless is_custom_undeletable_page?(view_template[0])
+        [view_template[0], view_template[1][:title], view_template[1][:description], view_template[1][:usage]] unless is_custom_undeletable_page?(view_template[0])
       end.compact
     end
 
