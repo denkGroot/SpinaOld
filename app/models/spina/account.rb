@@ -32,10 +32,23 @@ module Spina
     end
 
     def bootstrap_pages(theme)
+      find_or_create_custom_pages(theme)
+      deactivate_unused_view_templates(theme)
+      activate_used_view_templates(theme)
+    end
+
+    def find_or_create_custom_pages(theme)
       theme.config.custom_pages.each do |page| 
         Page.where(name: page[:name], deletable: false).first_or_create(title: page[:title], view_template: page[:view_template]).activate!
       end
+    end
+
+    def deactivate_unused_view_templates(theme)
       Page.where.not(view_template: theme.config.view_templates.map{|t|t[0]}).each &:deactivate!
+    end
+
+    def activate_used_view_templates(theme)
+      Page.where(view_template: theme.config.view_templates.map{|t|t[0]}).each &:activate!
     end
 
     def self.serialized_attr_accessor(*args)
