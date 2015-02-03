@@ -56,7 +56,7 @@ module Spina
       render_options
     end
 
-    def render_with_templates(page = page, render_options = {})
+    def render_with_templates(page = @page, render_options = {})
       render_options.update render_options_for_template(page)
       render render_options
     end
