@@ -1,10 +1,9 @@
 module Spina
   class PagesController < ApplicationController
-    before_action :find_page
     before_action :current_user_can_view_page?, except: [:robots]
 
     def homepage
-      render_with_templates
+      render_with_template(page)
     end
 
     def show
@@ -18,24 +17,15 @@ module Spina
         redirect_to page.link_url and return
       end
 
-      render_with_templates
-    end
-
-    def robots
+      render_with_template(page)
     end
 
     private
 
-    def find_page
-      @page ||= case action_name
-              when 'homepage'
-                Page.where(name: 'homepage').first || Page.first
-              when 'show'
-                Page.find(params[:id])
-              end
+    def page
+      @page ||= (action_name == 'homepage') ? Page.find_by(name: 'homepage') : Page.find(params[:id])
     end
-
-    alias_method :page, :find_page
+    helper_method :page
 
     def current_user_can_view_page?
       raise ActiveRecord::RecordNotFound unless page.live? || current_user.present?
@@ -49,16 +39,8 @@ module Spina
       page.children.sorted.live.first
     end
 
-    def render_options_for_template(page)
-      render_options = {}
-      render_options[:layout] = "#{current_theme.to_s.underscore}/application"
-      render_options[:template] = "#{current_theme.to_s.underscore}/pages/#{page.view_template || 'show'}"
-      render_options
-    end
-
-    def render_with_templates(page = @page, render_options = {})
-      render_options.update render_options_for_template(page)
-      render render_options
+    def render_with_template(page)
+      render layout: "#{current_theme.to_s.underscore}/application", template: "#{current_theme.to_s.underscore}/pages/#{page.view_template || 'show'}"
     end
 
   end
