@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://www.denkgroot.com'
   s.summary     = 'Spina'
   s.description = 'CMS'
+  s.licenses    = ['MIT']
 
   s.files = Dir['{app,config,db,lib,test}/**/*'] + ['Rakefile', 'README.rdoc']
   # s.test_files = Dir['test/**/*']
